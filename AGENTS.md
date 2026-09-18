@@ -42,6 +42,34 @@ green pipeline are the same thing. `python -m tools.layout` runs the geometric c
 rewrites `evidence/layout/`; `--check` instead fails when the committed evidence differs
 from the model.
 
+## How a ticket is closed
+
+Every ticket in `.scratch/eoir-installation-kit/issues/` is closed in **one commit**, in this
+order:
+
+1. **Model first.** The numbers go into `model/` — requirements, architecture, assumptions,
+   layout, mass, power, compliance — never into prose.
+2. **Then the check.** A tool in `tools/` computes the result and writes the evidence under
+   `evidence/<area>/`. A new rule gets a stable identifier and a case that fails on the broken
+   model.
+3. **Tests.** One failing case per check, an integration test on the repository model, and an
+   evidence-freshness test. `python -m pytest` stays green.
+4. **CI.** Add the `--check` step for the new evidence to `.github/workflows/ci.yml`.
+5. **Docs in the same commit.** Status numbers in `README.md` and `docs/overview.md`, a section
+   in `docs/method.md` when the model gains a part, a term in `CONTEXT.md` when one is born, and
+   the revision letter in `model/evidence.yaml`.
+6. **Evidence register.** The cases the evidence supports move to `PASS`, `LIMITATION` or
+   `FAIL`, or stay `FUTURE`. A `PASS` or `WARN` needs an artifact that exists, a `FUTURE` needs
+   a plan, and every note says what the evidence does **not** cover. A `WARN` is never promoted
+   to a `PASS`.
+7. **The ticket file** gets `Status: resolved` and an `## Answer`: what was built, the numbers,
+   what the checks found — including the failures that changed the design — and the model state
+   after the ticket.
+8. **Commit** as `feat(<area>): <what> (ticket NN)`, with the findings in the body, and push.
+
+A failing check is a result, not an obstacle: when the analysis contradicts the declared data,
+the data changes and the finding is recorded in the ticket Answer.
+
 ## Working rules
 
 - One phase at a time, one writer in the repository at a time for shared files.
