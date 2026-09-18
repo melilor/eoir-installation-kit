@@ -70,6 +70,14 @@ The second: **`CONTEXT.md` had not been updated by ticket 07**, because a two-pa
 file failed as a whole and the failure was missed. The load path vocabulary and the
 qualification vocabulary are in it now.
 
+The third, and the one that cost a red pipeline: **the citation map depended on the order
+Doorstop reads the requirements in**, which differs between file systems. The evidence generated
+on Windows attributed section 21 to SYS014 and the check on the Linux runner saw SYS016 first,
+so the freshness check failed there and passed here. `cited_sections` now walks the requirements
+in identifier order and reports every requirement that cites a section, and a test reverses the
+order to prove the result does not move. `tools/traceability.py` had sorted its requirements all
+along: the new tool was the one that forgot.
+
 **EMC approach, stated as the ticket asks.** Twenty entries need a test on an article, two are
 carried by analysis already committed in this repository (crash safety and the magnetic
 assessment, the latter still open on the platform survey), one by inspection (fungus) and one by

@@ -16,6 +16,7 @@ import yaml
 
 from tools.model import REPO_ROOT
 from tools.qualification import (
+    SECTION_REFERENCE,
     check_qualification,
     cited_sections,
     generated_files,
@@ -260,8 +261,34 @@ def test_the_register_pointing_elsewhere_is_a_failure(tmp_path):
 def test_every_cited_section_is_found_in_the_requirements():
     cited = cited_sections()
     assert set(cited) == {4, 6, 8, 11, 12, 13, 14, 16, 20, 21}
-    assert cited[21] == "SYS014"
-    assert cited[11] == "SYS033"
+    # Two requirements cite section 21, and the result names both of them.
+    assert cited[21] == ("SYS014", "SYS016")
+    assert cited[11] == ("SYS033",)
+
+
+def test_the_citation_map_does_not_depend_on_the_order_the_requirements_load_in():
+    """Doorstop reads the directory in a file system order, so the map must sort.
+
+    The check on the runner used to see a different order than the one on the
+    machine the evidence was generated on, and the freshness check failed there.
+    """
+    import dataclasses
+
+    from tools.model import load_model
+
+    model = load_model()
+    reversed_requirements = dict(reversed(list(model.requirements.items())))
+    assert list(reversed_requirements) != list(model.requirements)
+
+    def cites(requirements):
+        found: dict[int, list[str]] = {}
+        for uid in sorted(requirements):
+            for number in SECTION_REFERENCE.findall(requirements[uid].ref or ""):
+                found.setdefault(int(number), []).append(uid)
+        return {number: tuple(uids) for number, uids in found.items()}
+
+    assert cites(reversed_requirements) == cites(model.requirements)
+    assert cited_sections() == cites(model.requirements)
 
 
 def test_the_repository_plan_passes_every_check():

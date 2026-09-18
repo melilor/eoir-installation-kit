@@ -219,16 +219,24 @@ def load_qualification_model(root: Path | None = None) -> QualificationModel:
     )
 
 
-def cited_sections(root: Path | None = None) -> dict[int, str]:
-    """The DO-160G sections the requirements cite, with the requirement that cites them."""
+def cited_sections(root: Path | None = None) -> dict[int, tuple[str, ...]]:
+    """The DO-160G sections the requirements cite, with every requirement that cites them.
+
+    The requirements are walked in identifier order, not in the order Doorstop happens
+    to read the directory in: that order differs between file systems, and a report
+    that changes with it would fail its own freshness check on another machine.
+    """
     model = load_model(root)
-    cited: dict[int, str] = {}
-    for requirement in model.requirements.values():
+    cited: dict[int, list[str]] = {}
+    for uid in sorted(model.requirements):
+        requirement = model.requirements[uid]
         if not requirement.active:
             continue
         for number in SECTION_REFERENCE.findall(requirement.ref or ""):
-            cited.setdefault(int(number), requirement.uid)
-    return cited
+            uids = cited.setdefault(int(number), [])
+            if uid not in uids:
+                uids.append(uid)
+    return {number: tuple(uids) for number, uids in cited.items()}
 
 
 def entry_gaps(entry: SectionEntry, zone_ids: tuple[str, ...]) -> list[str]:
@@ -269,7 +277,7 @@ def check_qualification(
     cited = cited_sections(base)
     planned = {entry.number for entry in model.sections}
 
-    missing = {number: uid for number, uid in cited.items() if number not in planned}
+    missing = {number: uids for number, uids in cited.items() if number not in planned}
     findings.append(
         make_finding(
             "QUAL-SECTION-COVERAGE",
@@ -282,7 +290,9 @@ def check_qualification(
                 "appear in the plan"
                 if not missing
                 else "; missing "
-                + ", ".join(f"{number} (cited by {uid})" for number, uid in sorted(missing.items()))
+                + ", ".join(
+                    f"{number} (cited by {', '.join(uids)})" for number, uids in sorted(missing.items())
+                )
             ),
             mode="min",
         )
@@ -455,7 +465,9 @@ def check_qualification(
             }
             for entry in model.sections
         ],
-        "cited_by_requirements": {str(number): uid for number, uid in sorted(cited.items())},
+        "cited_by_requirements": {
+            str(number): list(uids) for number, uids in sorted(cited.items())
+        },
         "status_counts": by_status,
         "methods": {
             method: sum(1 for entry in model.sections if entry.method == method)
@@ -686,7 +698,10 @@ def render_report(model: QualificationModel, findings: list[Finding], detail: di
         f"- {detail['selected_categories']} zone selections carry a category, "
         f"{detail['open_categories']} are open on a named input",
         f"- Sections the requirements cite: "
-        + ", ".join(f"{number} ({uid})" for number, uid in detail["cited_by_requirements"].items()),
+        + ", ".join(
+            f"{number} ({', '.join(uids)})"
+            for number, uids in detail["cited_by_requirements"].items()
+        ),
         "",
         "## Checks",
         "",

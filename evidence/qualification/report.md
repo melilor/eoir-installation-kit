@@ -12,7 +12,7 @@ machine check that the plan is complete and that it does not claim more than it 
 
 - 24 section entries over 3 zones: 3 ASSESSED, 6 OPEN, 15 PLANNED; 1 functional test
 - 6 zone selections carry a category, 31 are open on a named input
-- Sections the requirements cite: 4 (SYS014), 6 (SYS014), 8 (SYS014), 11 (SYS033), 12 (SYS034), 13 (SYS034), 14 (SYS014), 16 (SYS014), 20 (SYS014), 21 (SYS014)
+- Sections the requirements cite: 4 (SYS014), 6 (SYS014), 8 (SYS014), 11 (SYS033), 12 (SYS034), 13 (SYS034), 14 (SYS014), 16 (SYS014), 20 (SYS014), 21 (SYS014, SYS016)
 
 ## Checks
 
