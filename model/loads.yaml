@@ -1,0 +1,162 @@
+# Load path and strength model of the installation kit.
+#
+# What is declared here: the material allowables, the structural idealisation
+# (frame and fitting sections, support conditions) and the design rules of the
+# strength analysis. What is read from the rest of the model, so that it is
+# declared once: the payload mass and centre of gravity (interface control file),
+# the platform accelerations and attachment capability (interface control file),
+# the kit mass (model/mass.yaml), the attachment geometry (model/layout.yaml) and
+# the available clearance (the field of view analysis).
+#
+# The load cases are derived by tools/loads.py from the declared accelerations:
+# they are not listed here, so a change in the platform data changes the analysis
+# instead of leaving a stale case behind.
+#
+# Basis vocabulary:
+#   limit      — the prescribed condition is a limit load; the factor of safety
+#                of 14 CFR 27.303 is applied to reach the ultimate load;
+#   ultimate   — the prescribed condition is already an ultimate load, and
+#                27.303 applies no further factor to it.
+
+revision: A
+date: 2026-09-18
+units: mm, N, MPa
+
+declared_rules:
+  factor_of_safety: 1.5                # SYS002, 14 CFR 27.303
+  bearing_allowable_ratio: 1.5         # bearing allowable = ratio x Fty — declared joint rule (A-014)
+  shear_allowable_ratio: 0.6           # fastener ultimate shear = ratio x fastener Ftu — declared rule (A-014)
+  bolt_shear_plane: threaded           # shear taken in the threaded portion: conservative (A-014)
+  frame_coefficient_simply_supported: 48  # rails as a beam on two supports: k = 48 E I / L^3, the soft idealisation
+  frame_coefficient_clamped: 192           # rails clamped at the fittings: k = 192 E I / L^3, the stiff idealisation
+  fitting_cantilever_factor: 3.0       # fitting bracket treated as a clamped cantilever: k = 3 E I / L^3
+  fitting_stress_rule: >-              # declared combination rule for the fitting critical section
+    bending from the direct share over the declared lever and axial stress from
+    the couple are added, because they act on the same face; the in-plane shear
+    enters a von Mises combination: sqrt((sigma_b + sigma_a)^2 + 3 tau^2).
+  modal_mass_frame_share: 0.5          # fraction of the frame mass that follows the first mode
+  separation_pct: 10                   # SYS015: no resonance within 10 % of the excitation frequencies
+  excitation_harmonics:                # harmonics considered, per rotor
+    main: [1, 2, 3]                    # 1/rev (balance), 2/rev, 3/rev (blade passage, three blades)
+    tail: [1, 2]                       # 1/rev, 2/rev (blade passage, two blades)
+  frequency_ceiling_hz: 200            # above this the analysis stops looking for admissible windows
+
+# Declared structural idealisation (A-014). The 2D layout model carries no
+# section, so the sections are declared here and the lengths come from
+# model/layout.yaml.
+sections:
+  frame_rail:
+    profile: 40 x 40 x 3 square tube, extruded
+    height_mm: 40
+    width_mm: 40
+    wall_mm: 3
+    count: 2                           # the two longitudinal rails BL-01, BL-02
+    material: MAT-01
+  fitting:
+    width_mm: 120                      # the fitting rectangle, model/layout.yaml
+    thickness_mm: 10                   # A-013 requires at least the fastener diameter
+    effective_lever_mm: 40             # bending length from the bolt pattern to the frame rail
+    count: 4
+    material: MAT-01
+    fasteners_per_fitting: 2
+
+materials:
+  - id: MAT-01
+    name: Aluminium 6082-T6, extruded tube and plate
+    source: DECLARED
+    note: >-
+      Typical minimum values for the temper (Rm 310 MPa, Rp0.2 260 MPa, E 70 GPa).
+      They are declared inputs of the study: the material certificate and the
+      design allowables of the delivered part have to confirm them (A-014).
+    ftu_mpa: 310
+    fty_mpa: 260
+    e_mpa: 70000
+    density_kg_m3: 2700
+  - id: MAT-02
+    name: M8 fastener, corrosion-resistant steel, A4-80
+    source: DECLARED
+    note: >-
+      Declared ultimate tensile strength and 0.2 % proof strength of the grade
+      (ISO 3506-1 for A4-80) and the thread stress area of an M8 coarse thread.
+      Shear is taken in the threaded portion, which is the conservative shear
+      plane (A-014).
+    ftu_mpa: 800
+    fty_mpa: 600
+    thread_stress_area_mm2: 36.6
+    diameter_mm: 8
+
+# The load path, element by element, with the section each element is checked at.
+load_path:
+  - element: payload
+    carries: payload inertia load at the payload centre of gravity
+    critical_section: payload mounting interface, declared by the supplier
+    checked_here: false
+    note: the payload is an interface, not a design of this study
+  - element: CMP-03 interface plate
+    carries: payload load into the frame rails and the mid beam
+    critical_section: plate bending between the mounting pattern and the rails
+    checked_here: false
+    note: needs a plate bending model with the bolt flexibility that is not declared (OI-03)
+  - element: CMP-01 frame
+    carries: payload and kit inertia loads to the four fittings
+    critical_section: rail bending at the fitting stations
+    checked_here: true
+    check: LOADS-DEFLECTION
+  - element: CMP-02 fittings
+    carries: one quarter of the load, plus the couple from the centre of gravity offset
+    critical_section: net section through the fastener holes
+    checked_here: true
+    check: LOADS-NET-SECTION
+  - element: fasteners, two M8 per fitting
+    carries: shear from the direct share and tension from the couple
+    critical_section: shear in the threaded portion and tension in the thread
+    checked_here: true
+    check: LOADS-BOLT
+  - element: platform hard points
+    carries: the fitting reaction
+    critical_section: declared capability of the platform provision
+    checked_here: true
+    check: LOADS-HARD-POINT
+
+open_items:
+  - id: OI-01
+    title: Emergency landing factors are platform data, not a clause of CS-27 for this installation
+    detail: >-
+      The declared factors (3.0 g up, 3.0 g down, 4.0 g forward, 4.0 g aft, 2.0 g
+      lateral) are the platform structural criteria. 14 CFR 27.561(b) gives
+      ultimate factors of 4 g up, 16 g forward, 8 g sideward, 20 g down and 1.5 g
+      rearward, but it applies to each occupant and to items of mass inside the
+      cabin; this payload is mounted outside the cabin, so the clause does not
+      cover it directly. 27.561(c) applies to items of mass above and behind the
+      cabin and 27.561(d) to structure in the fuel tank area, which are also not
+      this installation. The load cases therefore run on declared platform data,
+      treated as ultimate, and the traceability of those factors has to be
+      confirmed by the platform before the requirement is closed.
+  - id: OI-02
+    title: The resonance separation is not demonstrated
+    detail: >-
+      The single degree of freedom estimate of the installation's first natural
+      frequency, over the declared support idealisations, lands inside the main
+      rotor 2/rev and 3/rev excitation bands and inside the tail rotor 1/rev band,
+      and no admissible window between the bands is wide enough to contain it. The
+      stiffness of the real installation, its damping and the platform impedance
+      have to come from a modal analysis or from a ground vibration test on the
+      first article; a stiffness increase big enough to clear the bands costs more
+      frame mass than the 15 kg budget of SYS005 can take (see the report).
+  - id: OI-03
+    title: Plate, weld and fastener-slip flexibility
+    detail: >-
+      The interface plate, the welded frame joints and the slip of the bolted
+      joints are not modelled: the compliance of the load path is taken as the
+      frame rails in series with the fitting brackets. A finite element model of
+      the assembly would be needed to include them, and a test to confirm.
+
+hand_checks:
+  - id: HC-01
+    title: even share of the inertia force between the four fittings
+    formula: peak reaction per fitting = F / number of fittings
+    subject: direct share
+  - id: HC-02
+    title: couple from the inertia force acting below the attachment plane
+    formula: added reaction per fitting = F * e / (2 * pair spacing)
+    subject: couple share

@@ -1,0 +1,727 @@
+{
+  "revision": "A",
+  "units": "mm, N, MPa",
+  "declared_rules": {
+    "factor_of_safety": 1.5,
+    "bearing_allowable_ratio": 1.5,
+    "shear_allowable_ratio": 0.6,
+    "bolt_shear_plane": "threaded",
+    "frame_coefficient_simply_supported": 48,
+    "frame_coefficient_clamped": 192,
+    "fitting_cantilever_factor": 3.0,
+    "fitting_stress_rule": "bending from the direct share over the declared lever and axial stress from the couple are added, because they act on the same face; the in-plane shear enters a von Mises combination: sqrt((sigma_b + sigma_a)^2 + 3 tau^2).",
+    "modal_mass_frame_share": 0.5,
+    "separation_pct": 10,
+    "frequency_ceiling_hz": 200
+  },
+  "materials": {
+    "MAT-01": {
+      "name": "Aluminium 6082-T6, extruded tube and plate",
+      "ftu_mpa": 310.0,
+      "fty_mpa": 260.0,
+      "e_mpa": 70000.0
+    },
+    "MAT-02": {
+      "name": "M8 fastener, corrosion-resistant steel, A4-80",
+      "ftu_mpa": 800.0,
+      "fty_mpa": 600.0,
+      "e_mpa": 0.0
+    }
+  },
+  "cases": {
+    "LC-MAN-UP": {
+      "description": "Flight manoeuvre and gust, positive limit load factor",
+      "basis": "limit",
+      "factor": 1.5,
+      "acceleration_g": 3.5,
+      "ultimate_acceleration_g": 5.25,
+      "reference": "14 CFR 27.337, 27.303",
+      "ultimate_force_n": 3052.0,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 763.0,
+      "direct_share_n": 763.0,
+      "couple_share_n": 0.0,
+      "shear_stress_mpa": 0.0,
+      "tension_stress_mpa": 0.0,
+      "bolt_interaction": 0.0,
+      "net_section_bending_mpa": 15.26,
+      "net_section_axial_mpa": 0.0,
+      "net_section_shear_mpa": 0.0,
+      "net_section_stress_mpa": 15.26,
+      "bearing_stress_mpa": 4.77,
+      "limit_load_stress_mpa": 10.17
+    },
+    "LC-MAN-DOWN": {
+      "description": "Flight manoeuvre, negative limit load factor",
+      "basis": "limit",
+      "factor": 1.5,
+      "acceleration_g": 1.0,
+      "ultimate_acceleration_g": 1.5,
+      "reference": "14 CFR 27.337, 27.303",
+      "ultimate_force_n": 872.0,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 218.0,
+      "direct_share_n": 218.0,
+      "couple_share_n": 0.0,
+      "shear_stress_mpa": 0.0,
+      "tension_stress_mpa": 0.0,
+      "bolt_interaction": 0.0,
+      "net_section_bending_mpa": 4.36,
+      "net_section_axial_mpa": 0.0,
+      "net_section_shear_mpa": 0.0,
+      "net_section_stress_mpa": 4.36,
+      "bearing_stress_mpa": 1.36,
+      "limit_load_stress_mpa": 2.91
+    },
+    "LC-EML-UP": {
+      "description": "Emergency landing, upwards inertia",
+      "basis": "ultimate",
+      "factor": 1.0,
+      "acceleration_g": 3.0,
+      "ultimate_acceleration_g": 3.0,
+      "reference": "declared platform data (OI-01)",
+      "ultimate_force_n": 1744.0,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 436.0,
+      "direct_share_n": 436.0,
+      "couple_share_n": 0.0,
+      "shear_stress_mpa": 0.0,
+      "tension_stress_mpa": 0.0,
+      "bolt_interaction": 0.0,
+      "net_section_bending_mpa": 8.72,
+      "net_section_axial_mpa": 0.0,
+      "net_section_shear_mpa": 0.0,
+      "net_section_stress_mpa": 8.72,
+      "bearing_stress_mpa": 2.73
+    },
+    "LC-EML-DOWN": {
+      "description": "Emergency landing, downwards inertia",
+      "basis": "ultimate",
+      "factor": 1.0,
+      "acceleration_g": 3.0,
+      "ultimate_acceleration_g": 3.0,
+      "reference": "declared platform data (OI-01)",
+      "ultimate_force_n": 1744.0,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 436.0,
+      "direct_share_n": 436.0,
+      "couple_share_n": 0.0,
+      "shear_stress_mpa": 0.0,
+      "tension_stress_mpa": 0.0,
+      "bolt_interaction": 0.0,
+      "net_section_bending_mpa": 8.72,
+      "net_section_axial_mpa": 0.0,
+      "net_section_shear_mpa": 0.0,
+      "net_section_stress_mpa": 8.72,
+      "bearing_stress_mpa": 2.73
+    },
+    "LC-EML-FWD": {
+      "description": "Emergency landing, forward inertia",
+      "basis": "ultimate",
+      "factor": 1.0,
+      "acceleration_g": 4.0,
+      "ultimate_acceleration_g": 4.0,
+      "reference": "declared platform data (OI-01)",
+      "ultimate_force_n": 2325.4,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 600.0,
+      "direct_share_n": 581.3,
+      "couple_share_n": 148.6,
+      "shear_stress_mpa": 7.9,
+      "tension_stress_mpa": 2.0,
+      "bolt_interaction": 0.019,
+      "net_section_bending_mpa": 11.63,
+      "net_section_axial_mpa": 0.13,
+      "net_section_shear_mpa": 0.52,
+      "net_section_stress_mpa": 11.79,
+      "bearing_stress_mpa": 3.75
+    },
+    "LC-EML-AFT": {
+      "description": "Emergency landing, aft inertia",
+      "basis": "ultimate",
+      "factor": 1.0,
+      "acceleration_g": 4.0,
+      "ultimate_acceleration_g": 4.0,
+      "reference": "declared platform data (OI-01)",
+      "ultimate_force_n": 2325.4,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 600.0,
+      "direct_share_n": 581.3,
+      "couple_share_n": 148.6,
+      "shear_stress_mpa": 7.9,
+      "tension_stress_mpa": 2.0,
+      "bolt_interaction": 0.019,
+      "net_section_bending_mpa": 11.63,
+      "net_section_axial_mpa": 0.13,
+      "net_section_shear_mpa": 0.52,
+      "net_section_stress_mpa": 11.79,
+      "bearing_stress_mpa": 3.75
+    },
+    "LC-EML-LAT": {
+      "description": "Emergency landing, lateral inertia",
+      "basis": "ultimate",
+      "factor": 1.0,
+      "acceleration_g": 2.0,
+      "ultimate_acceleration_g": 2.0,
+      "reference": "declared platform data (OI-01)",
+      "ultimate_force_n": 1162.7,
+      "governing_fitting": "FT-04",
+      "governing_reaction_n": 366.3,
+      "direct_share_n": 290.7,
+      "couple_share_n": 222.8,
+      "shear_stress_mpa": 4.0,
+      "tension_stress_mpa": 3.0,
+      "bolt_interaction": 0.012,
+      "net_section_bending_mpa": 5.81,
+      "net_section_axial_mpa": 0.2,
+      "net_section_shear_mpa": 0.26,
+      "net_section_stress_mpa": 6.03,
+      "bearing_stress_mpa": 2.29
+    }
+  },
+  "criterion_valid": true,
+  "resonance": {
+    "bands": [
+      {
+        "rotor": "main",
+        "harmonic": 1,
+        "lower_hz": 5.25,
+        "upper_hz": 7.33
+      },
+      {
+        "rotor": "main",
+        "harmonic": 2,
+        "lower_hz": 10.5,
+        "upper_hz": 14.67
+      },
+      {
+        "rotor": "main",
+        "harmonic": 3,
+        "lower_hz": 15.75,
+        "upper_hz": 22.0
+      },
+      {
+        "rotor": "tail",
+        "harmonic": 1,
+        "lower_hz": 30.0,
+        "upper_hz": 44.0
+      },
+      {
+        "rotor": "tail",
+        "harmonic": 2,
+        "lower_hz": 60.0,
+        "upper_hz": 88.0
+      }
+    ],
+    "windows": [
+      {
+        "lower_hz": 0.0,
+        "upper_hz": 5.25
+      },
+      {
+        "lower_hz": 7.33,
+        "upper_hz": 10.5
+      },
+      {
+        "lower_hz": 14.67,
+        "upper_hz": 15.75
+      },
+      {
+        "lower_hz": 22.0,
+        "upper_hz": 30.0
+      },
+      {
+        "lower_hz": 44.0,
+        "upper_hz": 60.0
+      },
+      {
+        "lower_hz": 88.0,
+        "upper_hz": 200.0
+      }
+    ],
+    "estimate_low_hz": 21.88,
+    "estimate_high_hz": 43.29,
+    "modal_mass_kg": 49.4,
+    "separation_demonstrated": false,
+    "stiffening": {
+      "target_hz": 96.80000000000001,
+      "feasible": true,
+      "rail_size_mm": 136.0,
+      "rail_inertia_mm4": 9415336.0,
+      "frame_mass_kg": 8.790768,
+      "mass_increase_kg": 3.1907680000000003
+    }
+  },
+  "governing_case_by_check": {
+    "LOADS-HARD-POINT": {
+      "case": "LC-MAN-UP",
+      "fitting": "FT-04",
+      "reaction_n": 763.0
+    },
+    "LOADS-FITTING-NET-SECTION": {
+      "case": "LC-MAN-UP",
+      "fitting": "FT-04",
+      "reaction_n": 763.0
+    },
+    "LOADS-BEARING": {
+      "case": "LC-MAN-UP",
+      "fitting": "FT-04",
+      "reaction_n": 763.0
+    },
+    "LOADS-BOLT": {
+      "case": "LC-MAN-UP",
+      "fitting": "FT-04",
+      "reaction_n": 763.0
+    },
+    "LOADS-FACTOR-OF-SAFETY": {
+      "case": "LC-MAN-UP",
+      "fitting": "FT-04",
+      "reaction_n": 763.0
+    }
+  },
+  "geometry": {
+    "fitting_spacing_mm": {
+      "longitudinal": 900.0,
+      "lateral": 300.0
+    },
+    "moment_arm_mm": 115.0,
+    "load_mass_kg": 59.28,
+    "kit_mass_kg": 13.6
+  },
+  "deflection": {
+    "case": "LC-MAN-UP",
+    "value_mm": 2.18,
+    "allowance_mm": 5.0,
+    "tightest_clearance_mm": 30.0,
+    "stiffness_n_per_mm": 933.3
+  },
+  "hand_check": {
+    "case": "LC-EML-FWD",
+    "closed_form_direct_n": 581.3,
+    "closed_form_couple_n": 148.6,
+    "closed_form_sum_n": 729.9,
+    "general_solution_direct_n": 581.3,
+    "general_solution_couple_n": 148.6,
+    "general_solution_resultant_n": 600.0,
+    "component_difference_pct": 0.0,
+    "sum_over_resultant_pct": 21.65
+  },
+  "clearance_findings": 3,
+  "open_items": [
+    {
+      "id": "OI-01",
+      "title": "Emergency landing factors are platform data, not a clause of CS-27 for this installation"
+    },
+    {
+      "id": "OI-02",
+      "title": "The resonance separation is not demonstrated"
+    },
+    {
+      "id": "OI-03",
+      "title": "Plate, weld and fastener-slip flexibility"
+    }
+  ],
+  "summary": {
+    "checks": 44,
+    "passed": 44,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-EML-AFT",
+      "status": "PASS",
+      "value": 3.75,
+      "limit": 390.0,
+      "margin": 386.25,
+      "message": "LC-EML-AFT: 3.8 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-EML-DOWN",
+      "status": "PASS",
+      "value": 2.725,
+      "limit": 390.0,
+      "margin": 387.275,
+      "message": "LC-EML-DOWN: 2.7 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 3.75,
+      "limit": 390.0,
+      "margin": 386.25,
+      "message": "LC-EML-FWD: 3.8 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-EML-LAT",
+      "status": "PASS",
+      "value": 2.289,
+      "limit": 390.0,
+      "margin": 387.711,
+      "message": "LC-EML-LAT: 2.3 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-EML-UP",
+      "status": "PASS",
+      "value": 2.725,
+      "limit": 390.0,
+      "margin": 387.275,
+      "message": "LC-EML-UP: 2.7 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 1.363,
+      "limit": 390.0,
+      "margin": 388.637,
+      "message": "LC-MAN-DOWN: 1.4 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BEARING",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 4.769,
+      "limit": 390.0,
+      "margin": 385.231,
+      "message": "LC-MAN-UP: 4.8 MPa bearing at the holes against 1.5 x Fty = 390 MPa"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-EML-AFT",
+      "status": "PASS",
+      "value": 0.019,
+      "limit": 1.0,
+      "margin": 0.981,
+      "message": "LC-EML-AFT: shear 7.9 MPa and tension 2.0 MPa in the threaded portion, interaction 0.019 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-EML-DOWN",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "LC-EML-DOWN: shear 0.0 MPa and tension 0.0 MPa in the threaded portion, interaction 0.000 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 0.019,
+      "limit": 1.0,
+      "margin": 0.981,
+      "message": "LC-EML-FWD: shear 7.9 MPa and tension 2.0 MPa in the threaded portion, interaction 0.019 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-EML-LAT",
+      "status": "PASS",
+      "value": 0.012,
+      "limit": 1.0,
+      "margin": 0.988,
+      "message": "LC-EML-LAT: shear 4.0 MPa and tension 3.0 MPa in the threaded portion, interaction 0.012 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-EML-UP",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "LC-EML-UP: shear 0.0 MPa and tension 0.0 MPa in the threaded portion, interaction 0.000 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "LC-MAN-DOWN: shear 0.0 MPa and tension 0.0 MPa in the threaded portion, interaction 0.000 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-BOLT",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "LC-MAN-UP: shear 0.0 MPa and tension 0.0 MPa in the threaded portion, interaction 0.000 (sum of the two ratios)"
+    },
+    {
+      "check": "LOADS-DEFLECTION",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 2.18,
+      "limit": 5.0,
+      "margin": 2.82,
+      "message": "LC-MAN-UP: 2.18 mm of relative movement at the payload under limit load, against the 5.0 mm the installation has left at its tightest direction (30.0 mm measured, 25 mm required)"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-EML-AFT",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "LC-EML-AFT: ultimate case, factor 1 applied to the prescribed condition, 1 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-EML-DOWN",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "LC-EML-DOWN: ultimate case, factor 1 applied to the prescribed condition, 1 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "LC-EML-FWD: ultimate case, factor 1 applied to the prescribed condition, 1 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-EML-LAT",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "LC-EML-LAT: ultimate case, factor 1 applied to the prescribed condition, 1 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-EML-UP",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "LC-EML-UP: ultimate case, factor 1 applied to the prescribed condition, 1 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 1.5,
+      "limit": 1.5,
+      "margin": 0.0,
+      "message": "LC-MAN-DOWN: limit case, factor 1.5 applied to the prescribed condition, 1.5 required by 27.303"
+    },
+    {
+      "check": "LOADS-FACTOR-OF-SAFETY",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 1.5,
+      "limit": 1.5,
+      "margin": 0.0,
+      "message": "LC-MAN-UP: limit case, factor 1.5 applied to the prescribed condition, 1.5 required by 27.303"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-EML-AFT",
+      "status": "PASS",
+      "value": 11.794,
+      "limit": 310.0,
+      "margin": 298.206,
+      "message": "LC-EML-AFT: 11.79 MPa at the critical section (1120 mm2), from 11.63 MPa bending, 0.13 MPa axial and 0.52 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-EML-DOWN",
+      "status": "PASS",
+      "value": 8.72,
+      "limit": 310.0,
+      "margin": 301.28,
+      "message": "LC-EML-DOWN: 8.72 MPa at the critical section (1120 mm2), from 8.72 MPa bending, 0.00 MPa axial and 0.00 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 11.794,
+      "limit": 310.0,
+      "margin": 298.206,
+      "message": "LC-EML-FWD: 11.79 MPa at the critical section (1120 mm2), from 11.63 MPa bending, 0.13 MPa axial and 0.52 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-EML-LAT",
+      "status": "PASS",
+      "value": 6.029,
+      "limit": 310.0,
+      "margin": 303.971,
+      "message": "LC-EML-LAT: 6.03 MPa at the critical section (1120 mm2), from 5.81 MPa bending, 0.20 MPa axial and 0.26 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-EML-UP",
+      "status": "PASS",
+      "value": 8.72,
+      "limit": 310.0,
+      "margin": 301.28,
+      "message": "LC-EML-UP: 8.72 MPa at the critical section (1120 mm2), from 8.72 MPa bending, 0.00 MPa axial and 0.00 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 4.36,
+      "limit": 310.0,
+      "margin": 305.64,
+      "message": "LC-MAN-DOWN: 4.36 MPa at the critical section (1120 mm2), from 4.36 MPa bending, 0.00 MPa axial and 0.00 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-FITTING-NET-SECTION",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 15.26,
+      "limit": 310.0,
+      "margin": 294.74,
+      "message": "LC-MAN-UP: 15.26 MPa at the critical section (1120 mm2), from 15.26 MPa bending, 0.00 MPa axial and 0.00 MPa shear, against Ftu 310 MPa"
+    },
+    {
+      "check": "LOADS-HAND-CHECK",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 0.5,
+      "margin": 0.5,
+      "message": "LC-EML-FWD: closed form direct share 581.3 N and couple share 148.6 N against the general solution 581.3 N and 148.6 N, largest difference 0.00 %"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-EML-AFT",
+      "status": "PASS",
+      "value": 600.021,
+      "limit": 25000.0,
+      "margin": 24399.979,
+      "message": "LC-EML-AFT: 600 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-EML-DOWN",
+      "status": "PASS",
+      "value": 436.004,
+      "limit": 25000.0,
+      "margin": 24563.996,
+      "message": "LC-EML-DOWN: 436 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-EML-FWD",
+      "status": "PASS",
+      "value": 600.021,
+      "limit": 25000.0,
+      "margin": 24399.979,
+      "message": "LC-EML-FWD: 600 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-EML-LAT",
+      "status": "PASS",
+      "value": 366.264,
+      "limit": 25000.0,
+      "margin": 24633.736,
+      "message": "LC-EML-LAT: 366 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-EML-UP",
+      "status": "PASS",
+      "value": 436.004,
+      "limit": 25000.0,
+      "margin": 24563.996,
+      "message": "LC-EML-UP: 436 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 218.002,
+      "limit": 25000.0,
+      "margin": 24781.998,
+      "message": "LC-MAN-DOWN: 218 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-HARD-POINT",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 763.006,
+      "limit": 25000.0,
+      "margin": 24236.994,
+      "message": "LC-MAN-UP: 763 N at FT-04 against the declared 25 kN per hard point"
+    },
+    {
+      "check": "LOADS-LIMIT-STRESS",
+      "subject": "LC-MAN-DOWN",
+      "status": "PASS",
+      "value": 2.907,
+      "limit": 260.0,
+      "margin": 257.093,
+      "message": "LC-MAN-DOWN: 2.91 MPa at the critical section under limit load against Fty 260 MPa, so no permanent deformation"
+    },
+    {
+      "check": "LOADS-LIMIT-STRESS",
+      "subject": "LC-MAN-UP",
+      "status": "PASS",
+      "value": 10.173,
+      "limit": 260.0,
+      "margin": 249.827,
+      "message": "LC-MAN-UP: 10.17 MPa at the critical section under limit load against Fty 260 MPa, so no permanent deformation"
+    },
+    {
+      "check": "LOADS-RESONANCE-CRITERION",
+      "subject": "main-1/rev",
+      "status": "PASS",
+      "value": 2.083,
+      "limit": 0.0,
+      "margin": 2.083,
+      "message": "main rotor 1/rev: band 5.25 to 7.33 Hz with the 10 % criterion; 6 admissible windows up to 200 Hz"
+    },
+    {
+      "check": "LOADS-RESONANCE-CRITERION",
+      "subject": "main-2/rev",
+      "status": "PASS",
+      "value": 4.167,
+      "limit": 0.0,
+      "margin": 4.167,
+      "message": "main rotor 2/rev: band 10.50 to 14.67 Hz with the 10 % criterion; 6 admissible windows up to 200 Hz"
+    },
+    {
+      "check": "LOADS-RESONANCE-CRITERION",
+      "subject": "main-3/rev",
+      "status": "PASS",
+      "value": 6.25,
+      "limit": 0.0,
+      "margin": 6.25,
+      "message": "main rotor 3/rev: band 15.75 to 22.00 Hz with the 10 % criterion; 6 admissible windows up to 200 Hz"
+    },
+    {
+      "check": "LOADS-RESONANCE-CRITERION",
+      "subject": "tail-1/rev",
+      "status": "PASS",
+      "value": 14.0,
+      "limit": 0.0,
+      "margin": 14.0,
+      "message": "tail rotor 1/rev: band 30.00 to 44.00 Hz with the 10 % criterion; 6 admissible windows up to 200 Hz"
+    },
+    {
+      "check": "LOADS-RESONANCE-CRITERION",
+      "subject": "tail-2/rev",
+      "status": "PASS",
+      "value": 28.0,
+      "limit": 0.0,
+      "margin": 28.0,
+      "message": "tail rotor 2/rev: band 60.00 to 88.00 Hz with the 10 % criterion; 6 admissible windows up to 200 Hz"
+    }
+  ]
+}

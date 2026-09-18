@@ -36,10 +36,10 @@ Every requirement of the study, the document that will show compliance, the meth
 
 | Requirement | Title | Source | Verification | Method | Document | Document state | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SYS001 | Mechanical interface to the platform | STD 14 CFR 27.1301; STD 14 CFR 27.301 | VER001 | analysis | DWG-001 | DRAFT | FUTURE |
-| SYS002 | Factor of safety | STD 14 CFR 27.303 | VER002 | analysis | AN-001 | PLANNED | FUTURE |
-| SYS003 | Strength and deformation | STD 14 CFR 27.305 | VER002 | analysis | AN-001 | PLANNED | FUTURE |
-| SYS004 | Load cases | STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001 | VER001 | analysis | AN-001 | PLANNED | FUTURE |
+| SYS001 | Mechanical interface to the platform | STD 14 CFR 27.1301; STD 14 CFR 27.301 | VER001 | analysis | DWG-001 | DRAFT | PASS |
+| SYS002 | Factor of safety | STD 14 CFR 27.303 | VER002 | analysis | AN-001 | PLANNED | PASS |
+| SYS003 | Strength and deformation | STD 14 CFR 27.305 | VER002 | analysis | AN-001 | PLANNED | PASS |
+| SYS004 | Load cases | STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001 | VER001 | analysis | AN-001 | PLANNED | PASS |
 | SYS005 | Kit mass | ASM A-004 | VER003 | analysis | AN-002 | PLANNED | PASS |
 | SYS006 | Payload envelope | ASM A-001 | VER004 | analysis | DWG-001 | DRAFT | PASS |
 | SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | VER003 | analysis | AN-002 | PLANNED | PASS |
@@ -50,7 +50,7 @@ Every requirement of the study, the document that will show compliance, the meth
 | SYS012 | Data interfaces | ASM A-007 | VER008, VER016 | inspection, test | DWG-002 | DRAFT | PASS, FUTURE |
 | SYS013 | Bonding | ASM A-008 | VER009 | test | TP-002 | PLANNED | FUTURE |
 | SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | VER010 | review | TP-001 | PLANNED | FUTURE |
-| SYS015 | Resonance separation | ASM A-010 | VER011 | analysis | AN-005 | PLANNED | FUTURE |
+| SYS015 | Resonance separation | ASM A-010 | VER011 | analysis | AN-005 | PLANNED | LIMITATION |
 | SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | VER012 | review | TP-001 | PLANNED | FUTURE |
 | SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | VER012 | review | TP-001 | PLANNED | FUTURE |
 | SYS018 | Installation and removal | ASM A-011 | VER013 | demonstration | DWG-001 | DRAFT | LIMITATION |

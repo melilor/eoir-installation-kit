@@ -16,10 +16,11 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: G (2026-09-18) — the electrical analysis (ticket 06) closed the power case and
-# recorded the protection coordination as a limitation with its open items.
+# Revision: H (2026-09-18) — the load path analysis (ticket 07) closed the strength cases,
+# recorded the resonance separation as a limitation and changed the attachment geometry that
+# did not match the platform provisions.
 
-revision: G
+revision: H
 date: 2026-09-18
 
 cases:
@@ -36,6 +37,31 @@ cases:
     artifact: null
     plan: issues/07-analysis-load-path-and-strength
     note: Factor of safety 1.5, strength and deformation criteria.
+
+  - verification: VER001
+    method: analysis
+    status: PASS
+    artifact: evidence/loads/checks.json
+    plan: issues/07-analysis-load-path-and-strength
+    note: >-
+      Seven load cases derived from the declared accelerations, four fittings at the
+      attachment points the layout declares, reactions from the inertia force and the couple
+      the force makes below the attachment plane. The manoeuvre case governs: 5.25 g ultimate
+      at 59.28 kg gives 763 N at the most loaded fitting against a declared capability of
+      25 kN per point.
+
+  - verification: VER002
+    method: analysis
+    status: PASS
+    artifact: evidence/loads/checks.json
+    plan: issues/07-analysis-load-path-and-strength
+    note: >-
+      Factor of safety 1.5 applied to the limit load cases and none applied to the conditions
+      the platform prescribes as ultimate, as 27.303 requires. Critical section stresses are
+      two orders of magnitude below the declared allowables: the strength checks do not size
+      this installation. The material allowables are declared handbook values (A-014) and the
+      emergency landing factors are platform data, not a clause of 27.561 for a belly
+      installation (OI-01).
 
   - verification: VER003
     method: analysis
@@ -138,10 +164,19 @@ cases:
 
   - verification: VER011
     method: analysis
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: evidence/loads/checks.json
     plan: issues/07-analysis-load-path-and-strength
-    note: Resonance separation from the declared rotor excitation frequencies.
+    note: >-
+      The excitation bands are computed from the declared rotor data and the separation
+      criterion is applied to them, but the separation is not demonstrated. The single degree
+      of freedom estimate of the installation is 21.9 to 43.3 Hz between the simply supported
+      and the clamped idealisation of the frame rails, and that interval crosses the main rotor
+      3/rev band and the tail rotor 1/rev band: no admissible window is wide enough to contain
+      it, so the uncertainty of the estimate is larger than the distance between the harmonics.
+      A modal analysis or a ground vibration test on the first article is required, and
+      stiffening the frame enough to clear the bands costs more mass than the kit budget has
+      left (OI-02).
 
   - verification: VER012
     method: review

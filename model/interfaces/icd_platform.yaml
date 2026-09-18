@@ -36,7 +36,9 @@ data:
 
 structural_environment:
   main_rotor_rpm: { lower: 350, upper: 400 }
+  main_rotor_blades: 3
   tail_rotor_rpm: { lower: 2000, upper: 2400 }
+  tail_rotor_blades: 2
   design_manoeuvre_load_factor_g: { lower: -1.0, upper: 3.5 }
   emergency_landing_inertia_g: { up: 3.0, down: 3.0, forward: 4.0, aft: 4.0, lateral: 2.0 }
 

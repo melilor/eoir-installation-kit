@@ -15,25 +15,25 @@ Every requirement of the installation kit, the architecture element that owns it
 | Functions | 9 |
 | Components | 12 |
 | Interfaces | 9 |
-| Declared assumptions | 13 |
+| Declared assumptions | 15 |
 
 | Evidence status | Count |
 | --- | --- |
-| PASS | 9 |
+| PASS | 11 |
 | WARN | 0 |
 | FAIL | 0 |
-| LIMITATION | 5 |
+| LIMITATION | 6 |
 | BLOCKED | 0 |
-| FUTURE | 14 |
+| FUTURE | 11 |
 
 ## Requirements
 
 | Requirement | Title | Source | Architecture | Verification | Method | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SYS001 | Mechanical interface to the platform | STD 14 CFR 27.1301; STD 14 CFR 27.301 | CMP-01, CMP-02, CMP-03 | VER001 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
-| SYS002 | Factor of safety | STD 14 CFR 27.303 | CMP-01, CMP-02 | VER002 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
-| SYS003 | Strength and deformation | STD 14 CFR 27.305 | CMP-01, CMP-02 | VER002 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
-| SYS004 | Load cases | STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001 | CMP-02 | VER001 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
+| SYS001 | Mechanical interface to the platform | STD 14 CFR 27.1301; STD 14 CFR 27.301 | CMP-01, CMP-02, CMP-03 | VER001 | analysis | PASS | evidence/loads/checks.json |
+| SYS002 | Factor of safety | STD 14 CFR 27.303 | CMP-01, CMP-02 | VER002 | analysis | PASS | evidence/loads/checks.json |
+| SYS003 | Strength and deformation | STD 14 CFR 27.305 | CMP-01, CMP-02 | VER002 | analysis | PASS | evidence/loads/checks.json |
+| SYS004 | Load cases | STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001 | CMP-02 | VER001 | analysis | PASS | evidence/loads/checks.json |
 | SYS005 | Kit mass | ASM A-004 | CMP-01 | VER003 | analysis | PASS | evidence/mass/checks.json |
 | SYS006 | Payload envelope | ASM A-001 | CMP-03 | VER004 | analysis | PASS | evidence/mass/checks.json |
 | SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | CMP-01, CMP-10 | VER003 | analysis | PASS | evidence/mass/checks.json |
@@ -44,7 +44,7 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS012 | Data interfaces | ASM A-007 | CMP-05 | VER008, VER016 | inspection, test | PASS, FUTURE | evidence/layout/checks.json, issues/10-qualification-plan-environmental |
 | SYS013 | Bonding | ASM A-008 | CMP-07 | VER009 | test | FUTURE | issues/10-qualification-plan-environmental |
 | SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | CMP-11 | VER010 | review | FUTURE | issues/10-qualification-plan-environmental |
-| SYS015 | Resonance separation | ASM A-010 | CMP-11 | VER011 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
+| SYS015 | Resonance separation | ASM A-010 | CMP-11 | VER011 | analysis | LIMITATION | evidence/loads/checks.json |
 | SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | CMP-05, CMP-11 | VER012 | review | FUTURE | issues/10-qualification-plan-environmental |
 | SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | CMP-11 | VER012 | review | FUTURE | issues/10-qualification-plan-environmental |
 | SYS018 | Installation and removal | ASM A-011 | CMP-08, CMP-09 | VER013 | demonstration | LIMITATION | evidence/layout/checks.json |
@@ -86,3 +86,5 @@ Every requirement of the installation kit, the architecture element that owns it
 | A-011 | Maintainability targets | OPEN |
 | A-012 | Harness installation rules | OPEN |
 | A-013 | Joint design rules | OPEN |
+| A-014 | Structural idealisation and material allowables | OPEN |
+| A-015 | Available relative movement at the tightest field of view direction | OPEN |

@@ -41,11 +41,12 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision G — first published slice, 2026-09-18.** 38 requirements, 12 components, 28
-verification cases, 13 documents, 90 layout checks, 16 mass checks, 3 clearance checks, 5
-electrical checks. **Fourteen cases are closed** at the level the evidence supports — nine
-`PASS` and five `LIMITATION` for what a model cannot demonstrate; the other 14 are `FUTURE` and
-point at the ticket that will produce their evidence. The
+**Revision H — first published slice, 2026-09-18.** 38 requirements, 12 components, 28
+verification cases, 15 declared assumptions, 13 documents, 93 layout checks, 16 mass checks, 3
+clearance checks, 5 electrical checks, 44 load path checks. **Seventeen cases are closed** at
+the level the evidence supports — eleven `PASS` and six `LIMITATION` for what a model cannot
+demonstrate; the other 11 are `FUTURE` and point at the ticket that will produce their
+evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -63,6 +64,7 @@ python -m tools.compliance                    # regenerate docs/compliance-matri
 python -m tools.mass                          # run the mass and balance analysis
 python -m tools.clearance                     # run the field of view and clearance analysis
 python -m tools.power                         # run the electrical power budget and protection check
+python -m tools.loads                         # run the load path and strength analysis
 python -m pytest                              # run the test suite
 ```
 
@@ -84,6 +86,7 @@ evidence/
   mass/                  generated: checks.json, report.md
   clearance/             generated: checks.json, report.md, sweep.svg
   power/                 generated: checks.json, report.md
+  loads/                 generated: checks.json, report.md
 tools/
   model.py               load the model parts
   rules.py               the validation rules, one identifier per failure
@@ -94,8 +97,9 @@ tools/
   mass.py                run the mass and balance analysis and write the evidence
   clearance.py           run the field of view analysis and write the evidence
   power.py               run the electrical analysis and write the evidence
+  loads.py               run the load path and strength analysis and write the evidence
   compliance.py          generate the compliance matrix and the document register
-tests/                   107 tests: one failing model per rule, plus the repository model
+tests/                   127 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables

@@ -89,6 +89,23 @@ bus load, and writes `evidence/power/`. The items the declared data cannot close
 the payload inrush against the breaker rating, which needs the trip curve — are listed in the
 evidence as open items instead of being smoothed away.
 
+## The load path
+
+`model/loads.yaml` declares the material allowables, the structural idealisation and the
+design rules; the payload mass and centre of gravity, the platform accelerations, the
+attachment geometry and the available clearance come from the rest of the model.
+`tools/loads.py` derives the load cases from the declared accelerations, runs each one through
+the load path — payload, plate, frame rails, fittings, fasteners, platform hard points — and
+checks the reaction, the critical section stress, the bearing, the shear and tension
+interaction in the fasteners, and the deflection against the clearance margin the field of view
+analysis left. It also compares its own solution with an independent closed form and reports
+the difference, and it computes the rotor excitation bands the first mode has to stay clear of.
+
+The result is stated as it is: the strength margins are two orders of magnitude wide, so
+strength is not what sizes this installation, while the resonance separation cannot be
+demonstrated by a single degree of freedom estimate whose uncertainty is wider than the gaps
+between the harmonics.
+
 ## The compliance frame
 
 `model/compliance.yaml` holds two things: the change classification (one criterion per

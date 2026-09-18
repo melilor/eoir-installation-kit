@@ -33,5 +33,7 @@ jobs:
         run: python -m tools.clearance --check
       - name: Run the electrical analysis and verify the published evidence
         run: python -m tools.power --check
+      - name: Run the load path analysis and verify the published evidence
+        run: python -m tools.loads --check
       - name: Run the tests
         run: python -m pytest

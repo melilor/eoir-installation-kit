@@ -21,7 +21,10 @@ from tools.layout import (
 )
 from tools.model import REPO_ROOT
 
-ICD = {"payload": {"mass_kg": 45, "power": {"voltage_vdc": 28}}}
+ICD = {
+    "payload": {"mass_kg": 45, "power": {"voltage_vdc": 28}},
+    "attachment_provisions": {"spacing_mm": {"longitudinal": 900, "lateral": 300}},
+}
 
 
 def base_layout() -> dict:
@@ -53,7 +56,12 @@ def base_layout() -> dict:
                 {"id": "BL-01", "name": "Rail", "rect": [-510, 130, 510, 170]},
                 {"id": "BM-01", "name": "Beam", "rect": [-30, -170, 30, 170]},
             ],
-            "fittings": [{"id": "FT-01", "rect": [-510, -210, -390, -90]}],
+            "fittings": [
+                {"id": "FT-01", "rect": [-510, -210, -390, -90]},
+                {"id": "FT-02", "rect": [390, -210, 510, -90]},
+                {"id": "FT-03", "rect": [-510, 90, -390, 210]},
+                {"id": "FT-04", "rect": [390, 90, 510, 210]},
+            ],
             "fasteners": [
                 {
                     "id": "F-01",
@@ -69,11 +77,58 @@ def base_layout() -> dict:
                     "diameter": 8,
                     "locking_devices": 2,
                 },
+                {
+                    "id": "F-03",
+                    "fitting": "FT-02",
+                    "position": [480, -180],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
+                {
+                    "id": "F-04",
+                    "fitting": "FT-02",
+                    "position": [420, -120],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
+                {
+                    "id": "F-05",
+                    "fitting": "FT-03",
+                    "position": [-480, 180],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
+                {
+                    "id": "F-06",
+                    "fitting": "FT-03",
+                    "position": [-420, 120],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
+                {
+                    "id": "F-07",
+                    "fitting": "FT-04",
+                    "position": [480, 180],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
+                {
+                    "id": "F-08",
+                    "fitting": "FT-04",
+                    "position": [420, 120],
+                    "diameter": 8,
+                    "locking_devices": 2,
+                },
             ],
             "connectors": [
                 {"id": "CN-01", "name": "Power connector", "position": [0, 250], "access_radius": 60}
             ],
-            "inspection_zones": [{"id": "IZ-01", "fitting": "FT-01", "rect": [-540, -240, -360, -60]}],
+            "inspection_zones": [
+                {"id": "IZ-01", "fitting": "FT-01", "rect": [-540, -240, -360, -60]},
+                {"id": "IZ-02", "fitting": "FT-02", "rect": [360, -240, 540, -60]},
+                {"id": "IZ-03", "fitting": "FT-03", "rect": [-540, 60, -360, 240]},
+                {"id": "IZ-04", "fitting": "FT-04", "rect": [360, 60, 540, 240]},
+            ],
             "hot_zones": [{"id": "HZ-01", "name": "Exhaust", "rect": [230, -60, 300, 90]}],
             "moving_parts": [{"id": "MP-01", "name": "Linkage", "rect": [-300, -80, -230, 90]}],
             "harnesses": [
@@ -99,7 +154,13 @@ def base_layout() -> dict:
                 "icd": "model/interfaces/icd.yaml",
                 "path": "payload.mass_kg",
                 "expect": 45,
-            }
+            },
+            {
+                "label": "Platform attachment spacing",
+                "icd": "model/interfaces/icd.yaml",
+                "path": "attachment_provisions.spacing_mm.longitudinal",
+                "expect": 900,
+            },
         ],
     }
 
@@ -152,7 +213,42 @@ def test_small_edge_distance_is_a_failure(tmp_path):
     def mutate(data):
         data["bottom_view"]["fasteners"][0]["position"] = [-396, -180]
 
-    assert failed_checks(findings_for(tmp_path, mutate)) == {"FITTING-EDGE-DISTANCE"}
+    # Moving one hole also moves the bolt-pattern centre of that fitting, so the
+    # attachment pattern check reports it as well: the two are coupled on purpose.
+    assert failed_checks(findings_for(tmp_path, mutate)) == {
+        "FITTING-EDGE-DISTANCE",
+        "ATTACHMENT-PATTERN",
+    }
+
+
+def test_a_hard_point_off_the_declared_spacing_is_a_failure(tmp_path):
+    def mutate(data):
+        # Move the whole aft pair 10 mm inboard: the rectangle survives, the
+        # lateral spacing drops to 290 mm against the declared 300 mm.
+        for fastener in data["bottom_view"]["fasteners"]:
+            if fastener["fitting"] in {"FT-03", "FT-04"}:
+                fastener["position"][1] -= 10
+
+    assert failed_checks(findings_for(tmp_path, mutate)) == {"ATTACHMENT-SPACING"}
+
+
+def test_attachment_points_that_are_not_a_rectangle_are_a_failure(tmp_path):
+    def mutate(data):
+        data["bottom_view"]["fasteners"][6]["position"] = [480, 150]
+
+    assert failed_checks(findings_for(tmp_path, mutate)) == {"ATTACHMENT-PATTERN"}
+
+
+def test_platform_without_attachment_provisions_is_a_failure(tmp_path):
+    root = write_layout(tmp_path, base_layout())
+    (root / "model" / "interfaces" / "icd.yaml").write_text(
+        yaml.safe_dump({"payload": {"mass_kg": 45}}), encoding="utf-8"
+    )
+
+    findings = check_layout(load_layout(root), root)
+    assert "ATTACHMENT-SPACING" in {
+        finding.check for finding in findings if finding.status == "FAIL"
+    }
 
 
 def test_unknown_fitting_is_a_failure(tmp_path):

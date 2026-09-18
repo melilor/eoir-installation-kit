@@ -12,11 +12,38 @@
     "minimum_clearance_mm": 25.0
   },
   "summary": {
-    "checks": 90,
-    "passed": 90,
+    "checks": 93,
+    "passed": 93,
     "failed": 0
   },
   "findings": [
+    {
+      "check": "ATTACHMENT-PATTERN",
+      "subject": "fitting-centres",
+      "status": "PASS",
+      "value": 4.0,
+      "limit": 4.0,
+      "margin": 0.0,
+      "message": "four hard points at x [-450.0, 450.0] and y [-150.0, 150.0]: a rectangle, as the load path assumes"
+    },
+    {
+      "check": "ATTACHMENT-SPACING",
+      "subject": "lateral",
+      "status": "PASS",
+      "value": 300.0,
+      "limit": 300.0,
+      "margin": 0.0,
+      "message": "lateral spacing between the hard points 300 mm, platform provisions 300 mm"
+    },
+    {
+      "check": "ATTACHMENT-SPACING",
+      "subject": "longitudinal",
+      "status": "PASS",
+      "value": 900.0,
+      "limit": 900.0,
+      "margin": 0.0,
+      "message": "longitudinal spacing between the hard points 900 mm, platform provisions 900 mm"
+    },
     {
       "check": "BEND-RADIUS",
       "subject": "HR-01",
@@ -444,10 +471,10 @@
       "check": "FITTING-EDGE-DISTANCE",
       "subject": "F-06/FT-03",
       "status": "PASS",
-      "value": 18.0,
+      "value": 30.0,
       "limit": 16.0,
-      "margin": 2.0,
-      "message": "smallest edge distance of F-06 in FT-03: 18.0 mm (need 16 mm)"
+      "margin": 14.0,
+      "message": "smallest edge distance of F-06 in FT-03: 30.0 mm (need 16 mm)"
     },
     {
       "check": "FITTING-EDGE-DISTANCE",
@@ -705,10 +732,10 @@
       "check": "HOLE-PITCH",
       "subject": "FT-03:F-05-F-06",
       "status": "PASS",
-      "value": 72.0,
+      "value": 84.853,
       "limit": 24.0,
-      "margin": 48.0,
-      "message": "pitch between F-05 and F-06: 72.0 mm (need 24 mm)"
+      "margin": 60.853,
+      "message": "pitch between F-05 and F-06: 84.9 mm (need 24 mm)"
     },
     {
       "check": "HOLE-PITCH",

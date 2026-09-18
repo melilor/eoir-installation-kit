@@ -122,10 +122,16 @@
   title: Rotor excitation frequencies
   statement: >-
     The main rotor operates between 350 and 400 rpm and the tail rotor between
-    2 000 and 2 400 rpm over the operating range.
+    2 000 and 2 400 rpm over the operating range, with three main rotor blades and
+    two tail rotor blades. The excitation frequencies considered by the resonance
+    criterion of SYS015 are one to three times the main rotor speed and one to two
+    times the tail rotor speed.
   rationale: >-
     Declared reference used by the resonance criterion in SYS015. The criterion
-    is a design rule of this study, not a published requirement.
+    is a design rule of this study, not a published requirement. The harmonic
+    orders considered are the balance harmonic and the blade passage of a
+    three-blade and a two-blade rotor; the higher orders carry little energy and
+    are outside the scope of the criterion, which is itself declared and open.
   status: OPEN
   data_file: model/interfaces/icd_platform.yaml
   owner: author
@@ -170,3 +176,41 @@
   status: OPEN
   owner: author
   data_file: model/layout.yaml
+
+- id: A-014
+  title: Structural idealisation and material allowables
+  statement: >-
+    The kit frame is built from two 40 x 40 x 3 mm square tubes in 6082-T6 and the
+    fittings from 10 mm plate in the same alloy, fastened with M8 A4-80
+    fasteners. The strength analysis uses an ultimate tensile strength of 310 MPa,
+    a yield strength of 260 MPa and a modulus of 70 GPa for the alloy, a bearing
+    allowable of 1.5 times the yield strength, an ultimate shear strength of the
+    fasteners of 0.6 times their tensile strength taken in the threaded portion,
+    and an effective bending length of 40 mm for the fitting bracket.
+  rationale: >-
+    The load path analysis (SYS001 to SYS004) and the resonance criterion (SYS015)
+    need sections, allowables and an idealisation that a two-dimensional layout
+    cannot declare. The values are typical handbook figures for the alloy and the
+    grade, used as declared design values: the material certificate, the fastener
+    specification and a finite element model of the bracket have to confirm them
+    before the joints are released.
+  status: OPEN
+  data_file: model/loads.yaml
+  owner: author
+
+- id: A-015
+  title: Available relative movement at the tightest field of view direction
+  statement: >-
+    The relative movement between the payload and the platform structure under
+    the load cases of this study is limited by the clearance the field of view
+    analysis achieved at its tightest direction: 30 mm against a requirement of
+    25 mm, which leaves 5 mm of available movement.
+  rationale: >-
+    SYS009 requires 25 mm of clearance in all operating configurations, so the
+    deflection under load has to stay inside the margin the installation has at
+    its tightest direction. The value comes from evidence/clearance/checks.json;
+    tools/loads.py recomputes it from the clearance analysis and fails the check
+    if the two disagree, so it is not a number typed here alone.
+  status: OPEN
+  data_file: model/loads.yaml
+  owner: author

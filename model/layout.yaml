@@ -60,19 +60,23 @@ bottom_view:
     - { id: BL-02, name: Right rail, rect: [-510, -170, 510, -130] }
     - { id: BM-01, name: Mid beam, rect: [-30, -170, 30, 170] }
   fittings:
+    # The four fittings carry the bolt patterns that mate with the platform hard
+    # points. Their bolt-pattern centres form a rectangle: the spacing is checked
+    # against the platform interface control data by tools/layout.py
+    # (ATTACHMENT-SPACING), because the load path in model/loads.yaml assumes it.
     - { id: FT-01, rect: [-510, -210, -390, -90] }
     - { id: FT-02, rect: [390, -210, 510, -90] }
-    - { id: FT-03, rect: [-510, 110, -390, 230] }
-    - { id: FT-04, rect: [390, 110, 510, 230] }
+    - { id: FT-03, rect: [-510, 90, -390, 210] }
+    - { id: FT-04, rect: [390, 90, 510, 210] }
   fasteners:
     - { id: F-01, fitting: FT-01, position: [-480, -180], diameter: 8, locking_devices: 2 }
     - { id: F-02, fitting: FT-01, position: [-420, -120], diameter: 8, locking_devices: 2 }
     - { id: F-03, fitting: FT-02, position: [480, -180], diameter: 8, locking_devices: 2 }
     - { id: F-04, fitting: FT-02, position: [420, -120], diameter: 8, locking_devices: 2 }
-    - { id: F-05, fitting: FT-03, position: [-480, 140], diameter: 8, locking_devices: 2 }
-    - { id: F-06, fitting: FT-03, position: [-408, 140], diameter: 8, locking_devices: 2 }
-    - { id: F-07, fitting: FT-04, position: [480, 140], diameter: 8, locking_devices: 2 }
-    - { id: F-08, fitting: FT-04, position: [420, 200], diameter: 8, locking_devices: 2 }
+    - { id: F-05, fitting: FT-03, position: [-480, 180], diameter: 8, locking_devices: 2 }
+    - { id: F-06, fitting: FT-03, position: [-420, 120], diameter: 8, locking_devices: 2 }
+    - { id: F-07, fitting: FT-04, position: [480, 180], diameter: 8, locking_devices: 2 }
+    - { id: F-08, fitting: FT-04, position: [420, 120], diameter: 8, locking_devices: 2 }
   connectors:
     - { id: CN-01, name: Payload power connector, position: [0, 250], access_radius: 60 }
     - { id: CN-02, name: Payload data connector, position: [120, 250], access_radius: 60 }

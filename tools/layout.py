@@ -584,6 +584,106 @@ def check_harness_clearance(layout: Layout) -> list[Finding]:
     return findings
 
 
+def _fitting_centres(layout: Layout) -> dict[str, tuple[float, float]]:
+    """The bolt-pattern centre of every fitting that has fasteners."""
+    centres: dict[str, tuple[float, float]] = {}
+    for fitting in layout.fittings:
+        holes = [fastener for fastener in layout.fasteners if fastener.fitting == fitting.id]
+        if not holes:
+            continue
+        centres[fitting.id] = (
+            sum(hole.x for hole in holes) / len(holes),
+            sum(hole.y for hole in holes) / len(holes),
+        )
+    return centres
+
+
+def check_attachment_spacing(layout: Layout, root: Path) -> list[Finding]:
+    """The attachment points agree with the platform attachment provisions.
+
+    The bolt-pattern centre of each fitting is the hard point. The load path in
+    ``model/loads.yaml`` assumes those four centres form a rectangle, so the
+    check measures the geometry instead of trusting the declaration: two distinct
+    longitudinal positions, two distinct lateral positions, and the spacings the
+    platform interface control file declares.
+    """
+    findings: list[Finding] = []
+    centres = _fitting_centres(layout)
+    if len(centres) < 4:
+        return [
+            make_finding(
+                "ATTACHMENT-PATTERN",
+                "fittings",
+                False,
+                float(len(centres)),
+                4.0,
+                f"{len(centres)} fittings with fasteners; the load path needs four",
+            )
+        ]
+
+    xs = sorted({round(centre[0], 3) for centre in centres.values()})
+    ys = sorted({round(centre[1], 3) for centre in centres.values()})
+    rectangle = len(xs) == 2 and len(ys) == 2 and len(centres) == 4
+    findings.append(
+        make_finding(
+            "ATTACHMENT-PATTERN",
+            "fitting-centres",
+            rectangle,
+            float(len(xs) * len(ys)),
+            4.0,
+            f"four hard points at x {xs} and y {ys}: "
+            + (
+                "a rectangle, as the load path assumes"
+                if rectangle
+                else "not a rectangle; the load path shares the reaction equally "
+                "between the four fittings and requires it"
+            ),
+        )
+    )
+
+    # The layout already declares which interface control file it agrees with;
+    # that is the file the attachment provisions live in.
+    icd = next(
+        (
+            root / reference.icd
+            for reference in layout.interface_refs
+            if reference.path.startswith("attachment_provisions")
+        ),
+        root / "model/interfaces/icd_platform.yaml",
+    )
+    document = yaml.safe_load(icd.read_text(encoding="utf-8")) if icd.exists() else {}
+    provisions = (document.get("attachment_provisions") or {}).get("spacing_mm")
+    if not provisions:
+        findings.append(
+            make_finding(
+                "ATTACHMENT-SPACING",
+                "platform-provisions",
+                False,
+                0.0,
+                900.0,
+                f"{icd} declares no attachment spacing to check the hard points against",
+            )
+        )
+        return findings
+    measured = {"longitudinal": xs[-1] - xs[0], "lateral": ys[-1] - ys[0]}
+    for direction, declared in provisions.items():
+        value = measured.get(direction)
+        if value is None:
+            continue
+        findings.append(
+            make_finding(
+                "ATTACHMENT-SPACING",
+                direction,
+                abs(value - float(declared)) <= 1.0,
+                value,
+                float(declared),
+                f"{direction} spacing between the hard points {value:.0f} mm, "
+                f"platform provisions {float(declared):g} mm",
+            )
+        )
+    return findings
+
+
 def check_icd_consistency(layout: Layout, root: Path) -> list[Finding]:
     """Values declared in the layout agree with the interface control data."""
     findings = []
@@ -646,6 +746,7 @@ def check_layout(layout: Layout, root: Path | None = None) -> list[Finding]:
     findings += check_clamp_spacing(layout)
     findings += check_harness_clearance(layout)
     findings += check_icd_consistency(layout, base)
+    findings += check_attachment_spacing(layout, base)
     return sort_findings(findings)
 
 

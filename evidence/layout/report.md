@@ -3,10 +3,13 @@
 
 # Layout checks
 
-Revision A, units mm. 90 checks, 90 passed, 0 failed.
+Revision A, units mm. 93 checks, 93 passed, 0 failed.
 
 | Check | Subject | Status | Value | Limit | Margin |
 | --- | --- | --- | --- | --- | --- |
+| ATTACHMENT-PATTERN | fitting-centres | PASS | 4.00 | 4 | +0.00 |
+| ATTACHMENT-SPACING | lateral | PASS | 300.00 | 300 | +0.00 |
+| ATTACHMENT-SPACING | longitudinal | PASS | 900.00 | 900 | +0.00 |
 | BEND-RADIUS | HR-01 | PASS | 80.00 | 70 | +10.00 |
 | BEND-RADIUS | HR-02 | PASS | 60.00 | 50 | +10.00 |
 | CLAMP-ON-PATH | HR-01:clamp1 | PASS | 0.00 | 1 | +1.00 |
@@ -54,7 +57,7 @@ Revision A, units mm. 90 checks, 90 passed, 0 failed.
 | FITTING-EDGE-DISTANCE | F-03/FT-02 | PASS | 30.00 | 16 | +14.00 |
 | FITTING-EDGE-DISTANCE | F-04/FT-02 | PASS | 30.00 | 16 | +14.00 |
 | FITTING-EDGE-DISTANCE | F-05/FT-03 | PASS | 30.00 | 16 | +14.00 |
-| FITTING-EDGE-DISTANCE | F-06/FT-03 | PASS | 18.00 | 16 | +2.00 |
+| FITTING-EDGE-DISTANCE | F-06/FT-03 | PASS | 30.00 | 16 | +14.00 |
 | FITTING-EDGE-DISTANCE | F-07/FT-04 | PASS | 30.00 | 16 | +14.00 |
 | FITTING-EDGE-DISTANCE | F-08/FT-04 | PASS | 30.00 | 16 | +14.00 |
 | HARNESS-CLEARANCE | HR-01:seg1/HZ-01 | PASS | 680.00 | 50 | +630.00 |
@@ -83,7 +86,7 @@ Revision A, units mm. 90 checks, 90 passed, 0 failed.
 | HARNESS-ORTHOGONAL | HR-02:seg4 | PASS | 1.00 | 1 | +0.00 |
 | HOLE-PITCH | FT-01:F-01-F-02 | PASS | 84.85 | 24 | +60.85 |
 | HOLE-PITCH | FT-02:F-03-F-04 | PASS | 84.85 | 24 | +60.85 |
-| HOLE-PITCH | FT-03:F-05-F-06 | PASS | 72.00 | 24 | +48.00 |
+| HOLE-PITCH | FT-03:F-05-F-06 | PASS | 84.85 | 24 | +60.85 |
 | HOLE-PITCH | FT-04:F-07-F-08 | PASS | 84.85 | 24 | +60.85 |
 | ICD-CONSISTENCY | Payload mass | PASS | 1.00 | 1 | +0.00 |
 | ICD-CONSISTENCY | Payload power voltage | PASS | 1.00 | 1 | +0.00 |

@@ -34,10 +34,11 @@ python -m tools.compliance
 python -m tools.mass
 python -m tools.clearance
 python -m tools.power
+python -m tools.loads
 python -m pytest
 ```
 
-The same ten commands run in CI (`.github/workflows/ci.yml`), so a green local run and a
+The same eleven commands run in CI (`.github/workflows/ci.yml`), so a green local run and a
 green pipeline are the same thing. `python -m tools.layout` runs the geometric checks and
 rewrites `evidence/layout/`; `--check` instead fails when the committed evidence differs
 from the model.
