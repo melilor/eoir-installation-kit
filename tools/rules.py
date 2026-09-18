@@ -185,6 +185,14 @@ def _check_architecture(model: Model) -> list[Finding]:
 def _check_verification(model: Model, root: Path) -> list[Finding]:
     findings: list[Finding] = []
 
+    for uid in model.duplicate_evidence:
+        findings.append(
+            _error(
+                "EVIDENCE-DUPLICATE",
+                f"{uid}: more than one evidence record; the register must state one state per case",
+            )
+        )
+
     for requirement in model.requirements.values():
         if not requirement.active:
             continue

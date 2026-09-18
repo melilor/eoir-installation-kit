@@ -146,6 +146,7 @@ class Model:
     externals: tuple[str, ...]
     evidence: dict[str, Evidence]
     assumptions: dict[str, Assumption]
+    duplicate_evidence: tuple[str, ...] = ()
     doorstop_issues: tuple[str, ...] = ()
     documents: tuple[Document, ...] = ()
     classification: ChangeClassification | None = None
@@ -286,17 +287,23 @@ def load_model(root: Path | None = None) -> Model:
     evidence_raw = yaml.safe_load((base / "model/evidence.yaml").read_text(encoding="utf-8"))
     assumptions_raw = yaml.safe_load((base / "model/assumptions.yaml").read_text(encoding="utf-8"))
 
-    evidence = {
-        record["verification"]: Evidence(
-            verification=record["verification"],
+    # A second record for the same case used to be invisible — the dictionary kept
+    # the last one and the model looked consistent while the file contradicted
+    # itself. The duplicates are kept here so the validator can report them.
+    evidence: dict[str, Evidence] = {}
+    duplicate_evidence: list[str] = []
+    for record in evidence_raw["cases"]:
+        uid = record["verification"]
+        if uid in evidence:
+            duplicate_evidence.append(uid)
+        evidence[uid] = Evidence(
+            verification=uid,
             method=record.get("method", ""),
             status=record.get("status", ""),
             artifact=record.get("artifact"),
             plan=record.get("plan"),
             note=record.get("note"),
         )
-        for record in evidence_raw["cases"]
-    }
     assumptions = {
         record["id"]: Assumption(
             id=record["id"],
@@ -317,6 +324,7 @@ def load_model(root: Path | None = None) -> Model:
         externals=tuple(entry["id"] for entry in architecture.get("externals", ())),
         evidence=evidence,
         assumptions=assumptions,
+        duplicate_evidence=tuple(sorted(set(duplicate_evidence))),
         doorstop_issues=tuple(doorstop_issues),
         documents=documents,
         classification=classification,

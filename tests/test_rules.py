@@ -92,6 +92,14 @@ def test_verification_without_evidence_record_is_an_error():
     assert "VER-EVIDENCE" in rules(model)
 
 
+def test_two_evidence_records_for_the_same_case_are_an_error():
+    import dataclasses
+
+    model = build_model()
+    model = dataclasses.replace(model, duplicate_evidence=("VER001",))
+    assert "EVIDENCE-DUPLICATE" in rules(model)
+
+
 def test_evidence_for_unknown_verification_is_an_error():
     model = build_model(
         evidence={

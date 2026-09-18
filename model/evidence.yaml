@@ -26,20 +26,6 @@ date: 2026-09-18
 cases:
   - verification: VER001
     method: analysis
-    status: FUTURE
-    artifact: null
-    plan: issues/07-analysis-load-path-and-strength
-    note: Limit and ultimate load transfer through the attachment fittings.
-
-  - verification: VER002
-    method: analysis
-    status: FUTURE
-    artifact: null
-    plan: issues/07-analysis-load-path-and-strength
-    note: Factor of safety 1.5, strength and deformation criteria.
-
-  - verification: VER001
-    method: analysis
     status: PASS
     artifact: evidence/loads/checks.json
     plan: issues/07-analysis-load-path-and-strength
@@ -95,20 +81,6 @@ cases:
       30 mm against the 25 mm requirement. The first run of the analysis found the belly
       antenna inside the sector (229 of 301 rays obstructed): the antenna moved outboard and
       out of the removal corridor.
-
-  - verification: VER006
-    method: analysis
-    status: FUTURE
-    artifact: null
-    plan: issues/06-analysis-power-and-bonding
-    note: Power budget against the declared payload demand.
-
-  - verification: VER007
-    method: inspection
-    status: FUTURE
-    artifact: null
-    plan: issues/06-analysis-power-and-bonding
-    note: Circuit protection coordination and electrical load analysis entry.
 
   - verification: VER006
     method: analysis
