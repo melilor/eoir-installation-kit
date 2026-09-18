@@ -1,0 +1,413 @@
+{
+  "configuration": "payload-installed",
+  "elevation_deg": {
+    "lower": -120.0,
+    "upper": 30.0
+  },
+  "rays": 301,
+  "clearance_limit_mm": 25.0,
+  "minimum_clearance_mm": 30.0,
+  "highest_ray_y_mm": -325.0,
+  "obstructed_rays": 0,
+  "marginal_directions": [
+    {
+      "elevation_deg": 0.0,
+      "clearance_mm": 30.0,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -0.5,
+      "clearance_mm": 30.007,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 0.5,
+      "clearance_mm": 30.007,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -1.0,
+      "clearance_mm": 30.029,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 1.0,
+      "clearance_mm": 30.029,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -1.5,
+      "clearance_mm": 30.065,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 1.5,
+      "clearance_mm": 30.065,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -2.0,
+      "clearance_mm": 30.116,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 2.0,
+      "clearance_mm": 30.116,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -2.5,
+      "clearance_mm": 30.181,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 2.5,
+      "clearance_mm": 30.181,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -3.0,
+      "clearance_mm": 30.26,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 3.0,
+      "clearance_mm": 30.26,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -3.5,
+      "clearance_mm": 30.354,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 3.5,
+      "clearance_mm": 30.354,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -4.0,
+      "clearance_mm": 30.463,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 4.0,
+      "clearance_mm": 30.463,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -4.5,
+      "clearance_mm": 30.586,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 4.5,
+      "clearance_mm": 30.586,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -5.0,
+      "clearance_mm": 30.723,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 5.0,
+      "clearance_mm": 30.723,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -5.5,
+      "clearance_mm": 30.875,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 5.5,
+      "clearance_mm": 30.875,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -6.0,
+      "clearance_mm": 31.041,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 6.0,
+      "clearance_mm": 31.041,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -6.5,
+      "clearance_mm": 31.221,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 6.5,
+      "clearance_mm": 31.221,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -7.0,
+      "clearance_mm": 31.416,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 7.0,
+      "clearance_mm": 31.416,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -7.5,
+      "clearance_mm": 31.625,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 7.5,
+      "clearance_mm": 31.625,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -8.0,
+      "clearance_mm": 31.849,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 8.0,
+      "clearance_mm": 31.849,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -8.5,
+      "clearance_mm": 32.087,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 8.5,
+      "clearance_mm": 32.087,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -9.0,
+      "clearance_mm": 32.339,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 9.0,
+      "clearance_mm": 32.339,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -9.5,
+      "clearance_mm": 32.634,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 9.5,
+      "clearance_mm": 32.634,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -10.0,
+      "clearance_mm": 33.022,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 10.0,
+      "clearance_mm": 33.022,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -10.5,
+      "clearance_mm": 33.502,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 10.5,
+      "clearance_mm": 33.502,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -11.0,
+      "clearance_mm": 34.07,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 11.0,
+      "clearance_mm": 34.07,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -11.5,
+      "clearance_mm": 34.72,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 11.5,
+      "clearance_mm": 34.72,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -12.0,
+      "clearance_mm": 35.45,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 12.0,
+      "clearance_mm": 35.45,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -12.5,
+      "clearance_mm": 36.252,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 12.5,
+      "clearance_mm": 36.252,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -13.0,
+      "clearance_mm": 37.124,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 13.0,
+      "clearance_mm": 37.124,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -13.5,
+      "clearance_mm": 38.06,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 13.5,
+      "clearance_mm": 38.06,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -14.0,
+      "clearance_mm": 39.056,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 14.0,
+      "clearance_mm": 39.056,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -14.5,
+      "clearance_mm": 40.106,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 14.5,
+      "clearance_mm": 40.106,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -15.0,
+      "clearance_mm": 41.208,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 15.0,
+      "clearance_mm": 41.208,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -15.5,
+      "clearance_mm": 42.355,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 15.5,
+      "clearance_mm": 42.355,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -16.0,
+      "clearance_mm": 43.546,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 16.0,
+      "clearance_mm": 43.546,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -16.5,
+      "clearance_mm": 44.776,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 16.5,
+      "clearance_mm": 44.776,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -17.0,
+      "clearance_mm": 46.042,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 17.0,
+      "clearance_mm": 46.042,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -17.5,
+      "clearance_mm": 47.341,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 17.5,
+      "clearance_mm": 47.341,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": -18.0,
+      "clearance_mm": 48.671,
+      "nearest": "SM-05"
+    },
+    {
+      "elevation_deg": 18.0,
+      "clearance_mm": 48.671,
+      "nearest": "SM-05"
+    }
+  ],
+  "summary": {
+    "checks": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "FOV-OBSTRUCTION",
+      "subject": "payload-installed",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 0.0,
+      "margin": 0.0,
+      "message": "0 of 301 rays obstructed; swept sector from -120 to 30 deg is clear"
+    },
+    {
+      "check": "FOV-SKIN",
+      "subject": "payload-installed",
+      "status": "PASS",
+      "value": 325.0,
+      "limit": 25.0,
+      "margin": 300.0,
+      "message": "highest ray reaches y = -325.0 mm, 325.0 mm below the skin (clearance 25 mm)"
+    },
+    {
+      "check": "FOV-CLEARANCE",
+      "subject": "payload-installed",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 25.0,
+      "margin": 5.0,
+      "message": "tightest direction +0.0 deg, nearest element SM-05: 30.0 mm (clearance 25 mm)"
+    }
+  ]
+}

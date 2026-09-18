@@ -3,7 +3,7 @@
 
 # Layout checks
 
-Revision A, units mm. 89 checks, 89 passed, 0 failed.
+Revision A, units mm. 90 checks, 90 passed, 0 failed.
 
 | Check | Subject | Status | Value | Limit | Margin |
 | --- | --- | --- | --- | --- | --- |
@@ -95,7 +95,8 @@ Revision A, units mm. 89 checks, 89 passed, 0 failed.
 | REMOVAL-CORRIDOR | SM-01 | PASS | 398.25 | 0 | +398.25 |
 | REMOVAL-CORRIDOR | SM-02 | PASS | 398.25 | 0 | +398.25 |
 | REMOVAL-CORRIDOR | SM-03 | PASS | 420.00 | 0 | +420.00 |
-| REMOVAL-CORRIDOR | SM-04 | PASS | 40.00 | 0 | +40.00 |
+| REMOVAL-CORRIDOR | SM-04 | PASS | 190.00 | 0 | +190.00 |
+| REMOVAL-CORRIDOR | SM-05 | PASS | 80.00 | 0 | +80.00 |
 
 ## Declared rules
 
@@ -108,5 +109,6 @@ Revision A, units mm. 89 checks, 89 passed, 0 failed.
 | harness_clearance | 50 |
 | hole_pitch_factor | 3 |
 | inspection_access_radius | 80 |
+| minimum_clearance_mm | 25 |
 
 The layout is a two-view 2D envelope model: rectangles, circles and orthogonal harness paths. Three-dimensional interference checking and the strength analysis are separate work, tracked by their own tickets.

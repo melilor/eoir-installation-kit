@@ -43,8 +43,8 @@ Every requirement of the study, the document that will show compliance, the meth
 | SYS005 | Kit mass | ASM A-004 | VER003 | analysis | AN-002 | PLANNED | PASS |
 | SYS006 | Payload envelope | ASM A-001 | VER004 | analysis | DWG-001 | DRAFT | PASS |
 | SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | VER003 | analysis | AN-002 | PLANNED | PASS |
-| SYS008 | Payload field of view | ASM A-003 | VER005 | analysis | AN-003 | PLANNED | FUTURE |
-| SYS009 | Minimum clearance | ASM A-005 | VER005 | analysis | AN-003 | PLANNED | FUTURE |
+| SYS008 | Payload field of view | ASM A-003 | VER005 | analysis | AN-003 | PLANNED | PASS |
+| SYS009 | Minimum clearance | ASM A-005 | VER005 | analysis | AN-003 | PLANNED | PASS |
 | SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | VER006 | analysis | AN-004 | PLANNED | FUTURE |
 | SYS011 | Electrical load analysis | STD 14 CFR 27.1351-27.1367 | VER007 | inspection | AN-004 | PLANNED | FUTURE |
 | SYS012 | Data interfaces | ASM A-007 | VER008, VER016 | inspection, test | DWG-002 | DRAFT | PASS, FUTURE |

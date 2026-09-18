@@ -42,6 +42,10 @@ identifier (`REMOVAL-CORRIDOR`, `CONNECTOR-ACCESS`, `FITTING-EDGE-DISTANCE`, `HO
 `FASTENER-LOCKING`, `INSPECTION-ACCESS`, `HARNESS-ORTHOGONAL`, `BEND-RADIUS`,
 `CLAMP-ON-PATH`, `CLAMP-SPACING`, `HARNESS-CLEARANCE`, `ICD-CONSISTENCY`). A failing check
 stops the tool and names the violated constraint.
+- **Swept sector**: the volume the rotating head of the payload sweeps around its gimbal
+  axis, bounded by the declared elevation range. In the side view it is a circular sector;
+  `tools/clearance.py` samples it with one ray per declared step and checks every ray against
+  the structure and the platform skin. The sector exists only with the payload installed.
 - **Interface control data (ICD)**: the declared values of the payload and the platform
   interfaces — mass and inertia, envelope, mounting pattern, power, buses, field of view,
   attachment provisions, structural environment. They live in `model/interfaces/` and are

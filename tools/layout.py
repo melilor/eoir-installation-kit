@@ -141,6 +141,16 @@ class InterfaceRef:
 
 
 @dataclass(frozen=True)
+class FieldOfView:
+    """The swept sector of the rotating head in the side view."""
+
+    gimbal_x: float
+    gimbal_y: float
+    head_radius: float
+    ray_step_deg: float
+
+
+@dataclass(frozen=True)
 class Layout:
     revision: str
     units: str
@@ -158,6 +168,8 @@ class Layout:
     moving_parts: tuple[NamedRect, ...]
     harnesses: tuple[Harness, ...]
     interface_refs: tuple[InterfaceRef, ...]
+    field_of_view: FieldOfView | None = None
+    platform_skin_y: float = 0.0
 
 
 # --------------------------------------------------------------------------- #
@@ -180,6 +192,17 @@ def load_layout(root: Path | None = None) -> Layout:
     raw = yaml.safe_load((base / LAYOUT_PATH).read_text(encoding="utf-8"))
     side = raw["side_view"]
     bottom = raw["bottom_view"]
+    fov_raw = side.get("field_of_view")
+    field_of_view = (
+        FieldOfView(
+            gimbal_x=float(fov_raw["gimbal_centre"][0]),
+            gimbal_y=float(fov_raw["gimbal_centre"][1]),
+            head_radius=float(fov_raw["head_radius_mm"]),
+            ray_step_deg=float(fov_raw["ray_step_deg"]),
+        )
+        if fov_raw
+        else None
+    )
     return Layout(
         revision=raw["revision"],
         units=raw["units"],
@@ -232,6 +255,8 @@ def load_layout(root: Path | None = None) -> Layout:
             InterfaceRef(entry["label"], entry["icd"], entry["path"], entry["expect"])
             for entry in raw["interface_refs"]
         ),
+        field_of_view=field_of_view,
+        platform_skin_y=float(side.get("platform_skin_y", 0.0)),
     )
 
 

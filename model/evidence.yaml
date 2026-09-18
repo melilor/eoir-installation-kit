@@ -16,10 +16,10 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: E (2026-09-18) — the mass and balance analysis (ticket 04) closed the two
-# mass cases; the remaining future cases point at their tickets.
+# Revision: F (2026-09-18) — the field of view analysis (ticket 05) closed the last
+# open installation case.
 
-revision: E
+revision: F
 date: 2026-09-18
 
 cases:
@@ -60,10 +60,15 @@ cases:
 
   - verification: VER005
     method: analysis
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/clearance/checks.json
     plan: issues/05-analysis-fov-and-clearance
-    note: Field of view obstruction and minimum clearances, all configurations.
+    note: >-
+      The swept sector (elevation -120 to +30 deg, head radius 190 mm) is clear of every
+      declared structural element over 301 sampled rays, and the tightest direction keeps
+      30 mm against the 25 mm requirement. The first run of the analysis found the belly
+      antenna inside the sector (229 of 301 rays obstructed): the antenna moved outboard and
+      out of the removal corridor.
 
   - verification: VER006
     method: analysis

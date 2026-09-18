@@ -8,11 +8,12 @@
     "inspection_access_radius": 80.0,
     "harness_clearance": 50.0,
     "clamp_spacing_max": 200.0,
-    "bend_radius_factor": 5.0
+    "bend_radius_factor": 5.0,
+    "minimum_clearance_mm": 25.0
   },
   "summary": {
-    "checks": 89,
-    "passed": 89,
+    "checks": 90,
+    "passed": 90,
     "failed": 0
   },
   "findings": [
@@ -812,10 +813,19 @@
       "check": "REMOVAL-CORRIDOR",
       "subject": "SM-04",
       "status": "PASS",
-      "value": 40.0,
+      "value": 190.0,
       "limit": 0.0,
-      "margin": 40.0,
-      "message": "Belly antenna and drain mast does not obstruct RC-01"
+      "margin": 190.0,
+      "message": "Belly antenna does not obstruct RC-01"
+    },
+    {
+      "check": "REMOVAL-CORRIDOR",
+      "subject": "SM-05",
+      "status": "PASS",
+      "value": 80.0,
+      "limit": 0.0,
+      "margin": 80.0,
+      "message": "Lower fuselage step does not obstruct RC-01"
     }
   ]
 }

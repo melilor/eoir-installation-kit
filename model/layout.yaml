@@ -25,6 +25,7 @@ declared_rules:
   harness_clearance: 50            # from hot zones and moving parts (A-012)
   clamp_spacing_max: 200           # between consecutive clamps (A-012)
   bend_radius_factor: 5.0          # multiple of the cable outside diameter (A-012)
+  minimum_clearance_mm: 25         # SYS009, assumption A-005
 
 side_view:
   platform_skin_y: 0
@@ -32,13 +33,23 @@ side_view:
     - { id: SM-01, name: Forward attachment structure, rect: [-520, -260, -380, -40] }
     - { id: SM-02, name: Aft attachment structure, rect: [380, -260, 520, -40] }
     - { id: SM-03, name: Belly beam, rect: [-60, -120, 60, -40] }
-    - { id: SM-04, name: Belly antenna and drain mast, rect: [-100, -490, 100, -430] }
+    - { id: SM-04, name: Belly antenna, relocated outboard of the swept volume, rect: [-520, -660, -380, -600] }
+    - { id: SM-05, name: Lower fuselage step, right side, rect: [220, -450, 260, -390] }
   payload_envelope:
     id: PE-01
     rect: [-190, -480, 190, -40]
   removal_corridor:
     id: RC-01
     rect: [-260, -980, 260, -500]
+  # The rotating head sweeps a sector around the gimbal axis. head_radius_mm is
+  # the distance from the gimbal centre to the outer surface of the rotating
+  # head, taken from the payload envelope. The elevation range is read from the
+  # payload interface data by tools/clearance.py; the sector is bounded by
+  # sampling one ray every ray_step_deg.
+  field_of_view:
+    gimbal_centre: [0, -420]
+    head_radius_mm: 190
+    ray_step_deg: 0.5
 
 bottom_view:
   payload_footprint:

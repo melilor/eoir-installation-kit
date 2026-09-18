@@ -17,7 +17,7 @@ in [`docs/overview.md`](docs/overview.md).
 
 ```
 $ python -m tools.traceability check
-checked 38 requirements, 28 verification cases, 12 components: 0 errors, 6 warnings
+checked 38 requirements, 28 verification cases, 12 components: 0 errors, 8 warnings
 ```
 
 The warnings are the discipline working: `ASM-OPEN` flags the evidence that rests on a
@@ -41,12 +41,12 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision E — first published slice, 2026-09-18.** The model, the architecture allocation,
-the layout, the mass analysis and the compliance frame exist and are consistent: 38
-requirements, 12 components, 28 verification cases, 13 documents, 89 layout checks, 16 mass
-checks. **Eleven cases are closed** at the level the evidence supports — seven `PASS` and four
-`LIMITATION` for what a model cannot demonstrate; the other 17 are `FUTURE` and point at the
-ticket that will produce their evidence. The
+**Revision F — first published slice, 2026-09-18.** The model, the architecture allocation,
+the layout, the mass analysis, the field of view analysis and the compliance frame exist and
+are consistent: 38 requirements, 12 components, 28 verification cases, 13 documents, 90
+layout checks, 16 mass checks, 3 clearance checks. **Twelve cases are closed** at the level the
+evidence supports — eight `PASS` and four `LIMITATION` for what a model cannot demonstrate; the
+other 16 are `FUTURE` and point at the ticket that will produce their evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -62,6 +62,7 @@ python -m tools.diagram                       # regenerate docs/architecture.md
 python -m tools.layout                        # run the layout checks, write evidence/layout/
 python -m tools.compliance                    # regenerate docs/compliance-matrix.md
 python -m tools.mass                          # run the mass and balance analysis
+python -m tools.clearance                     # run the field of view and clearance analysis
 python -m pytest                              # run the test suite
 ```
 
@@ -81,6 +82,7 @@ model/
 evidence/
   layout/                generated: checks.json, report.md, layout.svg, layout.dxf
   mass/                  generated: checks.json, report.md
+  clearance/             generated: checks.json, report.md, sweep.svg
 tools/
   model.py               load the model parts
   rules.py               the validation rules, one identifier per failure
@@ -89,8 +91,9 @@ tools/
   diagram.py             generate docs/architecture.md from the architecture model
   layout.py              run the layout checks and write the evidence
   mass.py                run the mass and balance analysis and write the evidence
+  clearance.py           run the field of view analysis and write the evidence
   compliance.py          generate the compliance matrix and the document register
-tests/                   85 tests: one failing model per rule, plus the repository model
+tests/                   96 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables

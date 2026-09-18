@@ -68,6 +68,17 @@ files into `evidence/layout/`: the machine-readable `checks.json`, a readable `r
 SVG figure and a DXF R12 export. CI runs `python -m tools.layout --check`, so the published
 evidence cannot differ from the model.
 
+## The field of view and the clearance
+
+`model/layout.yaml` declares the gimbal centre, the head radius and the sampling step of the
+swept sector; the elevation range is read from the payload interface data, so those numbers
+live in one place. `tools/clearance.py` samples the sector with one ray per step and checks
+every ray against the declared structure and the platform skin: no obstruction, no ray
+reaching the skin, and a minimum clearance of at least the declared value. The report lists
+the clearance direction by direction and flags the directions whose margin is inside twice
+the limit, so a tight direction is reported instead of averaged away. A figure of the sector
+with the rays is generated into `evidence/clearance/sweep.svg`.
+
 ## The compliance frame
 
 `model/compliance.yaml` holds two things: the change classification (one criterion per
@@ -84,8 +95,10 @@ instructions for continued airworthiness are outlined in `docs/ica.md`.
 2. Allocate it to at least one component in `model/architecture/architecture.yaml`.
 3. Add a `VER` item that links to it, and an evidence record for that `VER`.
 4. Add it to exactly one document in `model/compliance.yaml`.
-5. Run `python -m tools.traceability check`, `python -m tools.traceability report` and
-   `python -m tools.compliance`.
+5. If it is an installation requirement, add the geometry to `model/layout.yaml` and the
+   mass to `model/mass.yaml`.
+6. Run `python -m tools.traceability check`, the analysis tools (`layout`, `mass`,
+   `clearance`), `python -m tools.traceability report` and `python -m tools.compliance`.
 
 ## How to close a verification case
 
