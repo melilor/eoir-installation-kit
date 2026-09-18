@@ -1,0 +1,14 @@
+active: true
+derived: false
+header: |
+  Certification and compliance data
+level: 1.0
+links:
+- SYS020: Lycxd_5d5fwqpP9qZghovXPAjkYQIs17eo22Da2d8rI=
+- SYS021: uiATBvahci6yOu9-TCnfx0sKyz-BFIAmPQP_zIu3gcw=
+- SYS023: 4gxXM0Z3HQ7eMkamo-MjXjSlapq04LfLR9o8JG2uEqA=
+normative: true
+ref: ''
+reviewed: eqzznuY0ja6QOQCgCDKvJoAY9--ZmOPm63-Mp8Q4BuE=
+text: |
+  Verify by review that the change classification, the design assurance process and the compliance data set are recorded and traceable to the requirements.

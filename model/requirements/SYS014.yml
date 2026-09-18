@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Environmental qualification
+level: 1.0
+links: []
+normative: true
+ref: STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section
+  8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section
+  20; STD RTCA DO-160G Section 21; ASM A-009
+reviewed: yXj8T0AcPr9VheFLb-WSQ80Z8aHhIpSvlziOYHn8VCM=
+text: |
+  The kit installation, including structure, harness, connectors and bonding, shall be qualified to the RTCA DO-160G sections and categories selected in the qualification plan for each installation zone.

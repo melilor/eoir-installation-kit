@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Bonding
+level: 1.0
+links: []
+normative: true
+ref: ASM A-008
+reviewed: Gg1k62rZVczjhXcjd9d9KlMhQTQ2u06fxVL_xNkFEww=
+text: |
+  The kit shall bond the payload to the platform structure with a resistance not exceeding 2.5 milliohms.

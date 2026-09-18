@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Load cases
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001
+reviewed: dA5oixLfoGb5GHXxKbQ1bLiFHdyZGW7mzrcygJwBQn8=
+text: |
+  The kit shall withstand the limit load cases derived from the payload mass and centre of gravity envelope, the platform manoeuvre and gust envelope, and the emergency landing inertia conditions of the platform.

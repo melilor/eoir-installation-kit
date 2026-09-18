@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Protection coordination
+level: 1.0
+links:
+- SYS011: 1jy515BaArX3uLghxhGHgQ5Tn093FyxpbmukVkOP9U8=
+normative: true
+ref: ''
+reviewed: ZUNAnafXyN-CokO1IrhpZqTgJ2QL7x_JmpYk-h0RVQs=
+text: |
+  Verify by inspection of the electrical load analysis and the protection coordination that the installation is covered by the platform distribution.

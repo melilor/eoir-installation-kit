@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Lightning and HIRF protection
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1316; STD 14 CFR 27.1317
+reviewed: wMEKmzlnVYYTW4d1R_jJk98zEvparnlXz4oED2AldTo=
+text: |
+  The kit shall preserve the lightning and high-intensity radiated field protection of the platform installation, in accordance with the platform protection plan.

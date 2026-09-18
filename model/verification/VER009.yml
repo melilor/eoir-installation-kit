@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Bonding resistance
+level: 1.0
+links:
+- SYS013: Gg1k62rZVczjhXcjd9d9KlMhQTQ2u06fxVL_xNkFEww=
+normative: true
+ref: ''
+reviewed: YsaIIyHkSLS4wt7az5xhYLiWonnYjJ5PB0W6cxomy-Q=
+text: |
+  Verify by test on the first article that the bonding resistance does not exceed 2.5 milliohms.

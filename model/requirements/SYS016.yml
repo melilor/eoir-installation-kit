@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Electromagnetic compatibility
+level: 1.0
+links: []
+normative: true
+ref: STD RTCA DO-160G Section 21; STD 14 CFR 27.1309
+reviewed: pHbtLgN0LH63vLkObRJl9D4q8UsJYT57PduYiULQ1mo=
+text: |
+  The installation shall not degrade the platform radio and electro-optical systems, and the payload emissions shall be assessed against RTCA DO-160G Section 21 and the platform radio compatibility limits.

@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Mass and balance
+level: 1.0
+links:
+- SYS005: 8jCr_vsXmeKCbahDKuqvKfODKBR3dXRVX8veXvUb_EI=
+- SYS007: f_mFDL5zEZmcWEKeo8NpaEduKwOLZHHi8v-hC62ZGFI=
+normative: true
+ref: ''
+reviewed: K-oVudL4QU3kVlJgLYzGANTBszJj9CryMPSG4N6lYyo=
+text: |
+  Verify by analysis that the kit mass stays within the 15 kg target and that the platform centre of gravity remains inside the certified range in every configuration.

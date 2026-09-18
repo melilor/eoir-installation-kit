@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Load transfer
+level: 1.0
+links:
+- SYS001: mdb7VitviMRbKcy7XqVMFDyAgVDJ_N2Ce-R0OhqPhCk=
+- SYS004: dA5oixLfoGb5GHXxKbQ1bLiFHdyZGW7mzrcygJwBQn8=
+normative: true
+ref: ''
+reviewed: 2EvJfhBGlFirDtHO90_F6Wy69R-_H4_bK8B2m9BfHio=
+text: |
+  Verify by analysis that the kit transfers the payload limit and ultimate loads to the platform primary structure for every load case in the load case set.

@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Resonance separation
+level: 1.0
+links:
+- SYS015: KCygzyu1i8Ep1NZskAbRBK83FFye1ZnPRxLmuUcY6Gw=
+normative: true
+ref: ''
+reviewed: 7nekSEU9lVpZE2hfHsZ_xqnHWgDbsmJeQ7dj6ZR0YAk=
+text: |
+  Verify by analysis that the installed kit has no structural resonance within 10 percent of the rotor excitation frequencies.

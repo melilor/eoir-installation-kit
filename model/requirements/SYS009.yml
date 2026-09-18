@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Minimum clearance
+level: 1.0
+links: []
+normative: true
+ref: ASM A-005
+reviewed: GBA8fqpWL7VNHm6A9k3vbtjzzWrf73RoAT8bgE-NdFU=
+text: |
+  The installation shall maintain a minimum clearance of 25 mm between the payload swept volume and the platform structure, and between the kit and the platform structure, in all operating configurations.

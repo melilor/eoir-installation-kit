@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Inspection access
+level: 1.0
+links: []
+normative: true
+ref: ASM A-011
+reviewed: vD8NLI67sx9XV2ozQoHvQT1_EurWRnZAIMjWy2BTszk=
+text: |
+  The kit shall provide visual access to the attachment fittings and to the payload connector without removing the payload.

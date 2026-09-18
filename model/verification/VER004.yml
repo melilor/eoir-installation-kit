@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Payload interface envelope
+level: 1.0
+links:
+- SYS006: 4xstL9yvIgYexfOvJlI_sBfX5bsafls5vhQRezN1_EU=
+normative: true
+ref: ''
+reviewed: -XYKerC65tU2mS-Cg1Vbev_yzf6TF9gtEcLO-mEwu18=
+text: |
+  Verify by analysis that the payload interface plate and the attachment fittings support the payload mass and centre of gravity envelope without exceeding the interface limits.

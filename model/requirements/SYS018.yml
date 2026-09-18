@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Installation and removal
+level: 1.0
+links: []
+normative: true
+ref: ASM A-011
+reviewed: DaN_Vhb8fiWDbj1b0cNAFbipe4ItkNaMd7Mk8q6zYJk=
+text: |
+  The payload shall be installable and removable by two maintainers using standard tools in 30 minutes or less, without removing other mission equipment.

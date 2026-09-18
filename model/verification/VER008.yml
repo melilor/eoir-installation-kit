@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Harness routing and pinout
+level: 1.0
+links:
+- SYS012: 4Bu0iJAmlf3Z_8QWEqMaUZquo_vDo239wgGT5PJkvyE=
+normative: true
+ref: ''
+reviewed: HHFU2jKVUTwV0B12SKNfrczbnjTIh31zPoqinleqp48=
+text: |
+  Verify by inspection that the harness routing and the connector pinout match the payload interface data.

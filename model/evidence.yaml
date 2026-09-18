@@ -1,0 +1,134 @@
+# Verification evidence register.
+#
+# One record per verification case (VER item in the Doorstop document under
+# model/verification). The verification requirement says what has to be shown;
+# this register says how, and with what state of evidence.
+#
+# method:  analysis | simulation | test | inspection | demonstration | review
+# status:  PASS | WARN | FAIL | LIMITATION | BLOCKED | FUTURE
+#
+# Rules enforced by tools/traceability.py:
+#   - every VER item has exactly one record here, and every record names an
+#     existing VER item;
+#   - PASS and WARN require an artifact that exists on disk;
+#   - FUTURE requires a plan (the ticket that will produce the evidence);
+#   - FAIL, LIMITATION and BLOCKED require a note.
+#
+# Revision: A (2026-09-18) — no verification has been executed yet. Every case
+# is FUTURE. This is the honest state of the first published slice.
+
+revision: A
+date: 2026-09-18
+
+cases:
+  - verification: VER001
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/07-analysis-load-path-and-strength
+    note: Limit and ultimate load transfer through the attachment fittings.
+
+  - verification: VER002
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/07-analysis-load-path-and-strength
+    note: Factor of safety 1.5, strength and deformation criteria.
+
+  - verification: VER003
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/04-analysis-mass-and-balance
+    note: Kit mass budget and platform weight and balance.
+
+  - verification: VER004
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/04-analysis-mass-and-balance
+    note: Payload mass and CG envelope against the declared interface data.
+
+  - verification: VER005
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/05-analysis-fov-and-clearance
+    note: Field of view obstruction and minimum clearances, all configurations.
+
+  - verification: VER006
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/06-analysis-power-and-bonding
+    note: Power budget against the declared payload demand.
+
+  - verification: VER007
+    method: inspection
+    status: FUTURE
+    artifact: null
+    plan: issues/06-analysis-power-and-bonding
+    note: Circuit protection coordination and electrical load analysis entry.
+
+  - verification: VER008
+    method: inspection
+    status: FUTURE
+    artifact: null
+    plan: issues/08-geometry-layout-and-export
+    note: Harness routing and connector pinout against the payload interface data.
+
+  - verification: VER009
+    method: test
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: Bonding resistance test on the first article; no test article exists in this study.
+
+  - verification: VER010
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: DO-160G section and category selection per installation zone.
+
+  - verification: VER011
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/07-analysis-load-path-and-strength
+    note: Resonance separation from the declared rotor excitation frequencies.
+
+  - verification: VER012
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: Preservation of the platform lightning and HIRF protection.
+
+  - verification: VER013
+    method: demonstration
+    status: FUTURE
+    artifact: null
+    plan: issues/08-geometry-layout-and-export
+    note: Installation and removal sequence and inspection access.
+
+  - verification: VER014
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Change classification, design assurance process and compliance data set.
+
+  - verification: VER015
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Instructions for continued airworthiness completeness.
+
+  - verification: VER016
+    method: test
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: ARINC 429 and video interface functional test on the first article.

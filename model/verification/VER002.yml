@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Safety factor and strength
+level: 1.0
+links:
+- SYS002: 05bJXK6cTDVlt6I1Htkk6F0Rr4IErVU3ZprJqsBFzIE=
+- SYS003: X9giS8w-VZ3tmt8AS2Pzbvpa_hjMWqQydulWfJ2UIqQ=
+normative: true
+ref: ''
+reviewed: T0gDLI1z7QN1TQ6H0EbyQNMxEuNH4AojH-GwSMcZFXY=
+text: |
+  Verify by analysis that the kit structure and its attachments meet the 1.5 factor of safety and the strength and deformation criteria at limit and ultimate loads.

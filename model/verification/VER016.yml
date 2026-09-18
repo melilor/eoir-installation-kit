@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Data interface functional test
+level: 1.0
+links:
+- SYS012: 4Bu0iJAmlf3Z_8QWEqMaUZquo_vDo239wgGT5PJkvyE=
+normative: true
+ref: ''
+reviewed: Ceza_I02sKtFNRuKdgw1O36oHN4TaqJws9CHpIJYKgk=
+text: |
+  Verify by functional test on the first article that the ARINC 429 control link and the video link operate as declared.

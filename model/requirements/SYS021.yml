@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Design assurance
+level: 1.0
+links: []
+normative: true
+ref: STD EASA Part 21 21.A.239; STD SAE ARP4754A
+reviewed: uiATBvahci6yOu9-TCnfx0sKyz-BFIAmPQP_zIu3gcw=
+text: |
+  The development and verification of the installation shall be conducted under a design assurance system, with traceability from each requirement to the compliance evidence that satisfies it.

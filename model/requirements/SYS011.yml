@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Electrical load analysis
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1351-27.1367
+reviewed: 1jy515BaArX3uLghxhGHgQ5Tn093FyxpbmukVkOP9U8=
+text: |
+  The kit electrical installation shall be included in the platform electrical load analysis, and its circuit protection shall be coordinated with the platform distribution.

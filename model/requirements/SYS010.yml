@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Electrical power supply
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1351-27.1367; ASM A-006
+reviewed: IIl_PZXjSraIY2uqydOzaGfc5HrqMHvOQLVcicu4zuk=
+text: |
+  The kit shall supply the payload with 28 VDC electrical power from the platform bus, through a dedicated protected circuit sized for a continuous demand of 150 W and a peak demand of 400 W.

@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Factor of safety
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.303
+reviewed: 05bJXK6cTDVlt6I1Htkk6F0Rr4IErVU3ZprJqsBFzIE=
+text: |
+  The kit structure and its attachments shall withstand ultimate loads equal to 1.5 times the limit loads, applied to external and inertia loads, without failure.

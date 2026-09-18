@@ -1,0 +1,13 @@
+[project]
+name = "eoir-installation-kit"
+version = "0.1.0"
+description = "Model-based system engineering study of an EO/IR payload installation kit for a light helicopter and UAV"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Anthony Migliore" }]
+dependencies = ["doorstop==3.2", "PyYAML>=6.0,<7"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

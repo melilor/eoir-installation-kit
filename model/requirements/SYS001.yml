@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Mechanical interface to the platform
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1301; STD 14 CFR 27.301
+reviewed: mdb7VitviMRbKcy7XqVMFDyAgVDJ_N2Ce-R0OhqPhCk=
+text: |
+  The installation kit shall provide the mechanical interface between the platform attachment provisions and the payload interface plate, and shall transfer the payload loads to the platform primary structure.

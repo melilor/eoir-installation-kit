@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Payload field of view
+level: 1.0
+links: []
+normative: true
+ref: ASM A-003
+reviewed: DL806DOsykPQr5m_lq8xwn87WzHKt4XhFv6NCoP0Ik0=
+text: |
+  The installation shall not obstruct the payload field of view, which is continuous in azimuth and spans -120 degrees to +30 degrees in elevation from the payload mounting datum.

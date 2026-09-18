@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Data interfaces
+level: 1.0
+links: []
+normative: true
+ref: ASM A-007
+reviewed: 4Bu0iJAmlf3Z_8QWEqMaUZquo_vDo239wgGT5PJkvyE=
+text: |
+  The kit shall route the payload control interface on ARINC 429 and the payload video output to the mission system panel on a dedicated harness.

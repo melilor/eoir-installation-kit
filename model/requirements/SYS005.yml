@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Kit mass
+level: 1.0
+links: []
+normative: true
+ref: ASM A-004
+reviewed: 8jCr_vsXmeKCbahDKuqvKfODKBR3dXRVX8veXvUb_EI=
+text: |
+  The installed kit, excluding the payload, shall not exceed a mass of 15 kg.

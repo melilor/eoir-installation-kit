@@ -1,0 +1,136 @@
+# Declared assumptions and interface data.
+#
+# Every requirement whose source is a declared input points here with `ASM A-00x`.
+# An assumption is not a fact: it is an input the study needs, written down so it
+# can be challenged, confirmed or replaced. Status values: OPEN, CLOSED, REJECTED.
+# An OPEN assumption referenced by a requirement whose verification has evidence
+# is reported as a warning by tools/traceability.py.
+
+- id: A-001
+  title: Payload mass and CG envelope
+  statement: >-
+    The payload is a stabilised electro-optical / infrared unit with a mass not
+    exceeding 45 kg, whose centre of gravity lies within 150 mm of the payload
+    mounting datum in all operating configurations.
+  rationale: >-
+    Typical class of two-axis EO/IR turrets for light rotorcraft and tactical
+    UAVs. The value bounds the load cases and the mass budget; it is not taken
+    from a supplier data sheet.
+  status: OPEN
+  owner: author
+
+- id: A-002
+  title: Platform class and mass and balance data
+  statement: >-
+    The platform is a normal-category light helicopter in the CS-27 class with a
+    maximum take-off mass of 2 250 kg, an empty mass of 1 350 kg and a certified
+    CG range of 2 900 to 3 150 mm aft of the datum.
+  rationale: >-
+    The weight and balance requirement (SYS007) needs a reference platform. The
+    figures are a declared reference, not the data of a specific type.
+  status: OPEN
+  owner: author
+
+- id: A-003
+  title: Payload field of view
+  statement: >-
+    The payload field of view is continuous in azimuth and spans -120 deg to
+    +30 deg in elevation, measured from the payload mounting datum.
+  rationale: >-
+    Typical turret envelope used to size the nose or belly installation and the
+    obstruction analysis (SYS008).
+  status: OPEN
+  owner: author
+
+- id: A-004
+  title: Kit mass target
+  statement: >-
+    The installed kit, excluding the payload, is not to exceed 15 kg.
+  rationale: >-
+    Budget derived from the class of platform and payload above. The target is
+    verifiable by the mass and balance analysis and is expected to be the first
+    figure to move if the layout grows.
+  status: OPEN
+  owner: author
+
+- id: A-005
+  title: Minimum clearance
+  statement: >-
+    The minimum clearance between the payload swept volume and the platform
+    structure is 25 mm.
+  rationale: >-
+    Declared design rule covering structural deflection, manufacturing
+    tolerance and the platform vibration environment.
+  status: OPEN
+  owner: author
+
+- id: A-006
+  title: Payload electrical demand
+  statement: >-
+    The payload draws 28 VDC electrical power from the platform bus, 150 W
+    continuous and 400 W peak.
+  rationale: >-
+    Declared interface data used to size the power harness and the circuit
+    protection (SYS010, SYS011).
+  status: OPEN
+  owner: author
+
+- id: A-007
+  title: Payload data interfaces
+  statement: >-
+    The payload control interface is ARINC 429 and the video output is a digital
+    video link carried on a dedicated harness to the mission system panel.
+  rationale: >-
+    Declared interface data. ARINC 429 is the civil rotorcraft control bus; the
+    video link is not selected at this stage and is carried as an interface to
+    be defined (SYS012).
+  status: OPEN
+  owner: author
+
+- id: A-008
+  title: Bonding resistance
+  statement: >-
+    The bonding resistance between the payload and the platform structure shall
+    not exceed 2.5 mΩ.
+  rationale: >-
+    Design rule taken from common aircraft bonding practice. It must be
+    confirmed against the platform bonding standard before the requirement is
+    closed.
+  status: OPEN
+  owner: author
+
+- id: A-009
+  title: Environmental qualification categories
+  statement: >-
+    The DO-160G sections and categories applicable to the installation are
+    selected by installation zone in the qualification plan and are not yet
+    selected.
+  rationale: >-
+    The category selection depends on the platform zone definition, which is
+    outside this study. Until then SYS014 is verified as a plan, not as a test
+    result.
+  status: OPEN
+  owner: author
+
+- id: A-010
+  title: Rotor excitation frequencies
+  statement: >-
+    The main rotor operates between 350 and 400 rpm and the tail rotor between
+    2 000 and 2 400 rpm over the operating range.
+  rationale: >-
+    Declared reference used by the resonance criterion in SYS015. The criterion
+    is a design rule of this study, not a published requirement.
+  status: OPEN
+  owner: author
+
+- id: A-011
+  title: Maintainability targets
+  statement: >-
+    The payload can be installed or removed by two maintainers using standard
+    tools in 30 minutes or less, and the attachment fittings and the payload
+    connector can be inspected without removing the payload.
+  rationale: >-
+    Declared targets used by SYS018 and SYS019. They bound the access analysis
+    and the quick-release design.
+  status: OPEN
+  owner: author

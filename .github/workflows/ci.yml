@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Validate the Doorstop documents
+        run: doorstop --no-ref-check --no-level-check
+      - name: Validate the traceability model
+        run: python -m tools.traceability check
+      - name: Check that the traceability matrix is up to date
+        run: python -m tools.traceability report --check
+      - name: Run the tests
+        run: python -m pytest

@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Weight and balance
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.23; ASM A-002
+reviewed: f_mFDL5zEZmcWEKeo8NpaEduKwOLZHHi8v-hC62ZGFI=
+text: |
+  The installation shall keep the platform centre of gravity within the certified range for every payload configuration and every loadable kit configuration.

@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Maintainability demonstration
+level: 1.0
+links:
+- SYS018: DaN_Vhb8fiWDbj1b0cNAFbipe4ItkNaMd7Mk8q6zYJk=
+- SYS019: vD8NLI67sx9XV2ozQoHvQT1_EurWRnZAIMjWy2BTszk=
+normative: true
+ref: ''
+reviewed: 1gLokT_t4R-afLNHHKorQ-_Yb5yGCLVKmui8b9nRke8=
+text: |
+  Verify by demonstration on the layout that the payload can be installed and removed within the target time and that the inspection access is preserved.

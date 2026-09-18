@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Compliance data
+level: 1.0
+links: []
+normative: true
+ref: STD EASA Part 21 21.A.239
+reviewed: 4gxXM0Z3HQ7eMkamo-MjXjSlapq04LfLR9o8JG2uEqA=
+text: |
+  The compliance documentation of the installation, including the compliance matrix, the drawings list, the analysis reports and the test plans, shall reference the requirements it satisfies.

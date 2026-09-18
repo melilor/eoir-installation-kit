@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Power budget
+level: 1.0
+links:
+- SYS010: IIl_PZXjSraIY2uqydOzaGfc5HrqMHvOQLVcicu4zuk=
+normative: true
+ref: ''
+reviewed: n6Q7Rbqn04YEfl1XN31K7eNuY9_5qqxY03kTz_Q82Lo=
+text: |
+  Verify by analysis that the power harness and the circuit protection meet the continuous and peak payload demand within the bus limits.

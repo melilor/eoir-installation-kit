@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Payload envelope
+level: 1.0
+links: []
+normative: true
+ref: ASM A-001
+reviewed: 4xstL9yvIgYexfOvJlI_sBfX5bsafls5vhQRezN1_EU=
+text: |
+  The kit shall support a payload of up to 45 kg whose centre of gravity lies within 150 mm of the payload mounting datum, in all operating configurations.

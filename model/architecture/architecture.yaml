@@ -1,0 +1,145 @@
+# Architecture model of the installation kit (study, revision A).
+#
+# Three layers: functions, components and interfaces. Requirements are owned by
+# the Doorstop document under model/requirements and are allocated here.
+# The traceability validator enforces:
+#   - every requirement is allocated to at least one component;
+#   - every component and function references existing requirements;
+#   - every function is realised by at least one component;
+#   - every interface endpoint is an existing component or a declared external.
+#
+# Revision: A (2026-09-18) — first slice. Not verified.
+
+revision: A
+date: 2026-09-18
+
+externals:
+  - id: EXT-PLATFORM
+    name: Platform primary structure
+  - id: EXT-PAYLOAD
+    name: EO/IR payload unit
+  - id: EXT-PLATFORM-BUS
+    name: Platform 28 VDC distribution
+  - id: EXT-MISSION-SYSTEM
+    name: Mission system panel
+  - id: EXT-MAINTAINER
+    name: Maintenance crew
+  - id: EXT-ENVIRONMENT
+    name: External environment (temperature, humidity, salt, vibration, RF)
+
+functions:
+  - id: FCT-01
+    name: Attach the payload to the platform
+    requirements: [SYS001, SYS006, SYS009]
+  - id: FCT-02
+    name: Transfer payload loads to the platform primary structure
+    requirements: [SYS002, SYS003, SYS004, SYS005, SYS007]
+  - id: FCT-03
+    name: Supply and protect payload electrical power
+    requirements: [SYS010, SYS011]
+  - id: FCT-04
+    name: Route payload control and video data
+    requirements: [SYS012]
+  - id: FCT-05
+    name: Bond the payload to the platform ground reference
+    requirements: [SYS013]
+  - id: FCT-06
+    name: Allow installation, removal and inspection
+    requirements: [SYS018, SYS019]
+  - id: FCT-07
+    name: Preserve payload field of view and clearances
+    requirements: [SYS008, SYS009]
+  - id: FCT-08
+    name: Carry installation identity and compliance data
+    requirements: [SYS020, SYS021, SYS022, SYS023]
+  - id: FCT-09
+    name: Sustain the environmental and electromagnetic environment
+    requirements: [SYS014, SYS015, SYS016, SYS017]
+
+components:
+  - id: CMP-01
+    name: Interface frame
+    realizes: [FCT-01, FCT-02, FCT-07]
+    requirements: [SYS001, SYS002, SYS003, SYS005, SYS007, SYS008, SYS009]
+  - id: CMP-02
+    name: Platform attachment fittings
+    realizes: [FCT-01, FCT-02]
+    requirements: [SYS001, SYS002, SYS003, SYS004]
+  - id: CMP-03
+    name: Payload interface plate
+    realizes: [FCT-01, FCT-07]
+    requirements: [SYS001, SYS006, SYS008, SYS009]
+  - id: CMP-04
+    name: Power harness
+    realizes: [FCT-03]
+    requirements: [SYS010, SYS011]
+  - id: CMP-05
+    name: Data harness
+    realizes: [FCT-04]
+    requirements: [SYS012, SYS016]
+  - id: CMP-06
+    name: Circuit protection assembly
+    realizes: [FCT-03]
+    requirements: [SYS010, SYS011]
+  - id: CMP-07
+    name: Bonding straps and grounding hardware
+    realizes: [FCT-05]
+    requirements: [SYS013]
+  - id: CMP-08
+    name: Fastener and quick-release set
+    realizes: [FCT-06]
+    requirements: [SYS018]
+  - id: CMP-09
+    name: Payload connector bracket and strain relief
+    realizes: [FCT-04, FCT-06]
+    requirements: [SYS018, SYS019]
+  - id: CMP-10
+    name: Documentation and marking set
+    realizes: [FCT-08]
+    requirements: [SYS007, SYS020, SYS021, SYS022, SYS023]
+  - id: CMP-11
+    name: Environmental protection provisions
+    realizes: [FCT-09]
+    requirements: [SYS014, SYS015, SYS016, SYS017]
+
+interfaces:
+  - id: IF-01
+    name: Platform to kit mechanical attachment
+    from: CMP-02
+    to: EXT-PLATFORM
+    requirements: [SYS001, SYS004]
+  - id: IF-02
+    name: Kit to payload mechanical attachment
+    from: CMP-03
+    to: EXT-PAYLOAD
+    requirements: [SYS001, SYS006]
+  - id: IF-03
+    name: Platform bus to power harness
+    from: CMP-06
+    to: EXT-PLATFORM-BUS
+    requirements: [SYS010, SYS011]
+  - id: IF-04
+    name: Payload control link (ARINC 429)
+    from: CMP-05
+    to: EXT-MISSION-SYSTEM
+    requirements: [SYS012]
+  - id: IF-05
+    name: Payload video link
+    from: CMP-05
+    to: EXT-MISSION-SYSTEM
+    requirements: [SYS012]
+  - id: IF-06
+    name: Bonding path to platform structure
+    from: CMP-07
+    to: EXT-PLATFORM
+    requirements: [SYS013]
+  - id: IF-07
+    name: Installation and removal access
+    from: CMP-08
+    to: EXT-MAINTAINER
+    requirements: [SYS018, SYS019]
+  - id: IF-08
+    name: Environmental exposure of the installation
+    from: CMP-11
+    to: EXT-ENVIRONMENT
+    requirements: [SYS014, SYS015, SYS016, SYS017]

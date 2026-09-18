@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Platform protection preservation
+level: 1.0
+links:
+- SYS016: pHbtLgN0LH63vLkObRJl9D4q8UsJYT57PduYiULQ1mo=
+- SYS017: wMEKmzlnVYYTW4d1R_jJk98zEvparnlXz4oED2AldTo=
+normative: true
+ref: ''
+reviewed: 4m-Q-oUFew4_nbbN2YEXc7NqhglpBadlhyMW0-p7pUg=
+text: |
+  Verify by review against the platform protection plan that the installation preserves the lightning, HIRF and radio compatibility characteristics.

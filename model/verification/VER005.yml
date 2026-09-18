@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Field of view and clearance
+level: 1.0
+links:
+- SYS008: DL806DOsykPQr5m_lq8xwn87WzHKt4XhFv6NCoP0Ik0=
+- SYS009: GBA8fqpWL7VNHm6A9k3vbtjzzWrf73RoAT8bgE-NdFU=
+normative: true
+ref: ''
+reviewed: 10KdJAClckVbykptKUmXHZ5-hTGKX7rSOHtbGD_ZsNs=
+text: |
+  Verify by geometric analysis that the payload field of view and the minimum clearances are preserved in all operating configurations.

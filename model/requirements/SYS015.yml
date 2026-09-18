@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Resonance separation
+level: 1.0
+links: []
+normative: true
+ref: ASM A-010
+reviewed: KCygzyu1i8Ep1NZskAbRBK83FFye1ZnPRxLmuUcY6Gw=
+text: |
+  The installed kit shall not exhibit structural resonances within 10 percent of the platform rotor excitation frequencies over the operating rotor speed range.
