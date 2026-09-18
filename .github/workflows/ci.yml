@@ -36,22 +36,6 @@ jobs:
       - name: Run the load path analysis and verify the published evidence
         run: python -m tools.loads --check
       - name: Verify the environmental qualification plan and its evidence
-        run: |
-          set +e
-          output=$(python -m tools.qualification --check 2>&1)
-          status=$?
-          if [ $status -ne 0 ]; then
-            printf '%s
-' "$output"
-            python -m tools.qualification >/dev/null 2>&1
-            echo "::error title=qualification check failed::$(printf '%s' "$output" | tr '
-' '|' | head -c 600)"
-            echo "::error title=qualification diff::$(git --no-pager diff --unified=0 -- docs/qualification-plan.md evidence/qualification | head -c 2500 | tr '
-' '|')"
-            echo "::error title=environment::python $(python -V 2>&1) | pyyaml $(python -c 'import yaml; print(yaml.__version__)') | files $(ls evidence/qualification | tr '
-' ' ')"
-            exit 1
-          fi
-          echo "$output"
+        run: bash .github/scripts/check_freshness.sh tools.qualification
       - name: Run the tests
         run: python -m pytest
