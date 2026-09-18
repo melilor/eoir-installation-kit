@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Fluids, sand, dust and fungus coverage
+level: 1.0
+links:
+- SYS033: Wc_0uUldz1cIqgbiQxGft3YV3pM1_WJlKF61wf-PK88=
+- SYS034: JhwupOhBjQIjrSnzWt0mL6Q059LoIyD1Ismgb3qwU3Y=
+normative: true
+ref: ''
+reviewed: QLuSp4D5Izxka7seFWAzLlNeSksZnwVmDX-mnCv1WVM=
+text: |
+  Verify by review that the qualification plan covers fluids, sand, dust and fungus for the installation zone.

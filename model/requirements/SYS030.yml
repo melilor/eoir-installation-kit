@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Harness routing and protection
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.601; ASM A-012
+reviewed: 5uRXS2b06vUBtd3J1893d-zWGzCoRp-k_b15sfc526g=
+text: |
+  The kit harnesses shall be routed clear of hot surfaces, moving parts and sharp edges, and shall be protected against chafing, abrasion and vibration over the whole route.

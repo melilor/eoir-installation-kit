@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Fastener locking
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.607
+reviewed: mbNvs8escX1wOR59wojJcEdVgESOSYDNgOpsfYPN0bM=
+text: |
+  Every removable fastener of the kit whose loss could jeopardise continued safe flight and landing shall incorporate two independent locking devices.

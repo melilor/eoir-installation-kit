@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Part identification
+level: 1.0
+links: []
+normative: true
+ref: STD EASA Part 21 21.A.239; STD 14 CFR 27.1529
+reviewed: Fb5-nk7Qq0ynAh_wbOyUiRyT5LNwODvl8jrH2T9uuRM=
+text: |
+  Each replaceable kit part shall be identified by a part number and a revision in the kit definition, and the installation shall be recorded in the platform configuration records, including the instructions for continued airworthiness.

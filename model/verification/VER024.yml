@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Circuit protection access and labelling
+level: 1.0
+links:
+- SYS032: GwnJmdJrUsIVZ9GI_vLr8d3-c_CS5sRzA2xTCJx0ZBk=
+normative: true
+ref: ''
+reviewed: SSZ23ommE0JiYkpZjX1P2ViWQ_YKbiiyCpr9oiPnFBM=
+text: |
+  Verify by inspection that the payload circuit protection is reachable, identifiable and labelled in the installation definition.

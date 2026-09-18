@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Critical parts control
+level: 1.0
+links:
+- SYS029: 5alLHMZIsvfWxTpU8-7hia-PWTVeZfG-V_bqbM6K2uo=
+normative: true
+ref: ''
+reviewed: CuxIocP48iUS1ljd7Vemq6ua-_eH6H_nTWx36PVtE-g=
+text: |
+  Verify by review that the critical parts of the kit are identified and controlled through the defined process.

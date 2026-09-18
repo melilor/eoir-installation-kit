@@ -134,3 +134,17 @@
     and the quick-release design.
   status: OPEN
   owner: author
+
+- id: A-012
+  title: Harness installation rules
+  statement: >-
+    Harness routing follows declared rules: minimum bend radius of five times the
+    cable outside diameter, clamp spacing not exceeding 200 mm, a minimum
+    clearance of 50 mm from surfaces above 100 degrees Celsius and from moving
+    parts, and a connector mating and inspection access of at least 60 mm.
+  rationale: >-
+    Declared design rules taken from common aircraft installation practice. They
+    bound SYS030 and SYS031 and must be confirmed against the platform
+    installation standard before the requirements are closed.
+  status: OPEN
+  owner: author

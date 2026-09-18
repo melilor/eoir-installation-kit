@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Fitting factor
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.625
+reviewed: xtMHsbwoFprw_pqZTcJRa2mkFh2f9OT-siFQX99H26Y=
+text: |
+  The kit fittings that are not proven by limit and ultimate load tests shall be designed with a fitting factor of at least 1.15 applied to the fitting, to the means of attachment and to the bearing on the joined members.

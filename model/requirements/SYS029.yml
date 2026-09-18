@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Critical parts
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.602
+reviewed: 5alLHMZIsvfWxTpU8-7hia-PWTVeZfG-V_bqbM6K2uo=
+text: |
+  Each kit part whose failure could prevent continued safe flight and landing shall be identified as a critical part and controlled through the design, manufacturing and maintenance controls defined for critical parts.

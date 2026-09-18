@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Configuration control and part identification
+level: 1.0
+links:
+- SYS036: X76ij1059qgVnHRyGeXmXfQMvuIUTaDRZ7L4DMSTVf8=
+- SYS038: Fb5-nk7Qq0ynAh_wbOyUiRyT5LNwODvl8jrH2T9uuRM=
+normative: true
+ref: ''
+reviewed: 8i0cQrANZWUvdLwZ8SMoHJ0MqocHL3nBY1-VrNmWAHc=
+text: |
+  Verify by review that configuration control and part identification are defined in the design data.

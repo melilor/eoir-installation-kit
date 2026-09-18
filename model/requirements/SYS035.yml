@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Lightning and static electricity protection
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.610
+reviewed: K6mr3aMYUCcJMuBiEHciHixXBmI9Rwey_4_a_lEPvn0=
+text: |
+  The installation shall include the lightning and static electricity protection means required by the platform protection plan, including the bonding of the payload and the protection of the harnesses.

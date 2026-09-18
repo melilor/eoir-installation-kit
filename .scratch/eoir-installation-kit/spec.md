@@ -22,8 +22,9 @@ requirements in Doorstop, architecture and evidence in YAML — and a validator 
 repository enforces the chain requirement → architecture element → verification case →
 evidence record → artifact. CI runs the validator, checks that the published traceability
 matrix is current, and runs the test suite. The first published slice is real but small: 23
-requirements, 11 components, 16 verification cases, every one of them `FUTURE` and pointing
-at the ticket that will produce its evidence.
+requirements, 11 components and 16 verification cases, all of them `FUTURE` and pointing at
+the ticket that will produce the evidence — the requirement coverage ticket (02) then grew
+the set to 38 requirements, 12 components and 28 verification cases.
 
 ## User Stories
 

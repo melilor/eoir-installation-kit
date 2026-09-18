@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Loading information and operating limitations
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1589; STD 14 CFR 27.1583
+reviewed: MK2eXQLSQ5nPp2guRWbpWG9iV73U_2h0qMVzABsk4EY=
+text: |
+  The installation shall be reflected in the platform loading information, and any effect on the operating limitations shall be recorded in the flight manual supplement.

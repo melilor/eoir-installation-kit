@@ -8,9 +8,10 @@
 #   - every function is realised by at least one component;
 #   - every interface endpoint is an existing component or a declared external.
 #
-# Revision: A (2026-09-18) — first slice. Not verified.
+# Revision: B (2026-09-18) — CMP-12 added and the allocations extended by the
+# requirement coverage ticket (02). Not verified.
 
-revision: A
+revision: B
 date: 2026-09-18
 
 externals:
@@ -33,74 +34,78 @@ functions:
     requirements: [SYS001, SYS006, SYS009]
   - id: FCT-02
     name: Transfer payload loads to the platform primary structure
-    requirements: [SYS002, SYS003, SYS004, SYS005, SYS007]
+    requirements: [SYS002, SYS003, SYS004, SYS005, SYS007, SYS024, SYS025, SYS026, SYS028, SYS029]
   - id: FCT-03
     name: Supply and protect payload electrical power
-    requirements: [SYS010, SYS011]
+    requirements: [SYS010, SYS011, SYS032]
   - id: FCT-04
     name: Route payload control and video data
-    requirements: [SYS012]
+    requirements: [SYS012, SYS030, SYS031]
   - id: FCT-05
     name: Bond the payload to the platform ground reference
     requirements: [SYS013]
   - id: FCT-06
     name: Allow installation, removal and inspection
-    requirements: [SYS018, SYS019]
+    requirements: [SYS018, SYS019, SYS028, SYS031]
   - id: FCT-07
     name: Preserve payload field of view and clearances
     requirements: [SYS008, SYS009]
   - id: FCT-08
     name: Carry installation identity and compliance data
-    requirements: [SYS020, SYS021, SYS022, SYS023]
+    requirements: [SYS020, SYS021, SYS022, SYS023, SYS036, SYS037, SYS038]
   - id: FCT-09
     name: Sustain the environmental and electromagnetic environment
-    requirements: [SYS014, SYS015, SYS016, SYS017]
+    requirements: [SYS014, SYS015, SYS016, SYS017, SYS027, SYS033, SYS034, SYS035]
 
 components:
   - id: CMP-01
     name: Interface frame
     realizes: [FCT-01, FCT-02, FCT-07]
-    requirements: [SYS001, SYS002, SYS003, SYS005, SYS007, SYS008, SYS009]
+    requirements: [SYS001, SYS002, SYS003, SYS005, SYS007, SYS008, SYS009, SYS024, SYS025, SYS027, SYS028]
   - id: CMP-02
     name: Platform attachment fittings
     realizes: [FCT-01, FCT-02]
-    requirements: [SYS001, SYS002, SYS003, SYS004]
+    requirements: [SYS001, SYS002, SYS003, SYS004, SYS024, SYS026, SYS027, SYS028, SYS029]
   - id: CMP-03
     name: Payload interface plate
     realizes: [FCT-01, FCT-07]
-    requirements: [SYS001, SYS006, SYS008, SYS009]
+    requirements: [SYS001, SYS006, SYS008, SYS009, SYS024, SYS026, SYS029]
   - id: CMP-04
     name: Power harness
     realizes: [FCT-03]
-    requirements: [SYS010, SYS011]
+    requirements: [SYS010, SYS011, SYS030, SYS033]
   - id: CMP-05
     name: Data harness
     realizes: [FCT-04]
-    requirements: [SYS012, SYS016]
+    requirements: [SYS012, SYS016, SYS030, SYS035]
   - id: CMP-06
     name: Circuit protection assembly
     realizes: [FCT-03]
-    requirements: [SYS010, SYS011]
+    requirements: [SYS010, SYS011, SYS032]
   - id: CMP-07
     name: Bonding straps and grounding hardware
     realizes: [FCT-05]
-    requirements: [SYS013]
+    requirements: [SYS013, SYS035]
   - id: CMP-08
     name: Fastener and quick-release set
     realizes: [FCT-06]
-    requirements: [SYS018]
+    requirements: [SYS018, SYS026, SYS027]
   - id: CMP-09
     name: Payload connector bracket and strain relief
     realizes: [FCT-04, FCT-06]
-    requirements: [SYS018, SYS019]
+    requirements: [SYS018, SYS019, SYS031]
   - id: CMP-10
     name: Documentation and marking set
     realizes: [FCT-08]
-    requirements: [SYS007, SYS020, SYS021, SYS022, SYS023]
+    requirements: [SYS007, SYS020, SYS021, SYS022, SYS023, SYS036, SYS037, SYS038]
   - id: CMP-11
     name: Environmental protection provisions
     realizes: [FCT-09]
-    requirements: [SYS014, SYS015, SYS016, SYS017]
+    requirements: [SYS014, SYS015, SYS016, SYS017, SYS027, SYS033, SYS034]
+  - id: CMP-12
+    name: Harness routing and protection provisions
+    realizes: [FCT-03, FCT-04, FCT-06, FCT-09]
+    requirements: [SYS030, SYS031, SYS033, SYS034, SYS035, SYS038]
 
 interfaces:
   - id: IF-01
@@ -142,4 +147,9 @@ interfaces:
     name: Environmental exposure of the installation
     from: CMP-11
     to: EXT-ENVIRONMENT
-    requirements: [SYS014, SYS015, SYS016, SYS017]
+    requirements: [SYS014, SYS015, SYS016, SYS017, SYS033, SYS034]
+  - id: IF-09
+    name: Harness routing and protection through the installation
+    from: CMP-12
+    to: EXT-ENVIRONMENT
+    requirements: [SYS030, SYS031, SYS035]

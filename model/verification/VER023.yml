@@ -1,0 +1,13 @@
+active: true
+derived: false
+header: |
+  Harness routing and connector access
+level: 1.0
+links:
+- SYS030: 5uRXS2b06vUBtd3J1893d-zWGzCoRp-k_b15sfc526g=
+- SYS031: _DEJycQHXEERR5UkNG8axvJs8NbhqXwjr-bETwYL2Ek=
+normative: true
+ref: ''
+reviewed: wKdDIlzfzqWyy77L5Pim2GsB7sjh69EZOuYqMMFqazk=
+text: |
+  Verify by inspection that the harness routing, the clamping, the protection and the connector access meet the declared installation rules.

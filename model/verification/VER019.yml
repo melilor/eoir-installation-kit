@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Fastener locking devices
+level: 1.0
+links:
+- SYS026: mbNvs8escX1wOR59wojJcEdVgESOSYDNgOpsfYPN0bM=
+normative: true
+ref: ''
+reviewed: HQO8t7iUQQrI6XhnaTf3ETgSD8tWlbIa-pfIbPbFwkU=
+text: |
+  Verify by inspection that every removable fastener of the kit has two independent locking devices.

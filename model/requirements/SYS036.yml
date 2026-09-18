@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Configuration control
+level: 1.0
+links: []
+normative: true
+ref: STD EASA Part 21 21.A.239
+reviewed: X76ij1059qgVnHRyGeXmXfQMvuIUTaDRZ7L4DMSTVf8=
+text: |
+  Every change to the kit definition after its first release shall be recorded with a revision, an effectivity and the requirements it affects.

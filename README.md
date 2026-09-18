@@ -12,11 +12,12 @@ The study is built as a **model**, not as a folder of documents. Requirements li
 [Doorstop](https://doorstop.readthedocs.io) document, the architecture lives in YAML, every
 requirement points at its source, and a validator in this repository fails the build when a
 requirement has no source, no owning architecture element or no verification case — or when
-a verification claims evidence that is not in the repository.
+a verification claims evidence that is not in the repository. The map of the whole study is
+in [`docs/overview.md`](docs/overview.md).
 
 ```
 $ python -m tools.traceability check
-checked 23 requirements, 16 verification cases, 11 components: 0 errors, 0 warnings
+checked 38 requirements, 28 verification cases, 12 components: 0 errors, 0 warnings
 ```
 
 ## What this is / what this is not
@@ -35,9 +36,10 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision A — first published slice, 2026-09-18.** The model, the architecture allocation
-and the verification structure exist and are consistent. **No verification has been
-executed yet**: every one of the 16 verification cases is `FUTURE` and points at the ticket
+**Revision B — first published slice, 2026-09-18.** The model, the architecture allocation
+and the verification structure exist and are consistent: 38 requirements, 12 components,
+28 verification cases. **No verification has been executed yet**: every one of the 28
+verification cases is `FUTURE` and points at the ticket
 that will produce its evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
@@ -57,8 +59,8 @@ python -m pytest                              # run the test suite
 
 ```
 model/
-  requirements/          SYS001..SYS023 — system requirements (Doorstop)
-  verification/          VER001..VER016 — verification cases, linked to their requirements
+  requirements/          SYS001..SYS038 — system requirements (Doorstop)
+  verification/          VER001..VER028 — verification cases, linked to their requirements
   architecture/          functions, components, interfaces, external boundary
   assumptions.yaml       declared assumptions and interface data (ASM A-00x)
   evidence.yaml          one record per verification case: method, status, artifact, plan
@@ -68,6 +70,7 @@ tools/
   traceability.py        command line: check, report, report --check
 tests/                   29 tests: one failing model per rule, plus the repository model
 docs/
+  overview.md            the map of the study: model, numbers, limits, next steps
   traceability.md        generated matrix: requirement → architecture → verification → evidence
   method.md              how the model works and why the tools were chosen
   adr/                   decision records

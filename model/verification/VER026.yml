@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Lightning and static protection means
+level: 1.0
+links:
+- SYS035: K6mr3aMYUCcJMuBiEHciHixXBmI9Rwey_4_a_lEPvn0=
+normative: true
+ref: ''
+reviewed: 5ivsNwmZE3TVHZHRlalxd26OrbgzzraGNDRo_EP8_us=
+text: |
+  Verify by review against the platform protection plan that the lightning and static electricity protection means are present in the installation definition.

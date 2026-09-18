@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Fluids susceptibility
+level: 1.0
+links: []
+normative: true
+ref: STD RTCA DO-160G Section 11; ASM A-009
+reviewed: Wc_0uUldz1cIqgbiQxGft3YV3pM1_WJlKF61wf-PK88=
+text: |
+  The installation shall resist the fluids and cleaning agents it is exposed to in service without loss of function or protection.

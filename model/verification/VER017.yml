@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Fitting factor application
+level: 1.0
+links:
+- SYS024: xtMHsbwoFprw_pqZTcJRa2mkFh2f9OT-siFQX99H26Y=
+normative: true
+ref: ''
+reviewed: yYGWmzo9_KxIoPgweMSQalY7AmnFrfSmcoVF1bIDRBs=
+text: |
+  Verify by analysis that the fitting factor of 1.15 is applied to every fitting of the kit that is not proven by test, including the means of attachment and the bearing on the joined members.

@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: |
+  Material design values
+level: 1.0
+links:
+- SYS025: 58baVEY38SfOCrYpsHRy_Yiakv-l4fGLKAT1pj3-MC4=
+normative: true
+ref: ''
+reviewed: 79ZKPFVJlKp9nxfFKOQyv_ImOXJfS8L_FcXDnCzNQB4=
+text: |
+  Verify by review that the design values of the kit materials come from approved specifications and that the temperature and environmental reductions are documented.

@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Material strength properties and design values
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.613
+reviewed: 58baVEY38SfOCrYpsHRy_Yiakv-l4fGLKAT1pj3-MC4=
+text: |
+  The design values of the kit materials shall be established from approved specifications, and the strength reduction due to temperature and environment shall be accounted for in the analysis.

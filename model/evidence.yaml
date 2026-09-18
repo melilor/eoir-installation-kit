@@ -14,10 +14,10 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: A (2026-09-18) — no verification has been executed yet. Every case
-# is FUTURE. This is the honest state of the first published slice.
+# Revision: B (2026-09-18) — requirement coverage completed (ticket 02). No
+# verification has been executed yet. Every case is FUTURE.
 
-revision: A
+revision: B
 date: 2026-09-18
 
 cases:
@@ -132,3 +132,87 @@ cases:
     artifact: null
     plan: issues/10-qualification-plan-environmental
     note: ARINC 429 and video interface functional test on the first article.
+
+  - verification: VER017
+    method: analysis
+    status: FUTURE
+    artifact: null
+    plan: issues/07-analysis-load-path-and-strength
+    note: Fitting factor 1.15 applied to fittings, attachments and bearing.
+
+  - verification: VER018
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Material design values from approved specifications, with environmental reductions.
+
+  - verification: VER019
+    method: inspection
+    status: FUTURE
+    artifact: null
+    plan: issues/08-geometry-layout-and-export
+    note: Two independent locking devices on every removable fastener.
+
+  - verification: VER020
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Corrosion protection scheme and dissimilar material separation.
+
+  - verification: VER021
+    method: demonstration
+    status: FUTURE
+    artifact: null
+    plan: issues/08-geometry-layout-and-export
+    note: Inspection provisions demonstrated on the layout.
+
+  - verification: VER022
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Critical parts identified and controlled through the defined process.
+
+  - verification: VER023
+    method: inspection
+    status: FUTURE
+    artifact: null
+    plan: issues/08-geometry-layout-and-export
+    note: Harness routing rules and connector access against the declared installation rules.
+
+  - verification: VER024
+    method: inspection
+    status: FUTURE
+    artifact: null
+    plan: issues/06-analysis-power-and-bonding
+    note: Circuit protection reachable, identifiable and labelled.
+
+  - verification: VER025
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: Fluids, sand, dust and fungus covered by the qualification plan categories.
+
+  - verification: VER026
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/10-qualification-plan-environmental
+    note: Lightning and static electricity protection means against the platform plan.
+
+  - verification: VER027
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Configuration control and part identification in the design data.
+
+  - verification: VER028
+    method: review
+    status: FUTURE
+    artifact: null
+    plan: issues/09-compliance-matrix-and-classification
+    note: Loading information and flight manual supplement reflect the installation.

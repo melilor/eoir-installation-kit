@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Connector retention and access
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.601; ASM A-012
+reviewed: _DEJycQHXEERR5UkNG8axvJs8NbhqXwjr-bETwYL2Ek=
+text: |
+  Each kit connector shall be secured against vibration-induced loosening and shall have the access needed for mating, unmating and inspection.

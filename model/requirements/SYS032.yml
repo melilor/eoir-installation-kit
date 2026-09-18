@@ -1,0 +1,11 @@
+active: true
+derived: false
+header: |
+  Payload circuit protection
+level: 1.0
+links: []
+normative: true
+ref: STD 14 CFR 27.1351-27.1367
+reviewed: GwnJmdJrUsIVZ9GI_vLr8d3-c_CS5sRzA2xTCJx0ZBk=
+text: |
+  The payload circuit protection shall be reachable and identifiable by the crew in flight and shall be labelled with the affected circuit.
