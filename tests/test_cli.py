@@ -9,7 +9,14 @@ from tools.traceability import main
 def test_check_passes_on_the_repository_model(capsys):
     assert main(["check"]) == 0
     output = capsys.readouterr().out
-    assert "0 errors, 0 warnings" in output
+    assert "0 errors" in output
+
+
+def test_warnings_do_not_fail_the_gate(capsys):
+    assert main(["check"]) == 0
+    output = capsys.readouterr().out
+    assert "ASM-OPEN" in output
+    assert "warning" in output
 
 
 def test_report_check_passes_when_the_matrix_is_current(capsys):

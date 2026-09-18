@@ -17,10 +17,13 @@ Doorstop document, the architecture and the evidence live in YAML, and a validat
 repository enforces the whole chain. If a requirement has no source, no owning component or
 no verification case, the build is red.
 
-**Status — revision B, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
-29 tests, CI green. **No verification has been executed**: all 28 cases are `FUTURE` and each
-one names the ticket that will produce its evidence. That is the honest state of the study
-and it is visible in [the traceability matrix](traceability.md).
+**Status — revision C, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
+89 layout checks, 55 tests, CI green. **Five verification cases are closed at the
+design-definition level** by the layout checks (four `PASS`, one `LIMITATION` for what a model
+cannot demonstrate); the other 23 are `FUTURE` and each one names the ticket that will produce
+its evidence. Three `ASM-OPEN` warnings flag the evidence that rests on a declared assumption
+that is still open. That is the honest state of the study and it is visible in
+[the traceability matrix](traceability.md).
 
 ## The model, end to end
 
@@ -65,7 +68,7 @@ Every arrow below is a rule in `tools/rules.py`, checked in CI:
                             ▼
     ┌────────────────────────────────────────────────────────┐
     │ ARTIFACT IN THE REPOSITORY                             │
-    │ today: none — all 28 cases are FUTURE                  │
+    │ 5 cases closed, 23 FUTURE — see the matrix             │
     └────────────────────────────────────────────────────────┘
 
     ASM-OPEN warns when evidence is produced against an assumption that is still open.
@@ -84,16 +87,21 @@ eoir-installation-kit/
 │   ├── verification/    VER001–VER028   (Doorstop: method statement, linked to its SYS)
 │   ├── architecture/    architecture.yaml: FCT, CMP, IF, EXT
 │   ├── interfaces/      icd_payload.yaml · icd_platform.yaml (declared interface data)
-│   ├── assumptions.yaml A-001–A-012, all OPEN with a rationale
-│   └── evidence.yaml    28 records: method, status, artifact, plan
+│   ├── assumptions.yaml A-001–A-013, all OPEN with a rationale
+│   ├── evidence.yaml    28 records: method, status, artifact, plan
+│   └── layout.yaml      the single source of truth for every dimension
+│
+├── evidence/
+│   └── layout/          GENERATED: checks.json · report.md · layout.svg · layout.dxf
 │
 ├── tools/                        ← THE CHECK
 │   ├── model.py         loads the four parts of the model
 │   ├── rules.py         10 rules, one stable identifier per failure
 │   ├── traceability.py  check · report · report --check
-│   └── diagram.py       generates docs/architecture.md (Mermaid + tables)
+│   ├── diagram.py       generates docs/architecture.md (Mermaid + tables)
+│   └── layout.py        12 layout checks, writes evidence/layout/
 │
-├── tests/               34 tests: one failing model per rule, plus the repository model
+├── tests/               55 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
@@ -116,12 +124,13 @@ eoir-installation-kit/
 | --- | --- |
 | System requirements (`SYS`) | **38** |
 | Standard citations / assumption citations in requirements | 43 / 17 |
-| Declared assumptions | **12**, all `OPEN` |
+| Declared assumptions | **13**, all `OPEN` |
 | Functions / components / interfaces / external entities | 9 / **12** / 9 / 6 |
-| Verification cases (`VER`) | **28** — all `FUTURE` |
+| Verification cases (`VER`) | **28** — `PASS` 4, `LIMITATION` 1, `FUTURE` 23 |
 | Methods: analysis / review / inspection / test / demonstration | 8 / 11 / 5 / 2 / 2 |
+| Layout checks | **89**, all passing |
 | Validation rules | **10**, one identifier per failure |
-| Tests | **34**, green |
+| Tests | **55**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -161,9 +170,17 @@ the mission system, the maintainer and the environment.
 
 ## What is verified, honestly
 
-Nothing. All 28 verification cases are `FUTURE`, each one pointing at the ticket that will
-produce the evidence. The study demonstrates a method and a discipline, not a result; the
-matrix states this case by case, and the README says it before a reader has to ask.
+Five cases are closed at the design-definition level by the layout checks: the harness routing
+and connector interfaces (`VER008`), the fastener locking devices (`VER019`), the inspection
+provisions (`VER021`) and the harness installation rules (`VER023`) are `PASS` against the
+signature of `evidence/layout/checks.json`, and the maintainability case (`VER013`) is a
+`LIMITATION` because a 30-minute installation with two maintainers cannot be demonstrated
+without a first article. Every note states what the evidence does **not** cover.
+
+The other 23 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
+The study demonstrates a method and a discipline, not a result; the matrix states this case by
+case, and the README says it before a reader has to ask. Three `ASM-OPEN` warnings mark the
+places where evidence rests on a declared assumption that is still open.
 
 ## The gate
 
@@ -172,6 +189,7 @@ doorstop --no-ref-check --no-level-check      # validate the requirements docume
 python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate the matrix
 python -m tools.diagram                       # regenerate the architecture document
+python -m tools.layout                        # run the layout checks, write the evidence
 python -m pytest                              # run the test suite
 ```
 
@@ -185,15 +203,18 @@ when the committed documents differ from the model, so the published artefacts c
 | Can this person structure a system model? | `model/`, the chain above, 38 requirements over 9 functions and 12 components |
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
-| Do they automate their own discipline? | `tools/rules.py`, 34 tests, CI, generated matrix |
+| Do they automate their own discipline? | `tools/rules.py` and `tools/layout.py`, 55 tests, CI, generated evidence |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 
 ## Limits, stated before anyone asks
 
-- No verification executed: all cases `FUTURE`.
-- All 12 assumptions are `OPEN`: payload, platform and environment are declared inputs, not
+- No physical verification: the five closed cases are design-definition checks, and the
+  installation target cannot be demonstrated without a first article.
+- All 13 assumptions are `OPEN`: payload, platform and environment are declared inputs, not
   measurements.
+- The layout is a two-view 2D envelope model, not 3D CAD: interference checking in three
+  dimensions and the strength analysis are separate tickets.
 - No graphical or behavioural model, no SysML semantics, no ReqIF/XMI exchange (ADR 0001).
 - The sensor is not designed and will not be.
 - DO-178C, DO-331 and DO-254 are framed, not applied.
@@ -204,28 +225,28 @@ when the committed documents differ from the model, so the published artefacts c
                  ┌────────────────────────────────┐
                  │ 01 FOUNDATION ✅               │
                  │ 02 REQUIREMENTS ✅             │
+                 │ 03 ARCHITECTURE ✅             │
+                 │ 08 GEOMETRY ✅                 │
                  └───────────────┬────────────────┘
                                  ▼
-                      ┌─────────────────────┐
-                      │ 03 ARCHITECTURE     │  ← unblocked now
-                      └──────────┬──────────┘
         ┌────────────────────────┼────────────────────────┐
         ▼                        ▼                        ▼
  ┌──────────────┐        ┌──────────────┐         ┌──────────────────┐
- │04 MASS & CG  │        │05 FOV &      │         │08 GEOMETRY       │
+ │04 MASS & CG  │        │05 FOV &      │         │09 COMPLIANCE     │
  │  unblocked   │        │  CLEARANCE   │         │  unblocked       │
  │              │        │  unblocked   │         │                  │
  └──────┬───────┘        └──────┬───────┘         └────────┬─────────┘
         │                       │                          │
  ┌──────┴───────┐        ┌──────┴───────┐                  │
- │06 POWER &    │        │09 COMPLIANCE │◀─────────────────┘
- │  BONDING     │        └──────┬───────┘
- │  unblocked   │               │
- └──────┬───────┘        ┌──────┴───────┐        ┌──────────────────┐
-        │                │10 QUALIFI-   │        │07 LOAD PATH      │
-        │                │  CATION PLAN │        │ (after 02 + 08)  │
-        │                └──────┬───────┘        └────────┬─────────┘
-        └───────────┬───────────┴─────────────────────────┘
+ │06 POWER &    │        │07 LOAD PATH  │                  │
+ │  BONDING     │        │  (02 + 08)   │                  │
+ │  unblocked   │        └──────┬───────┘                  │
+ └──────┬───────┘               │                          │
+        │                ┌──────┴───────┐                  │
+        │                │10 QUALIFI-   │                  │
+        │                │  CATION PLAN │                  │
+        │                └──────┬───────┘                  │
+        └───────────┬───────────┴──────────────────────────┘
                     ▼
           ┌─────────────────────┐       ┌─────────────────────────┐
           │ 11 TECHNICAL REPORT │──────▶│ 12 PUBLICATION AND      │

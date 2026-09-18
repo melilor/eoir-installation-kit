@@ -6,6 +6,8 @@
 #
 # method:  analysis | simulation | test | inspection | demonstration | review
 # status:  PASS | WARN | FAIL | LIMITATION | BLOCKED | FUTURE
+# plan:    for FUTURE, the ticket that will produce the evidence; for any other
+#          status, the ticket that produced it
 #
 # Rules enforced by tools/traceability.py:
 #   - every VER item has exactly one record here, and every record names an
@@ -14,10 +16,12 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: B (2026-09-18) — requirement coverage completed (ticket 02). No
-# verification has been executed yet. Every case is FUTURE.
+# Revision: C (2026-09-18) — the layout checks (ticket 08) closed five cases at
+# the design-definition level. A PASS here means the acceptance criterion is met
+# by the evidence named in the artifact; each note states what the evidence does
+# not cover.
 
-revision: B
+revision: C
 date: 2026-09-18
 
 cases:
@@ -72,10 +76,15 @@ cases:
 
   - verification: VER008
     method: inspection
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/layout/checks.json
     plan: issues/08-geometry-layout-and-export
-    note: Harness routing and connector pinout against the payload interface data.
+    note: >-
+      Design-definition inspection: harness routing, clamping, bend radius and connector access
+      checked against the declared rules in model/layout.yaml, and the connector interfaces
+      against the payload interface data (ICD-CONSISTENCY). Nothing is installed: the physical
+      inspection of a first article stays open, and the rules it is checked against are A-012,
+      still open.
 
   - verification: VER009
     method: test
@@ -107,10 +116,13 @@ cases:
 
   - verification: VER013
     method: demonstration
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: evidence/layout/checks.json
     plan: issues/08-geometry-layout-and-export
-    note: Installation and removal sequence and inspection access.
+    note: >-
+      The layout demonstrates the free removal corridor and the inspection access. The 30-minute
+      installation and removal target with two maintainers cannot be demonstrated without a first
+      article; only the geometric conditions are shown.
 
   - verification: VER014
     method: review
@@ -149,10 +161,13 @@ cases:
 
   - verification: VER019
     method: inspection
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/layout/checks.json
     plan: issues/08-geometry-layout-and-export
-    note: Two independent locking devices on every removable fastener.
+    note: >-
+      Design-definition inspection: every removable fastener in model/layout.yaml declares two
+      independent locking devices (FASTENER-LOCKING). The locking devices themselves are not
+      procured or installed yet.
 
   - verification: VER020
     method: review
@@ -163,10 +178,12 @@ cases:
 
   - verification: VER021
     method: demonstration
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/layout/checks.json
     plan: issues/08-geometry-layout-and-export
-    note: Inspection provisions demonstrated on the layout.
+    note: >-
+      The inspection zones declared in the layout stay clear of the payload footprint and the
+      fittings are reachable. Demonstrated on the model, not on an article.
 
   - verification: VER022
     method: review
@@ -177,10 +194,13 @@ cases:
 
   - verification: VER023
     method: inspection
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/layout/checks.json
     plan: issues/08-geometry-layout-and-export
-    note: Harness routing rules and connector access against the declared installation rules.
+    note: >-
+      Harness routing, clamping, bend radius, clearance to hot zones and moving parts, and
+      connector access checked against the declared installation rules (A-012, still open).
+      Clamp installation on the structure is not demonstrated.
 
   - verification: VER024
     method: inspection

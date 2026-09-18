@@ -17,8 +17,12 @@ in [`docs/overview.md`](docs/overview.md).
 
 ```
 $ python -m tools.traceability check
-checked 38 requirements, 28 verification cases, 12 components: 0 errors, 0 warnings
+checked 38 requirements, 28 verification cases, 12 components: 0 errors, 3 warnings
 ```
+
+The three warnings are the discipline working: `ASM-OPEN` flags the evidence that rests on a
+declared assumption that is still open (the harness installation rules, the payload video
+link). They stay until the assumption is closed or the limitation is accepted in writing.
 
 ## What this is / what this is not
 
@@ -36,11 +40,11 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision B — first published slice, 2026-09-18.** The model, the architecture allocation
+**Revision C — first published slice, 2026-09-18.** The model, the architecture allocation
 and the verification structure exist and are consistent: 38 requirements, 12 components,
-28 verification cases. **No verification has been executed yet**: every one of the 28
-verification cases is `FUTURE` and points at the ticket
-that will produce its evidence. The
+28 verification cases. **Five cases are closed at the design-definition level** by the layout
+checks (ticket 08) — four `PASS` and one `LIMITATION` for what a model cannot demonstrate;
+the other 23 are `FUTURE` and point at the ticket that will produce their evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -53,6 +57,7 @@ doorstop --no-ref-check --no-level-check      # validate the requirements docume
 python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate docs/traceability.md
 python -m tools.diagram                       # regenerate docs/architecture.md
+python -m tools.layout                        # run the layout checks, write evidence/layout/
 python -m pytest                              # run the test suite
 ```
 
@@ -66,12 +71,16 @@ model/
   interfaces/            declared interface control data (payload, platform)
   assumptions.yaml       declared assumptions and interface data (ASM A-00x)
   evidence.yaml          one record per verification case: method, status, artifact, plan
+  layout.yaml            the single source of truth for every dimension of the kit
+evidence/
+  layout/                generated: checks.json, report.md, layout.svg, layout.dxf
 tools/
   model.py               load the four parts of the model
   rules.py               the validation rules, one identifier per failure
   traceability.py        command line: check, report, report --check
   diagram.py             generate docs/architecture.md from the architecture model
-tests/                   34 tests: one failing model per rule, plus the repository model
+  layout.py              run the layout checks and write the evidence
+tests/                   55 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables

@@ -1,0 +1,96 @@
+# Layout definition of the installation kit — the single source of truth for
+# every dimension of the study.
+#
+# This is a two-view 2D envelope model (side view and bottom view): rectangles,
+# circles and orthogonal harness paths. It is not a 3D CAD model; that
+# simplification is declared, not hidden. Everything published — the checks, the
+# report, the SVG figure and the DXF export — is generated from this file by
+# tools/layout.py, so no dimension is typed twice.
+#
+# Coordinates are millimetres. Bottom view: x longitudinal (forward positive),
+# y lateral (right positive). Side view: x longitudinal, y vertical (up
+# positive), the platform skin at y = 0.
+
+revision: A
+date: 2026-09-18
+units: mm
+
+# Design rules of the study. They are declared inputs, like an assumption: they
+# are not yet confirmed against a platform installation standard.
+declared_rules:
+  edge_distance_factor: 2.0        # multiple of the fastener diameter, to the fitting edge (A-013)
+  hole_pitch_factor: 3.0           # multiple of the fastener diameter, between holes (A-013)
+  connector_access_radius: 60      # free radius around a payload connector (A-012)
+  inspection_access_radius: 80     # free radius around a fitting (SYS019, SYS028)
+  harness_clearance: 50            # from hot zones and moving parts (A-012)
+  clamp_spacing_max: 200           # between consecutive clamps (A-012)
+  bend_radius_factor: 5.0          # multiple of the cable outside diameter (A-012)
+
+side_view:
+  platform_skin_y: 0
+  frame_members:
+    - { id: SM-01, name: Forward attachment structure, rect: [-520, -260, -380, -40] }
+    - { id: SM-02, name: Aft attachment structure, rect: [380, -260, 520, -40] }
+    - { id: SM-03, name: Belly beam, rect: [-60, -120, 60, -40] }
+    - { id: SM-04, name: Belly antenna and drain mast, rect: [-100, -490, 100, -430] }
+  payload_envelope:
+    id: PE-01
+    rect: [-190, -480, 190, -40]
+  removal_corridor:
+    id: RC-01
+    rect: [-260, -980, 260, -500]
+
+bottom_view:
+  payload_footprint:
+    id: PF-01
+    rect: [-190, -230, 190, 230]
+  frame_members:
+    - { id: BL-01, name: Left rail, rect: [-510, 130, 510, 170] }
+    - { id: BL-02, name: Right rail, rect: [-510, -170, 510, -130] }
+    - { id: BM-01, name: Mid beam, rect: [-30, -170, 30, 170] }
+  fittings:
+    - { id: FT-01, rect: [-510, -210, -390, -90] }
+    - { id: FT-02, rect: [390, -210, 510, -90] }
+    - { id: FT-03, rect: [-510, 110, -390, 230] }
+    - { id: FT-04, rect: [390, 110, 510, 230] }
+  fasteners:
+    - { id: F-01, fitting: FT-01, position: [-480, -180], diameter: 8, locking_devices: 2 }
+    - { id: F-02, fitting: FT-01, position: [-420, -120], diameter: 8, locking_devices: 2 }
+    - { id: F-03, fitting: FT-02, position: [480, -180], diameter: 8, locking_devices: 2 }
+    - { id: F-04, fitting: FT-02, position: [420, -120], diameter: 8, locking_devices: 2 }
+    - { id: F-05, fitting: FT-03, position: [-480, 140], diameter: 8, locking_devices: 2 }
+    - { id: F-06, fitting: FT-03, position: [-408, 140], diameter: 8, locking_devices: 2 }
+    - { id: F-07, fitting: FT-04, position: [480, 140], diameter: 8, locking_devices: 2 }
+    - { id: F-08, fitting: FT-04, position: [420, 200], diameter: 8, locking_devices: 2 }
+  connectors:
+    - { id: CN-01, name: Payload power connector, position: [0, 250], access_radius: 60 }
+    - { id: CN-02, name: Payload data connector, position: [120, 250], access_radius: 60 }
+  inspection_zones:
+    - { id: IZ-01, fitting: FT-01, rect: [-540, -240, -360, -60] }
+    - { id: IZ-02, fitting: FT-02, rect: [360, -240, 540, -60] }
+    - { id: IZ-03, fitting: FT-03, rect: [-540, 80, -360, 260] }
+    - { id: IZ-04, fitting: FT-04, rect: [360, 80, 540, 260] }
+  hot_zones:
+    - { id: HZ-01, name: Exhaust and bleed duct zone, rect: [230, -60, 300, 90] }
+  moving_parts:
+    - { id: MP-01, name: Retraction linkage sweep, rect: [-300, -80, -230, 90] }
+  harnesses:
+    - id: HR-01
+      name: Power harness
+      cable_od: 14
+      bend_radius: 80
+      path: [[-450, -150], [-450, 150], [-30, 150], [-30, 250], [0, 250]]
+      clamps: [[-450, -50], [-450, 100], [-350, 150], [-200, 150], [-50, 150], [-30, 220]]
+    - id: HR-02
+      name: Data harness
+      cable_od: 10
+      bend_radius: 60
+      path: [[450, -150], [450, 150], [60, 150], [60, 250], [120, 250]]
+      clamps: [[450, -50], [450, 100], [350, 150], [200, 150], [70, 150], [60, 250]]
+
+# Declared interface data the layout has to agree with. The check resolves each
+# dotted path inside the interface control file and compares the value.
+interface_refs:
+  - { label: Payload mass, icd: model/interfaces/icd_payload.yaml, path: mass_and_inertia.mass_kg, expect: 45 }
+  - { label: Payload power voltage, icd: model/interfaces/icd_payload.yaml, path: power.voltage_vdc, expect: 28 }
+  - { label: Platform attachment spacing, icd: model/interfaces/icd_platform.yaml, path: attachment_provisions.spacing_mm.longitudinal, expect: 900 }

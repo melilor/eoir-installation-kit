@@ -155,3 +155,18 @@
     installation standard before the requirements are closed.
   status: OPEN
   owner: author
+
+- id: A-013
+  title: Joint design rules
+  statement: >-
+    Fastener holes in the kit fittings keep an edge distance of at least twice
+    the fastener diameter and a pitch of at least three times the diameter, and
+    the fitting material thickness around a hole is at least the fastener
+    diameter.
+  rationale: >-
+    Declared design rules taken from common airframe joint practice, used by the
+    layout checks for the fittings. They must be confirmed against the platform
+    structural repair and installation standard before the joints are released.
+  status: OPEN
+  owner: author
+  data_file: model/layout.yaml

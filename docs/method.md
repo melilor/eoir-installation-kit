@@ -56,6 +56,18 @@ build points at a rule, not at an opinion. The rules are the contract:
 - no `FUTURE` without a plan, no `LIMITATION`/`FAIL`/`BLOCKED` without a note;
 - a warning when evidence is produced against an assumption that is still open.
 
+## The layout and its checks
+
+`model/layout.yaml` is the single source of truth for every dimension of the kit: a
+two-view 2D envelope model (rectangles, circles and orthogonal harness paths, in
+millimetres). `tools/layout.py` runs twelve geometric and data checks on it — removal
+corridor, connector access, fitting edge distance, hole pitch, fastener locking, inspection
+access, harness orthogonality, bend radius, clamp position and spacing, clearance to hot
+zones and moving parts, and agreement with the interface control data — and writes four
+files into `evidence/layout/`: the machine-readable `checks.json`, a readable `report.md`, an
+SVG figure and a DXF R12 export. CI runs `python -m tools.layout --check`, so the published
+evidence cannot differ from the model.
+
 ## How to add a requirement
 
 1. `doorstop add SYS` in `model/requirements`, then write `header`, `text` and `ref`
@@ -79,6 +91,7 @@ Paths in the evidence record are relative to the repository root for `artifact`
 ## What this method gives up
 
 It is not a SysML model and it is not a Capella model: there is no graphical notation, no
-simulable functional model, no tool-level metamodel exchange (ReqIF, XMI). What it gives is
-a model that a reviewer can read in a diff, that CI can check, and that does not depend on a
-licence. The trade-off is recorded in `docs/adr/0001`.
+simulable functional model, no tool-level metamodel exchange (ReqIF, XMI). The layout is a
+2D envelope model, not 3D CAD: interference checking in three dimensions is separate work.
+What it gives is a model that a reviewer can read in a diff, that CI can check, and that
+does not depend on a licence. The trade-off is recorded in `docs/adr/0001`.

@@ -1,0 +1,821 @@
+{
+  "revision": "A",
+  "units": "mm",
+  "declared_rules": {
+    "edge_distance_factor": 2.0,
+    "hole_pitch_factor": 3.0,
+    "connector_access_radius": 60.0,
+    "inspection_access_radius": 80.0,
+    "harness_clearance": 50.0,
+    "clamp_spacing_max": 200.0,
+    "bend_radius_factor": 5.0
+  },
+  "summary": {
+    "checks": 89,
+    "passed": 89,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "BEND-RADIUS",
+      "subject": "HR-01",
+      "status": "PASS",
+      "value": 80.0,
+      "limit": 70.0,
+      "margin": 10.0,
+      "message": "Power harness bend radius 80 mm (need 70 mm for 14 mm cable)"
+    },
+    {
+      "check": "BEND-RADIUS",
+      "subject": "HR-02",
+      "status": "PASS",
+      "value": 60.0,
+      "limit": 50.0,
+      "margin": 10.0,
+      "message": "Data harness bend radius 60 mm (need 50 mm for 10 mm cable)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp1",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 1 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp2",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 2 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp3",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 3 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp4",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 4 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp5",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 5 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-01:clamp6",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 6 of HR-01 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp1",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 1 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp2",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 2 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp3",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 3 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp4",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 4 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp5",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 5 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-ON-PATH",
+      "subject": "HR-02:clamp6",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "clamp 6 of HR-02 is 0.0 mm from the path (limit 1 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap1",
+      "status": "PASS",
+      "value": 100.0,
+      "limit": 200.0,
+      "margin": 100.0,
+      "message": "HR-01 gap 1 between clamps: 100.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap2",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-01 gap 2 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap3",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-01 gap 3 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap4",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-01 gap 4 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap5",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-01 gap 5 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap6",
+      "status": "PASS",
+      "value": 90.0,
+      "limit": 200.0,
+      "margin": 110.0,
+      "message": "HR-01 gap 6 between clamps: 90.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-01:gap7",
+      "status": "PASS",
+      "value": 60.0,
+      "limit": 200.0,
+      "margin": 140.0,
+      "message": "HR-01 gap 7 between clamps: 60.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap1",
+      "status": "PASS",
+      "value": 100.0,
+      "limit": 200.0,
+      "margin": 100.0,
+      "message": "HR-02 gap 1 between clamps: 100.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap2",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-02 gap 2 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap3",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-02 gap 3 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap4",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 200.0,
+      "margin": 50.0,
+      "message": "HR-02 gap 4 between clamps: 150.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap5",
+      "status": "PASS",
+      "value": 130.0,
+      "limit": 200.0,
+      "margin": 70.0,
+      "message": "HR-02 gap 5 between clamps: 130.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap6",
+      "status": "PASS",
+      "value": 110.0,
+      "limit": 200.0,
+      "margin": 90.0,
+      "message": "HR-02 gap 6 between clamps: 110.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CLAMP-SPACING",
+      "subject": "HR-02:gap7",
+      "status": "PASS",
+      "value": 60.0,
+      "limit": 200.0,
+      "margin": 140.0,
+      "message": "HR-02 gap 7 between clamps: 60.0 mm (limit 200 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-01/BL-01",
+      "status": "PASS",
+      "value": 80.0,
+      "limit": 60.0,
+      "margin": 20.0,
+      "message": "Payload power connector access radius 60 mm to Left rail: 80.0 mm (need 60 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-01/BL-02",
+      "status": "PASS",
+      "value": 380.0,
+      "limit": 60.0,
+      "margin": 320.0,
+      "message": "Payload power connector access radius 60 mm to Right rail: 380.0 mm (need 60 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-01/BM-01",
+      "status": "PASS",
+      "value": 80.0,
+      "limit": 60.0,
+      "margin": 20.0,
+      "message": "Payload power connector access radius 60 mm to Mid beam: 80.0 mm (need 60 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-02/BL-01",
+      "status": "PASS",
+      "value": 80.0,
+      "limit": 60.0,
+      "margin": 20.0,
+      "message": "Payload data connector access radius 60 mm to Left rail: 80.0 mm (need 60 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-02/BL-02",
+      "status": "PASS",
+      "value": 380.0,
+      "limit": 60.0,
+      "margin": 320.0,
+      "message": "Payload data connector access radius 60 mm to Right rail: 380.0 mm (need 60 mm)"
+    },
+    {
+      "check": "CONNECTOR-ACCESS",
+      "subject": "CN-02/BM-01",
+      "status": "PASS",
+      "value": 120.416,
+      "limit": 60.0,
+      "margin": 60.416,
+      "message": "Payload data connector access radius 60 mm to Mid beam: 120.4 mm (need 60 mm)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-01",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-01: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-02",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-02: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-03",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-03: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-04",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-04: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-05",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-05: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-06",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-06: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-07",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-07: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FASTENER-LOCKING",
+      "subject": "F-08",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 2.0,
+      "margin": 0.0,
+      "message": "F-08: 2 locking devices (need 2)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-01/FT-01",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-01 in FT-01: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-02/FT-01",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-02 in FT-01: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-03/FT-02",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-03 in FT-02: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-04/FT-02",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-04 in FT-02: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-05/FT-03",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-05 in FT-03: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-06/FT-03",
+      "status": "PASS",
+      "value": 18.0,
+      "limit": 16.0,
+      "margin": 2.0,
+      "message": "smallest edge distance of F-06 in FT-03: 18.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-07/FT-04",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-07 in FT-04: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "FITTING-EDGE-DISTANCE",
+      "subject": "F-08/FT-04",
+      "status": "PASS",
+      "value": 30.0,
+      "limit": 16.0,
+      "margin": 14.0,
+      "message": "smallest edge distance of F-08 in FT-04: 30.0 mm (need 16 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg1/HZ-01",
+      "status": "PASS",
+      "value": 680.0,
+      "limit": 50.0,
+      "margin": 630.0,
+      "message": "Power harness segment 1 to Exhaust and bleed duct zone: 680.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg1/MP-01",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 50.0,
+      "margin": 100.0,
+      "message": "Power harness segment 1 to Retraction linkage sweep: 150.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg2/HZ-01",
+      "status": "PASS",
+      "value": 266.833,
+      "limit": 50.0,
+      "margin": 216.833,
+      "message": "Power harness segment 2 to Exhaust and bleed duct zone: 266.8 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg2/MP-01",
+      "status": "PASS",
+      "value": 60.0,
+      "limit": 50.0,
+      "margin": 10.0,
+      "message": "Power harness segment 2 to Retraction linkage sweep: 60.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg3/HZ-01",
+      "status": "PASS",
+      "value": 266.833,
+      "limit": 50.0,
+      "margin": 216.833,
+      "message": "Power harness segment 3 to Exhaust and bleed duct zone: 266.8 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg3/MP-01",
+      "status": "PASS",
+      "value": 208.806,
+      "limit": 50.0,
+      "margin": 158.806,
+      "message": "Power harness segment 3 to Retraction linkage sweep: 208.8 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg4/HZ-01",
+      "status": "PASS",
+      "value": 280.179,
+      "limit": 50.0,
+      "margin": 230.179,
+      "message": "Power harness segment 4 to Exhaust and bleed duct zone: 280.2 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-01:seg4/MP-01",
+      "status": "PASS",
+      "value": 256.125,
+      "limit": 50.0,
+      "margin": 206.125,
+      "message": "Power harness segment 4 to Retraction linkage sweep: 256.1 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg1/HZ-01",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 50.0,
+      "margin": 100.0,
+      "message": "Data harness segment 1 to Exhaust and bleed duct zone: 150.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg1/MP-01",
+      "status": "PASS",
+      "value": 680.0,
+      "limit": 50.0,
+      "margin": 630.0,
+      "message": "Data harness segment 1 to Retraction linkage sweep: 680.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg2/HZ-01",
+      "status": "PASS",
+      "value": 60.0,
+      "limit": 50.0,
+      "margin": 10.0,
+      "message": "Data harness segment 2 to Exhaust and bleed duct zone: 60.0 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg2/MP-01",
+      "status": "PASS",
+      "value": 296.142,
+      "limit": 50.0,
+      "margin": 246.142,
+      "message": "Data harness segment 2 to Retraction linkage sweep: 296.1 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg3/HZ-01",
+      "status": "PASS",
+      "value": 180.278,
+      "limit": 50.0,
+      "margin": 130.278,
+      "message": "Data harness segment 3 to Exhaust and bleed duct zone: 180.3 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg3/MP-01",
+      "status": "PASS",
+      "value": 296.142,
+      "limit": 50.0,
+      "margin": 246.142,
+      "message": "Data harness segment 3 to Retraction linkage sweep: 296.1 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg4/HZ-01",
+      "status": "PASS",
+      "value": 194.165,
+      "limit": 50.0,
+      "margin": 144.165,
+      "message": "Data harness segment 4 to Exhaust and bleed duct zone: 194.2 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-CLEARANCE",
+      "subject": "HR-02:seg4/MP-01",
+      "status": "PASS",
+      "value": 331.21,
+      "limit": 50.0,
+      "margin": 281.21,
+      "message": "Data harness segment 4 to Retraction linkage sweep: 331.2 mm (need 50 mm)"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-01:seg1",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-01 segment 1 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-01:seg2",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-01 segment 2 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-01:seg3",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-01 segment 3 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-01:seg4",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-01 segment 4 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-02:seg1",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-02 segment 1 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-02:seg2",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-02 segment 2 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-02:seg3",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-02 segment 3 is orthogonal"
+    },
+    {
+      "check": "HARNESS-ORTHOGONAL",
+      "subject": "HR-02:seg4",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "HR-02 segment 4 is orthogonal"
+    },
+    {
+      "check": "HOLE-PITCH",
+      "subject": "FT-01:F-01-F-02",
+      "status": "PASS",
+      "value": 84.853,
+      "limit": 24.0,
+      "margin": 60.853,
+      "message": "pitch between F-01 and F-02: 84.9 mm (need 24 mm)"
+    },
+    {
+      "check": "HOLE-PITCH",
+      "subject": "FT-02:F-03-F-04",
+      "status": "PASS",
+      "value": 84.853,
+      "limit": 24.0,
+      "margin": 60.853,
+      "message": "pitch between F-03 and F-04: 84.9 mm (need 24 mm)"
+    },
+    {
+      "check": "HOLE-PITCH",
+      "subject": "FT-03:F-05-F-06",
+      "status": "PASS",
+      "value": 72.0,
+      "limit": 24.0,
+      "margin": 48.0,
+      "message": "pitch between F-05 and F-06: 72.0 mm (need 24 mm)"
+    },
+    {
+      "check": "HOLE-PITCH",
+      "subject": "FT-04:F-07-F-08",
+      "status": "PASS",
+      "value": 84.853,
+      "limit": 24.0,
+      "margin": 60.853,
+      "message": "pitch between F-07 and F-08: 84.9 mm (need 24 mm)"
+    },
+    {
+      "check": "ICD-CONSISTENCY",
+      "subject": "Payload mass",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "Payload mass: model/interfaces/icd_payload.yaml#mass_and_inertia.mass_kg = 45, declared 45"
+    },
+    {
+      "check": "ICD-CONSISTENCY",
+      "subject": "Payload power voltage",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "Payload power voltage: model/interfaces/icd_payload.yaml#power.voltage_vdc = 28, declared 28"
+    },
+    {
+      "check": "ICD-CONSISTENCY",
+      "subject": "Platform attachment spacing",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "Platform attachment spacing: model/interfaces/icd_platform.yaml#attachment_provisions.spacing_mm.longitudinal = 900, declared 900"
+    },
+    {
+      "check": "INSPECTION-ACCESS",
+      "subject": "IZ-01",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 0.0,
+      "margin": 170.0,
+      "message": "IZ-01 is clear of PF-01"
+    },
+    {
+      "check": "INSPECTION-ACCESS",
+      "subject": "IZ-02",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 0.0,
+      "margin": 170.0,
+      "message": "IZ-02 is clear of PF-01"
+    },
+    {
+      "check": "INSPECTION-ACCESS",
+      "subject": "IZ-03",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 0.0,
+      "margin": 170.0,
+      "message": "IZ-03 is clear of PF-01"
+    },
+    {
+      "check": "INSPECTION-ACCESS",
+      "subject": "IZ-04",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 0.0,
+      "margin": 170.0,
+      "message": "IZ-04 is clear of PF-01"
+    },
+    {
+      "check": "REMOVAL-CORRIDOR",
+      "subject": "SM-01",
+      "status": "PASS",
+      "value": 398.246,
+      "limit": 0.0,
+      "margin": 398.246,
+      "message": "Forward attachment structure does not obstruct RC-01"
+    },
+    {
+      "check": "REMOVAL-CORRIDOR",
+      "subject": "SM-02",
+      "status": "PASS",
+      "value": 398.246,
+      "limit": 0.0,
+      "margin": 398.246,
+      "message": "Aft attachment structure does not obstruct RC-01"
+    },
+    {
+      "check": "REMOVAL-CORRIDOR",
+      "subject": "SM-03",
+      "status": "PASS",
+      "value": 420.0,
+      "limit": 0.0,
+      "margin": 420.0,
+      "message": "Belly beam does not obstruct RC-01"
+    },
+    {
+      "check": "REMOVAL-CORRIDOR",
+      "subject": "SM-04",
+      "status": "PASS",
+      "value": 40.0,
+      "limit": 0.0,
+      "margin": 40.0,
+      "message": "Belly antenna and drain mast does not obstruct RC-01"
+    }
+  ]
+}

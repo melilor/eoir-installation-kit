@@ -33,6 +33,15 @@ uses a word that is not here and is not standard domain language, that is a gap.
   challenge. Evidence produced against an `OPEN` assumption is reported as a warning. An
   assumption that rests on interface data declares it in `data_file`, and the `ASM-FILE`
   rule rejects a pointer to a file that does not exist.
+- **Layout**: the dimensional definition of the kit, in `model/layout.yaml` at revision A:
+a two-view 2D envelope model (side and bottom view) with rectangles, circles and orthogonal
+harness paths. It is the single source of truth for every dimension, and the geometric checks
+in `tools/layout.py` run against it.
+- **Layout check**: one of the geometric or data checks on the layout, each with a stable
+identifier (`REMOVAL-CORRIDOR`, `CONNECTOR-ACCESS`, `FITTING-EDGE-DISTANCE`, `HOLE-PITCH`,
+`FASTENER-LOCKING`, `INSPECTION-ACCESS`, `HARNESS-ORTHOGONAL`, `BEND-RADIUS`,
+`CLAMP-ON-PATH`, `CLAMP-SPACING`, `HARNESS-CLEARANCE`, `ICD-CONSISTENCY`). A failing check
+stops the tool and names the violated constraint.
 - **Interface control data (ICD)**: the declared values of the payload and the platform
   interfaces — mass and inertia, envelope, mounting pattern, power, buses, field of view,
   attachment provisions, structural environment. They live in `model/interfaces/` and are

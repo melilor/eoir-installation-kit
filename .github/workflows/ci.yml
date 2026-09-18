@@ -23,5 +23,7 @@ jobs:
         run: python -m tools.traceability report --check
       - name: Check that the architecture document is up to date
         run: python -m tools.diagram --check
+      - name: Run the layout checks and verify the published evidence
+        run: python -m tools.layout --check
       - name: Run the tests
         run: python -m pytest
