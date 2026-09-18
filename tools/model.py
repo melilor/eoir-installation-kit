@@ -91,6 +91,41 @@ class Assumption:
 
 
 @dataclass(frozen=True)
+class Document:
+    """A document that will show compliance with the requirements it covers."""
+
+    id: str
+    title: str
+    type: str
+    status: str
+    covers: tuple[str, ...] = ()
+    path: str | None = None
+    plan: str | None = None
+
+
+@dataclass(frozen=True)
+class ClassificationCriterion:
+    """One appreciable-effect criterion of the change classification."""
+
+    criterion: str
+    effect: str
+    rationale: str
+
+
+@dataclass(frozen=True)
+class ChangeClassification:
+    """The change classification of the installation (EASA Part 21 Subpart D)."""
+
+    status: str
+    proposed: str
+    basis: str
+    approval_route: str
+    privileges: str
+    criteria: tuple[ClassificationCriterion, ...] = ()
+    open_items: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class Model:
     """The whole model, loaded and ready to be checked."""
 
@@ -103,6 +138,8 @@ class Model:
     evidence: dict[str, Evidence]
     assumptions: dict[str, Assumption]
     doorstop_issues: tuple[str, ...] = ()
+    documents: tuple[Document, ...] = ()
+    classification: ChangeClassification | None = None
 
     def verifications_of(self, requirement_uid: str) -> tuple[Requirement, ...]:
         """Return the verification cases linked to a requirement."""
@@ -172,10 +209,52 @@ def _elements(raw: Iterable[dict[str, Any]], key: str = "requirements") -> tuple
     )
 
 
+def _load_compliance(
+    base: Path,
+) -> tuple[tuple[Document, ...], ChangeClassification | None]:
+    path = base / "model/compliance.yaml"
+    if not path.exists():
+        return (), None
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    documents = tuple(
+        Document(
+            id=entry["id"],
+            title=entry.get("title", ""),
+            type=entry.get("type", ""),
+            status=entry.get("status", ""),
+            covers=tuple(entry.get("covers", ())),
+            path=entry.get("path"),
+            plan=entry.get("plan"),
+        )
+        for entry in raw.get("documents", ())
+    )
+    classification_raw = raw.get("change_classification")
+    classification = None
+    if classification_raw:
+        classification = ChangeClassification(
+            status=classification_raw.get("status", ""),
+            proposed=classification_raw.get("proposed", ""),
+            basis=classification_raw.get("basis", "").strip(),
+            approval_route=classification_raw.get("approval_route", "").strip(),
+            privileges=classification_raw.get("privileges", "").strip(),
+            criteria=tuple(
+                ClassificationCriterion(
+                    criterion=entry["criterion"],
+                    effect=entry["effect"],
+                    rationale=entry["rationale"].strip(),
+                )
+                for entry in classification_raw.get("criteria", ())
+            ),
+            open_items=tuple(classification_raw.get("open_items", ())),
+        )
+    return documents, classification
+
+
 def load_model(root: Path | None = None) -> Model:
     """Load the model from ``root`` (the repository by default)."""
     base = Path(root) if root else REPO_ROOT
     requirements, verifications, doorstop_issues = _load_doorstop(base)
+    documents, classification = _load_compliance(base)
 
     architecture = yaml.safe_load((base / "model/architecture/architecture.yaml").read_text(encoding="utf-8"))
     evidence_raw = yaml.safe_load((base / "model/evidence.yaml").read_text(encoding="utf-8"))
@@ -213,4 +292,6 @@ def load_model(root: Path | None = None) -> Model:
         evidence=evidence,
         assumptions=assumptions,
         doorstop_issues=tuple(doorstop_issues),
+        documents=documents,
+        classification=classification,
     )

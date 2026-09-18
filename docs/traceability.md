@@ -19,12 +19,12 @@ Every requirement of the installation kit, the architecture element that owns it
 
 | Evidence status | Count |
 | --- | --- |
-| PASS | 4 |
+| PASS | 5 |
 | WARN | 0 |
 | FAIL | 0 |
-| LIMITATION | 1 |
+| LIMITATION | 4 |
 | BLOCKED | 0 |
-| FUTURE | 23 |
+| FUTURE | 19 |
 
 ## Requirements
 
@@ -49,25 +49,25 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | CMP-11 | VER012 | review | FUTURE | issues/10-qualification-plan-environmental |
 | SYS018 | Installation and removal | ASM A-011 | CMP-08, CMP-09 | VER013 | demonstration | LIMITATION | evidence/layout/checks.json |
 | SYS019 | Inspection access | ASM A-011 | CMP-09 | VER013 | demonstration | LIMITATION | evidence/layout/checks.json |
-| SYS020 | Change classification | STD EASA Part 21 Subpart D (21.A.91, 21.A.95, 21.A.97) | CMP-10 | VER014 | review | FUTURE | issues/09-compliance-matrix-and-classification |
-| SYS021 | Design assurance | STD EASA Part 21 21.A.239; STD SAE ARP4754A | CMP-10 | VER014 | review | FUTURE | issues/09-compliance-matrix-and-classification |
-| SYS022 | Instructions for continued airworthiness | STD 14 CFR 27.1529 and Appendix A to Part 27 | CMP-10 | VER015 | review | FUTURE | issues/09-compliance-matrix-and-classification |
-| SYS023 | Compliance data | STD EASA Part 21 21.A.239 | CMP-10 | VER014 | review | FUTURE | issues/09-compliance-matrix-and-classification |
+| SYS020 | Change classification | STD EASA Part 21 Subpart D (21.A.91, 21.A.95, 21.A.97) | CMP-10 | VER014 | review | PASS | docs/compliance-matrix.md |
+| SYS021 | Design assurance | STD EASA Part 21 21.A.239; STD SAE ARP4754A | CMP-10 | VER014 | review | PASS | docs/compliance-matrix.md |
+| SYS022 | Instructions for continued airworthiness | STD 14 CFR 27.1529 and Appendix A to Part 27 | CMP-10 | VER015 | review | LIMITATION | docs/ica.md |
+| SYS023 | Compliance data | STD EASA Part 21 21.A.239 | CMP-10 | VER014 | review | PASS | docs/compliance-matrix.md |
 | SYS024 | Fitting factor | STD 14 CFR 27.625 | CMP-01, CMP-02, CMP-03 | VER017 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
-| SYS025 | Material strength properties and design values | STD 14 CFR 27.613 | CMP-01 | VER018 | review | FUTURE | issues/09-compliance-matrix-and-classification |
+| SYS025 | Material strength properties and design values | STD 14 CFR 27.613 | CMP-01 | VER018 | review | FUTURE | issues/07-analysis-load-path-and-strength |
 | SYS026 | Fastener locking | STD 14 CFR 27.607 | CMP-02, CMP-03, CMP-08 | VER019 | inspection | PASS | evidence/layout/checks.json |
-| SYS027 | Protection of structure | STD 14 CFR 27.609 | CMP-01, CMP-02, CMP-08, CMP-11 | VER020 | review | FUTURE | issues/09-compliance-matrix-and-classification |
+| SYS027 | Protection of structure | STD 14 CFR 27.609 | CMP-01, CMP-02, CMP-08, CMP-11 | VER020 | review | FUTURE | issues/07-analysis-load-path-and-strength |
 | SYS028 | Inspection provisions | STD 14 CFR 27.611 | CMP-01, CMP-02 | VER021 | demonstration | PASS | evidence/layout/checks.json |
-| SYS029 | Critical parts | STD 14 CFR 27.602 | CMP-02, CMP-03 | VER022 | review | FUTURE | issues/09-compliance-matrix-and-classification |
+| SYS029 | Critical parts | STD 14 CFR 27.602 | CMP-02, CMP-03 | VER022 | review | FUTURE | issues/07-analysis-load-path-and-strength |
 | SYS030 | Harness routing and protection | STD 14 CFR 27.601; ASM A-012 | CMP-04, CMP-05, CMP-12 | VER023 | inspection | PASS | evidence/layout/checks.json |
 | SYS031 | Connector retention and access | STD 14 CFR 27.601; ASM A-012 | CMP-09, CMP-12 | VER023 | inspection | PASS | evidence/layout/checks.json |
 | SYS032 | Payload circuit protection | STD 14 CFR 27.1351-27.1367 | CMP-06 | VER024 | inspection | FUTURE | issues/06-analysis-power-and-bonding |
 | SYS033 | Fluids susceptibility | STD RTCA DO-160G Section 11; ASM A-009 | CMP-04, CMP-11, CMP-12 | VER025 | review | FUTURE | issues/10-qualification-plan-environmental |
 | SYS034 | Sand, dust and fungus | STD RTCA DO-160G Section 12; STD RTCA DO-160G Section 13; ASM A-009 | CMP-11, CMP-12 | VER025 | review | FUTURE | issues/10-qualification-plan-environmental |
 | SYS035 | Lightning and static electricity protection | STD 14 CFR 27.610 | CMP-05, CMP-07, CMP-12 | VER026 | review | FUTURE | issues/10-qualification-plan-environmental |
-| SYS036 | Configuration control | STD EASA Part 21 21.A.239 | CMP-10 | VER027 | review | FUTURE | issues/09-compliance-matrix-and-classification |
-| SYS037 | Loading information and operating limitations | STD 14 CFR 27.1589; STD 14 CFR 27.1583 | CMP-10 | VER028 | review | FUTURE | issues/09-compliance-matrix-and-classification |
-| SYS038 | Part identification | STD EASA Part 21 21.A.239; STD 14 CFR 27.1529 | CMP-10, CMP-12 | VER027 | review | FUTURE | issues/09-compliance-matrix-and-classification |
+| SYS036 | Configuration control | STD EASA Part 21 21.A.239 | CMP-10 | VER027 | review | LIMITATION | docs/compliance-matrix.md |
+| SYS037 | Loading information and operating limitations | STD 14 CFR 27.1589; STD 14 CFR 27.1583 | CMP-10 | VER028 | review | LIMITATION | docs/compliance-matrix.md |
+| SYS038 | Part identification | STD EASA Part 21 21.A.239; STD 14 CFR 27.1529 | CMP-10, CMP-12 | VER027 | review | LIMITATION | docs/compliance-matrix.md |
 
 ## Declared assumptions
 

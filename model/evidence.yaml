@@ -16,12 +16,11 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: C (2026-09-18) — the layout checks (ticket 08) closed five cases at
-# the design-definition level. A PASS here means the acceptance criterion is met
-# by the evidence named in the artifact; each note states what the evidence does
-# not cover.
+# Revision: D (2026-09-18) — the compliance frame (ticket 09) closed the certification
+# and documentation cases that the frame itself satisfies, and moved the three
+# structural deliverables to the analysis ticket.
 
-revision: C
+revision: D
 date: 2026-09-18
 
 cases:
@@ -126,17 +125,26 @@ cases:
 
   - verification: VER014
     method: review
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: docs/compliance-matrix.md
     plan: issues/09-compliance-matrix-and-classification
-    note: Change classification, design assurance process and compliance data set.
+    note: >-
+      The change classification is recorded with one criterion per appreciable effect
+      (model/compliance.yaml), the design assurance process is cited (21.A.239, SAE ARP4754A)
+      and every requirement is covered by exactly one document in the register. The
+      classification itself stays OPEN: the platform procedure and the two open criteria are
+      listed, not assumed away.
 
   - verification: VER015
     method: review
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/ica.md
     plan: issues/09-compliance-matrix-and-classification
-    note: Instructions for continued airworthiness completeness.
+    note: >-
+      The instructions for continued airworthiness are outlined against 14 CFR 27.1529 and
+      Appendix A: applicability, servicing, scheduled inspections, wear items, structural
+      repair, troubleshooting and parts list. The intervals, the torque values and the
+      airworthiness limitations are not defined and are listed as open items.
 
   - verification: VER016
     method: test
@@ -156,7 +164,7 @@ cases:
     method: review
     status: FUTURE
     artifact: null
-    plan: issues/09-compliance-matrix-and-classification
+    plan: issues/07-analysis-load-path-and-strength
     note: Material design values from approved specifications, with environmental reductions.
 
   - verification: VER019
@@ -173,7 +181,7 @@ cases:
     method: review
     status: FUTURE
     artifact: null
-    plan: issues/09-compliance-matrix-and-classification
+    plan: issues/07-analysis-load-path-and-strength
     note: Corrosion protection scheme and dissimilar material separation.
 
   - verification: VER021
@@ -189,7 +197,7 @@ cases:
     method: review
     status: FUTURE
     artifact: null
-    plan: issues/09-compliance-matrix-and-classification
+    plan: issues/07-analysis-load-path-and-strength
     note: Critical parts identified and controlled through the defined process.
 
   - verification: VER023
@@ -225,14 +233,20 @@ cases:
 
   - verification: VER027
     method: review
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/compliance-matrix.md
     plan: issues/09-compliance-matrix-and-classification
-    note: Configuration control and part identification in the design data.
+    note: >-
+      The document register assigns a revision to every deliverable and the drawing documents
+      carry part identification (DWG-001, DWG-002). A configuration control procedure approved
+      under a design organisation approval does not exist in this study.
 
   - verification: VER028
     method: review
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/compliance-matrix.md
     plan: issues/09-compliance-matrix-and-classification
-    note: Loading information and flight manual supplement reflect the installation.
+    note: >-
+      The loading information document is planned (FMS-001) and the weight and balance data
+      are inputs of the mass analysis, but no flight manual supplement exists yet: it is
+      produced with the platform operator.

@@ -59,7 +59,14 @@ stops the tool and names the violated constraint.
   chain and the state of every link. Generated from the model; never edited by hand.
 - **Change classification**: the assessment, under EASA Part 21 Subpart D, of whether the
   installation is a minor or major change to the type design. It has to be recorded before
-  release, not assumed.
+  release, not assumed. The study records it in `model/compliance.yaml` with one criterion per
+  appreciable effect and keeps the status `OPEN` until the platform procedure confirms it.
+- **Compliance document**: a document in the register that shows compliance with the
+  requirements it covers. Every requirement is covered by exactly one document; the coverage
+  is enforced by the `COMPLIANCE-COVERAGE` rule.
+- **Document register**: the list of compliance documents in `model/compliance.yaml`: identity,
+  title, type, state, the requirements each one covers and the ticket that will produce it.
+  States: `PLANNED`, `DRAFT`, `OUTLINE`, `GENERATED`, `ISSUED`.
 - **Compliance data**: the set of documents that demonstrate satisfaction of the
   requirements — compliance matrix, drawings list, analysis reports, test plans and
   reports.

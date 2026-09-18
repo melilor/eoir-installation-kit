@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tools.compliance import DOC_PATH as COMPLIANCE_PATH, render_compliance
 from tools.diagram import DOC_PATH as ARCHITECTURE_PATH, render_architecture
 from tools.model import REPO_ROOT, load_model
 from tools.rules import check_model
@@ -67,13 +68,39 @@ def test_architecture_document_lists_every_element():
         assert function.id in document
 
 
+def test_compliance_matrix_is_up_to_date():
+    model = load_model(REPO_ROOT)
+    current = (REPO_ROOT / COMPLIANCE_PATH).read_text(encoding="utf-8")
+    assert current == render_compliance(model), (
+        "docs/compliance-matrix.md is out of date: run python -m tools.compliance"
+    )
+
+
+def test_every_requirement_is_covered_by_exactly_one_document():
+    model = load_model(REPO_ROOT)
+    for uid in model.requirements:
+        owners = [document.id for document in model.documents if uid in document.covers]
+        assert len(owners) == 1, f"{uid} is covered by {owners or 'no document'}"
+
+
+def test_compliance_matrix_lists_every_requirement_once():
+    model = load_model(REPO_ROOT)
+    matrix = render_compliance(model)
+    requirements_section = matrix.split("## Requirements")[1].split("## Document register")[0]
+    for uid in model.requirements:
+        assert requirements_section.count(f"| {uid} |") == 1, uid
+
+
 def test_model_paths_exist():
     for relative in (
         "model/requirements",
         "model/verification",
         "model/architecture/architecture.yaml",
+        "model/compliance.yaml",
+        "model/layout.yaml",
         "model/interfaces/icd_payload.yaml",
         "model/interfaces/icd_platform.yaml",
+        "docs/ica.md",
         "model/evidence.yaml",
         "model/assumptions.yaml",
     ):

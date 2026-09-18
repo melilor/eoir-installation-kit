@@ -1,0 +1,168 @@
+# Compliance frame of the installation: the change classification and the
+# document register.
+#
+# The register assigns every requirement of the study to exactly one document —
+# the one that will show compliance. The coverage is enforced: a requirement
+# without a document, or covered twice, fails the validation (COMPLIANCE-COVERAGE).
+#
+# Status values of a document: PLANNED, DRAFT, OUTLINE, GENERATED, ISSUED.
+# Type values: drawing, analysis, test, ica, checklist, manual.
+
+change_classification:
+  status: OPEN
+  proposed: MAJOR
+  basis: >-
+    EASA Part 21 Subpart D. The classification is made by the design
+    organisation under 21.A.263(c)(1); a minor change is approved under
+    21.A.95, a major change under 21.A.97.
+  criteria:
+    - criterion: Weight and balance
+      effect: "YES"
+      rationale: >-
+        The installation adds up to 60 kg including the payload, forward of the
+        centre of gravity reference and outside the certified range until the
+        weight and balance report is updated.
+    - criterion: Structural strength
+      effect: "YES"
+      rationale: >-
+        New fittings transfer the payload loads into the platform primary
+        structure at four hard points, with a fitting factor of 1.15.
+    - criterion: Electrical system
+      effect: "YES"
+      rationale: >-
+        A new protected 20 A circuit and a new load enter the platform
+        distribution and its electrical load analysis.
+    - criterion: Avionics and data interfaces
+      effect: "YES"
+      rationale: >-
+        ARINC 429 control and a digital video link are added to the mission
+        system interface panel.
+    - criterion: Environmental protection
+      effect: "YES"
+      rationale: >-
+        The installation changes the lightning, static and HIRF paths, and adds
+        an external emissive and receiving unit.
+    - criterion: Operating limitations and flight manual
+      effect: "YES"
+      rationale: >-
+        Loading information changes, and the flight manual supplement has to
+        record any operating limitation that follows.
+    - criterion: Instructions for continued airworthiness
+      effect: "YES"
+      rationale: >-
+        New scheduled inspections, wear items and a payload replacement
+        procedure enter the maintenance programme.
+    - criterion: Flight characteristics
+      effect: "OPEN"
+      rationale: >-
+        Drag, mass distribution and any effect on the handling qualities are not
+        assessed in this study; the assessment belongs to the platform.
+    - criterion: Safety assessment
+      effect: "OPEN"
+      rationale: >-
+        No ARP4761A assessment is performed in this study. It is the first
+        activity to schedule if the classification is confirmed.
+  approval_route: >-
+    21.A.97 (major change), unless the design organisation concludes a minor
+    change under its own procedure and approves it under 21.A.95.
+  privileges: >-
+    21.A.263(c)(1) classification, 21.A.263(c)(2) approval of minor changes,
+    21.A.263(c)(5) and (8) major change approval under privileges where the terms
+    of approval allow it.
+  open_items:
+    - The platform change classification procedure and the terms of approval.
+    - The appreciable effect assessment on flight characteristics and on the electrical system.
+    - The safety assessment, which this study does not perform.
+
+documents:
+  - id: DWG-001
+    title: Installation layout drawing
+    type: drawing
+    status: DRAFT
+    path: model/layout.yaml
+    plan: issues/08-geometry-layout-and-export
+    covers: [SYS001, SYS006, SYS018, SYS019, SYS026, SYS028, SYS038]
+  - id: DWG-002
+    title: Harness routing and installation drawing
+    type: drawing
+    status: DRAFT
+    path: model/layout.yaml
+    plan: issues/08-geometry-layout-and-export
+    covers: [SYS012, SYS030, SYS031]
+  - id: AN-001
+    title: Structural analysis report
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/07-analysis-load-path-and-strength
+    covers: [SYS002, SYS003, SYS004, SYS024, SYS025, SYS029]
+  - id: AN-002
+    title: Mass and balance report
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/04-analysis-mass-and-balance
+    covers: [SYS005, SYS007]
+  - id: AN-003
+    title: Field of view and clearance analysis
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/05-analysis-fov-and-clearance
+    covers: [SYS008, SYS009]
+  - id: AN-004
+    title: Electrical load and power budget
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/06-analysis-power-and-bonding
+    covers: [SYS010, SYS011, SYS032]
+  - id: AN-005
+    title: Resonance and vibration assessment
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/07-analysis-load-path-and-strength
+    covers: [SYS015]
+  - id: AN-006
+    title: Materials and corrosion protection scheme
+    type: analysis
+    status: PLANNED
+    path: null
+    plan: issues/07-analysis-load-path-and-strength
+    covers: [SYS027]
+  - id: TP-001
+    title: Environmental qualification plan and reports
+    type: test
+    status: PLANNED
+    path: null
+    plan: issues/10-qualification-plan-environmental
+    covers: [SYS014, SYS016, SYS017, SYS033, SYS034, SYS035]
+  - id: TP-002
+    title: Bonding resistance test report
+    type: test
+    status: PLANNED
+    path: null
+    plan: issues/10-qualification-plan-environmental
+    covers: [SYS013]
+  - id: ICA-001
+    title: Instructions for continued airworthiness
+    type: ica
+    status: OUTLINE
+    path: docs/ica.md
+    plan: issues/09-compliance-matrix-and-classification
+    covers: [SYS022]
+  - id: CS-001
+    title: Compliance checklist and change classification record
+    type: checklist
+    status: GENERATED
+    path: docs/compliance-matrix.md
+    plan: issues/09-compliance-matrix-and-classification
+    covers: [SYS020, SYS021, SYS023, SYS036]
+  - id: FMS-001
+    title: Flight manual supplement and loading information
+    type: manual
+    status: PLANNED
+    path: null
+    plan: issues/11-technical-report-and-review
+    covers: [SYS037]

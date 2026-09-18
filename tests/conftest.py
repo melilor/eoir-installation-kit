@@ -12,6 +12,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.model import (  # noqa: E402  (path setup must run first)
     ArchitectureElement,
     Assumption,
+    ChangeClassification,
+    ClassificationCriterion,
+    Document,
     Evidence,
     Model,
     Requirement,
@@ -30,6 +33,8 @@ def build_model(
     evidence=None,
     assumptions=None,
     doorstop_issues=(),
+    documents=None,
+    classification=None,
 ) -> Model:
     """Build a small valid model, letting each test override one part."""
     requirements = requirements if requirements is not None else {
@@ -71,6 +76,24 @@ def build_model(
         )
     }
     assumptions = assumptions if assumptions is not None else {}
+    documents = documents if documents is not None else (
+        Document(
+            id="DOC-001",
+            title="Test document",
+            type="analysis",
+            status="PLANNED",
+            covers=("SYS001",),
+            plan="issues/01-foundation",
+        ),
+    )
+    classification = classification if classification is not None else ChangeClassification(
+        status="OPEN",
+        proposed="MAJOR",
+        basis="EASA Part 21 Subpart D",
+        approval_route="21.A.97",
+        privileges="21.A.263(c)(1)",
+        criteria=(ClassificationCriterion("Weight and balance", "YES", "adds mass"),),
+    )
     return Model(
         requirements=requirements,
         verifications=verifications,
@@ -81,6 +104,8 @@ def build_model(
         evidence=evidence,
         assumptions=assumptions,
         doorstop_issues=doorstop_issues,
+        documents=documents,
+        classification=classification,
     )
 
 

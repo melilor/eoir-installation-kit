@@ -34,6 +34,17 @@ STATUS_REQUIRING_NOTE = frozenset({"FAIL", "LIMITATION", "BLOCKED"})
 #: Allowed states of a declared assumption.
 ASSUMPTION_STATUSES = frozenset({"OPEN", "CLOSED", "REJECTED"})
 
+#: Allowed states of a compliance document.
+DOCUMENT_STATUSES = frozenset({"PLANNED", "DRAFT", "OUTLINE", "GENERATED", "ISSUED"})
+
+#: Allowed types of a compliance document.
+DOCUMENT_TYPES = frozenset({"drawing", "analysis", "test", "ica", "checklist", "manual"})
+
+#: Allowed states, outcomes and criterion effects of the change classification.
+CLASSIFICATION_STATUSES = frozenset({"OPEN", "CLOSED"})
+CLASSIFICATION_OUTCOMES = frozenset({"MINOR", "MAJOR"})
+CRITERION_EFFECTS = frozenset({"YES", "NO", "OPEN"})
+
 #: A citation is ``STD <reference>`` or ``ASM <assumption id>``; several
 #: citations can be chained with a semicolon.
 CITATION = re.compile(r"^(STD|ASM)\s+(.+)$")
@@ -84,6 +95,8 @@ def check_model(model: Model, root: Path | None = None) -> list[Finding]:
     findings += _check_architecture(model)
     findings += _check_verification(model, base)
     findings += _check_assumptions(model, base)
+    findings += _check_compliance(model, base)
+    findings += _check_classification(model)
     findings += _check_identifiers(model)
 
     return sorted(findings, key=lambda finding: (finding.severity != "error", finding.rule))
@@ -250,6 +263,90 @@ def _check_assumptions(model: Model, root: Path) -> list[Finding]:
                         f"{requirement.uid}: verified against the open assumption {value}",
                     )
                 )
+    return findings
+
+
+def _check_compliance(model: Model, root: Path) -> list[Finding]:
+    """Every requirement is covered by exactly one document, and the register is sound."""
+    findings: list[Finding] = []
+    known = set(model.requirements)
+    coverage: dict[str, list[str]] = {}
+
+    for document in model.documents:
+        if document.status not in DOCUMENT_STATUSES:
+            findings.append(
+                _error("COMPLIANCE-REF", f"{document.id}: unknown status '{document.status}'")
+            )
+        if document.type not in DOCUMENT_TYPES:
+            findings.append(_error("COMPLIANCE-REF", f"{document.id}: unknown type '{document.type}'"))
+        if not document.covers:
+            findings.append(_error("COMPLIANCE-REF", f"{document.id}: covers no requirement"))
+        for uid in document.covers:
+            if uid not in known:
+                findings.append(
+                    _error("COMPLIANCE-REF", f"{document.id}: unknown requirement '{uid}'")
+                )
+            coverage.setdefault(uid, []).append(document.id)
+        if document.path and not (root / document.path).exists():
+            findings.append(
+                _error(
+                    "COMPLIANCE-FILE",
+                    f"{document.id}: declared document '{document.path}' does not exist",
+                )
+            )
+
+    document_ids = [document.id for document in model.documents]
+    for document_id in sorted({value for value in document_ids if document_ids.count(value) > 1}):
+        findings.append(_error("COMPLIANCE-REF", f"{document_id}: duplicate document id"))
+
+    for requirement in model.requirements.values():
+        if not requirement.active:
+            continue
+        owners = coverage.get(requirement.uid, [])
+        if not owners:
+            findings.append(
+                _error("COMPLIANCE-COVERAGE", f"{requirement.uid}: no compliance document")
+            )
+        elif len(owners) > 1:
+            findings.append(
+                _error(
+                    "COMPLIANCE-COVERAGE",
+                    f"{requirement.uid}: covered by {', '.join(sorted(owners))}",
+                )
+            )
+    return findings
+
+
+def _check_classification(model: Model) -> list[Finding]:
+    """The change classification is complete enough to be argued."""
+    classification = model.classification
+    if classification is None:
+        return [_error("CLASSIFICATION", "no change classification recorded")]
+    findings: list[Finding] = []
+    if classification.status not in CLASSIFICATION_STATUSES:
+        findings.append(
+            _error("CLASSIFICATION", f"unknown status '{classification.status}'")
+        )
+    if classification.proposed not in CLASSIFICATION_OUTCOMES:
+        findings.append(
+            _error("CLASSIFICATION", f"unknown proposed outcome '{classification.proposed}'")
+        )
+    if not classification.criteria:
+        findings.append(_error("CLASSIFICATION", "no criterion assessed"))
+    for criterion in classification.criteria:
+        if criterion.effect not in CRITERION_EFFECTS:
+            findings.append(
+                _error(
+                    "CLASSIFICATION",
+                    f"{criterion.criterion}: unknown effect '{criterion.effect}'",
+                )
+            )
+        if not criterion.rationale.strip():
+            findings.append(
+                _error("CLASSIFICATION", f"{criterion.criterion}: no rationale")
+            )
+    if classification.proposed == "MAJOR" and not classification.approval_route.strip():
+        findings.append(_error("CLASSIFICATION", "major change without an approval route"))
     return findings
 
 

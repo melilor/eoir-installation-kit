@@ -2,7 +2,15 @@
 
 from __future__ import annotations
 
-from tools.model import ArchitectureElement, Assumption, Evidence, Requirement
+from tools.model import (
+    ArchitectureElement,
+    Assumption,
+    ChangeClassification,
+    ClassificationCriterion,
+    Document,
+    Evidence,
+    Requirement,
+)
 from tools.rules import check_model
 
 from conftest import build_model
@@ -191,3 +199,103 @@ def test_duplicate_identifier_is_an_error():
     )
     model = build_model(components=(duplicate, duplicate))
     assert "ID-DUPLICATE" in rules(model)
+
+
+def test_requirement_without_a_compliance_document_is_an_error():
+    model = build_model(documents=())
+    assert "COMPLIANCE-COVERAGE" in rules(model)
+
+
+def test_requirement_covered_twice_is_an_error():
+    documents = (
+        Document(id="DOC-001", title="A", type="analysis", status="PLANNED", covers=("SYS001",)),
+        Document(id="DOC-002", title="B", type="test", status="PLANNED", covers=("SYS001",)),
+    )
+    model = build_model(documents=documents)
+    assert "COMPLIANCE-COVERAGE" in rules(model)
+
+
+def test_document_covering_an_unknown_requirement_is_an_error():
+    documents = (
+        Document(id="DOC-001", title="A", type="analysis", status="PLANNED", covers=("SYS999",)),
+    )
+    assert "COMPLIANCE-REF" in rules(build_model(documents=documents))
+
+
+def test_document_without_requirements_is_an_error():
+    documents = (Document(id="DOC-001", title="A", type="analysis", status="PLANNED", covers=()),)
+    assert "COMPLIANCE-REF" in rules(build_model(documents=documents))
+
+
+def test_unknown_document_status_and_type_are_errors():
+    bad_status = (
+        Document(id="DOC-001", title="A", type="analysis", status="MAYBE", covers=("SYS001",)),
+    )
+    assert "COMPLIANCE-REF" in rules(build_model(documents=bad_status))
+    bad_type = (
+        Document(id="DOC-001", title="A", type="poetry", status="PLANNED", covers=("SYS001",)),
+    )
+    assert "COMPLIANCE-REF" in rules(build_model(documents=bad_type))
+
+
+def test_duplicate_document_id_is_an_error():
+    documents = (
+        Document(id="DOC-001", title="A", type="analysis", status="PLANNED", covers=("SYS001",)),
+        Document(id="DOC-001", title="B", type="test", status="PLANNED", covers=("SYS001",)),
+    )
+    assert "COMPLIANCE-REF" in rules(build_model(documents=documents))
+
+
+def test_missing_document_file_is_an_error(tmp_path):
+    documents = (
+        Document(
+            id="DOC-001",
+            title="A",
+            type="analysis",
+            status="PLANNED",
+            covers=("SYS001",),
+            path="docs/missing.md",
+        ),
+    )
+    assert "COMPLIANCE-FILE" in rules(build_model(documents=documents), tmp_path)
+
+
+def test_classification_without_criteria_is_an_error():
+    classification = ChangeClassification(
+        status="OPEN",
+        proposed="MAJOR",
+        basis="Part 21",
+        approval_route="21.A.97",
+        privileges="21.A.263",
+    )
+    assert "CLASSIFICATION" in rules(build_model(classification=classification))
+
+
+def test_classification_with_unknown_effect_is_an_error():
+    classification = ChangeClassification(
+        status="OPEN",
+        proposed="MAJOR",
+        basis="Part 21",
+        approval_route="21.A.97",
+        privileges="21.A.263",
+        criteria=(ClassificationCriterion("Weight", "PROBABLY", "adds mass"),),
+    )
+    assert "CLASSIFICATION" in rules(build_model(classification=classification))
+
+
+def test_major_change_without_approval_route_is_an_error():
+    classification = ChangeClassification(
+        status="OPEN",
+        proposed="MAJOR",
+        basis="Part 21",
+        approval_route="",
+        privileges="21.A.263",
+        criteria=(ClassificationCriterion("Weight", "YES", "adds mass"),),
+    )
+    assert "CLASSIFICATION" in rules(build_model(classification=classification))
+
+
+def test_missing_classification_is_an_error():
+    from dataclasses import replace
+
+    assert "CLASSIFICATION" in rules(replace(build_model(), classification=None))

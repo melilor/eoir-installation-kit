@@ -17,13 +17,14 @@ Doorstop document, the architecture and the evidence live in YAML, and a validat
 repository enforces the whole chain. If a requirement has no source, no owning component or
 no verification case, the build is red.
 
-**Status — revision C, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
-89 layout checks, 55 tests, CI green. **Five verification cases are closed at the
-design-definition level** by the layout checks (four `PASS`, one `LIMITATION` for what a model
-cannot demonstrate); the other 23 are `FUTURE` and each one names the ticket that will produce
-its evidence. Three `ASM-OPEN` warnings flag the evidence that rests on a declared assumption
-that is still open. That is the honest state of the study and it is visible in
-[the traceability matrix](traceability.md).
+**Status — revision D, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
+89 layout checks, 13 documents in the compliance register, 71 tests, CI green. **Nine
+verification cases are closed** at the level the evidence supports — five `PASS` and four
+`LIMITATION` for what a model cannot demonstrate; the other 19 are `FUTURE` and each one names
+the ticket that will produce its evidence. Three `ASM-OPEN` warnings flag the evidence that
+rests on a declared assumption that is still open. That is the honest state of the study and
+it is visible in [the traceability matrix](traceability.md) and in the
+[compliance matrix](compliance-matrix.md).
 
 ## The model, end to end
 
@@ -68,7 +69,7 @@ Every arrow below is a rule in `tools/rules.py`, checked in CI:
                             ▼
     ┌────────────────────────────────────────────────────────┐
     │ ARTIFACT IN THE REPOSITORY                             │
-    │ 5 cases closed, 23 FUTURE — see the matrix             │
+    │ 9 cases closed, 19 FUTURE — see the matrix             │
     └────────────────────────────────────────────────────────┘
 
     ASM-OPEN warns when evidence is produced against an assumption that is still open.
@@ -89,19 +90,21 @@ eoir-installation-kit/
 │   ├── interfaces/      icd_payload.yaml · icd_platform.yaml (declared interface data)
 │   ├── assumptions.yaml A-001–A-013, all OPEN with a rationale
 │   ├── evidence.yaml    28 records: method, status, artifact, plan
-│   └── layout.yaml      the single source of truth for every dimension
+│   ├── layout.yaml      the single source of truth for every dimension
+│   └── compliance.yaml  change classification and the document register
 │
 ├── evidence/
 │   └── layout/          GENERATED: checks.json · report.md · layout.svg · layout.dxf
 │
 ├── tools/                        ← THE CHECK
-│   ├── model.py         loads the four parts of the model
-│   ├── rules.py         10 rules, one stable identifier per failure
+│   ├── model.py         loads the five parts of the model
+│   ├── rules.py         14 rules, one stable identifier per failure
 │   ├── traceability.py  check · report · report --check
 │   ├── diagram.py       generates docs/architecture.md (Mermaid + tables)
-│   └── layout.py        12 layout checks, writes evidence/layout/
+│   ├── layout.py        12 layout checks, writes evidence/layout/
+│   └── compliance.py    generates the compliance matrix and the document register
 │
-├── tests/               55 tests: one failing model per rule, plus the repository model
+├── tests/               71 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
@@ -126,11 +129,12 @@ eoir-installation-kit/
 | Standard citations / assumption citations in requirements | 43 / 17 |
 | Declared assumptions | **13**, all `OPEN` |
 | Functions / components / interfaces / external entities | 9 / **12** / 9 / 6 |
-| Verification cases (`VER`) | **28** — `PASS` 4, `LIMITATION` 1, `FUTURE` 23 |
+| Verification cases (`VER`) | **28** — `PASS` 5, `LIMITATION` 4, `FUTURE` 19 |
 | Methods: analysis / review / inspection / test / demonstration | 8 / 11 / 5 / 2 / 2 |
 | Layout checks | **89**, all passing |
-| Validation rules | **10**, one identifier per failure |
-| Tests | **55**, green |
+| Compliance documents | **13** — every requirement covered exactly once |
+| Validation rules | **14**, one identifier per failure |
+| Tests | **71**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -170,17 +174,16 @@ the mission system, the maintainer and the environment.
 
 ## What is verified, honestly
 
-Five cases are closed at the design-definition level by the layout checks: the harness routing
-and connector interfaces (`VER008`), the fastener locking devices (`VER019`), the inspection
-provisions (`VER021`) and the harness installation rules (`VER023`) are `PASS` against the
-signature of `evidence/layout/checks.json`, and the maintainability case (`VER013`) is a
-`LIMITATION` because a 30-minute installation with two maintainers cannot be demonstrated
-without a first article. Every note states what the evidence does **not** cover.
+Nine cases are closed at the level the evidence supports. Five are `PASS` against the layout
+checks and the compliance frame (`VER008`, `VER019`, `VER021`, `VER023`, `VER014`), and four
+are `LIMITATION` because a model cannot demonstrate them: the 30-minute maintainability target
+without an article (`VER013`), the ICA without intervals (`VER015`), configuration control
+without an approved procedure (`VER027`), the flight manual supplement without an aircraft
+(`VER028`). Every note states what the evidence does **not** cover.
 
-The other 23 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
-The study demonstrates a method and a discipline, not a result; the matrix states this case by
-case, and the README says it before a reader has to ask. Three `ASM-OPEN` warnings mark the
-places where evidence rests on a declared assumption that is still open.
+The other 19 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
+The study demonstrates a method and a discipline, not a result. Three `ASM-OPEN` warnings mark
+the places where evidence rests on a declared assumption that is still open.
 
 ## The gate
 
@@ -190,6 +193,7 @@ python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate the matrix
 python -m tools.diagram                       # regenerate the architecture document
 python -m tools.layout                        # run the layout checks, write the evidence
+python -m tools.compliance                    # regenerate the compliance matrix
 python -m pytest                              # run the test suite
 ```
 
@@ -203,14 +207,15 @@ when the committed documents differ from the model, so the published artefacts c
 | Can this person structure a system model? | `model/`, the chain above, 38 requirements over 9 functions and 12 components |
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
-| Do they automate their own discipline? | `tools/rules.py` and `tools/layout.py`, 55 tests, CI, generated evidence |
+| Do they understand certification? | the change classification argued criterion by criterion, the document register, the ICA outline |
+| Do they automate their own discipline? | `tools/rules.py`, `tools/layout.py`, `tools/compliance.py`, 71 tests, CI, generated evidence |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 
 ## Limits, stated before anyone asks
 
-- No physical verification: the five closed cases are design-definition checks, and the
-  installation target cannot be demonstrated without a first article.
+- No physical verification: the nine closed cases are design-definition and document reviews,
+  and the installation target cannot be demonstrated without a first article.
 - All 13 assumptions are `OPEN`: payload, platform and environment are declared inputs, not
   measurements.
 - The layout is a two-view 2D envelope model, not 3D CAD: interference checking in three
@@ -227,32 +232,36 @@ when the committed documents differ from the model, so the published artefacts c
                  │ 02 REQUIREMENTS ✅             │
                  │ 03 ARCHITECTURE ✅             │
                  │ 08 GEOMETRY ✅                 │
+                 │ 09 COMPLIANCE ✅               │
                  └───────────────┬────────────────┘
                                  ▼
         ┌────────────────────────┼────────────────────────┐
         ▼                        ▼                        ▼
  ┌──────────────┐        ┌──────────────┐         ┌──────────────────┐
- │04 MASS & CG  │        │05 FOV &      │         │09 COMPLIANCE     │
+ │04 MASS & CG  │        │05 FOV &      │         │07 LOAD PATH      │
  │  unblocked   │        │  CLEARANCE   │         │  unblocked       │
  │              │        │  unblocked   │         │                  │
  └──────┬───────┘        └──────┬───────┘         └────────┬─────────┘
         │                       │                          │
- ┌──────┴───────┐        ┌──────┴───────┐                  │
- │06 POWER &    │        │07 LOAD PATH  │                  │
- │  BONDING     │        │  (02 + 08)   │                  │
- │  unblocked   │        └──────┬───────┘                  │
+ ┌──────┴───────┐               │                          │
+ │06 POWER &    │               │                          │
+ │  BONDING     │               │                          │
+ │  unblocked   │               │                          │
  └──────┬───────┘               │                          │
-        │                ┌──────┴───────┐                  │
-        │                │10 QUALIFI-   │                  │
-        │                │  CATION PLAN │                  │
-        │                └──────┬───────┘                  │
-        └───────────┬───────────┴──────────────────────────┘
-                    ▼
-          ┌─────────────────────┐       ┌─────────────────────────┐
-          │ 11 TECHNICAL REPORT │──────▶│ 12 PUBLICATION AND      │
-          │   + INDEPENDENT     │       │   APPLICATION ALIGNMENT │
-          │   REVIEW            │       └─────────────────────────┘
-          └─────────────────────┘
+        └───────────┬───────────┴──────────┬───────────────┘
+                    ▼                      ▼
+          ┌─────────────────────┐  ┌──────────────────┐
+          │ 10 QUALIFICATION    │  │ 11 TECHNICAL     │
+          │    PLAN             │  │    REPORT +      │
+          │    (03 + 09)        │  │    REVIEW        │
+          └──────────┬──────────┘  └────────┬─────────┘
+                     └───────────┬──────────┘
+                                 ▼
+                       ┌─────────────────────┐
+                       │ 12 PUBLICATION AND  │
+                       │    APPLICATION      │
+                       │    ALIGNMENT        │
+                       └─────────────────────┘
 ```
 
 Tickets live in `.scratch/eoir-installation-kit/issues/`, one file per ticket, each declaring

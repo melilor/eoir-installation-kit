@@ -68,13 +68,24 @@ files into `evidence/layout/`: the machine-readable `checks.json`, a readable `r
 SVG figure and a DXF R12 export. CI runs `python -m tools.layout --check`, so the published
 evidence cannot differ from the model.
 
+## The compliance frame
+
+`model/compliance.yaml` holds two things: the change classification (one criterion per
+appreciable effect, the approval route and the privileges it relies on) and the document
+register, which assigns every requirement to exactly one document — the one that will show
+compliance. `tools/compliance.py` renders `docs/compliance-matrix.md` from it, and the
+`COMPLIANCE-COVERAGE` rule fails the build when a requirement has no document or two. The
+instructions for continued airworthiness are outlined in `docs/ica.md`.
+
 ## How to add a requirement
 
 1. `doorstop add SYS` in `model/requirements`, then write `header`, `text` and `ref`
    (`STD <citation>` and/or `ASM <id>`).
 2. Allocate it to at least one component in `model/architecture/architecture.yaml`.
 3. Add a `VER` item that links to it, and an evidence record for that `VER`.
-4. Run `python -m tools.traceability check` and `python -m tools.traceability report`.
+4. Add it to exactly one document in `model/compliance.yaml`.
+5. Run `python -m tools.traceability check`, `python -m tools.traceability report` and
+   `python -m tools.compliance`.
 
 ## How to close a verification case
 

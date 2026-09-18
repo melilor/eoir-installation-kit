@@ -40,11 +40,11 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision C — first published slice, 2026-09-18.** The model, the architecture allocation
-and the verification structure exist and are consistent: 38 requirements, 12 components,
-28 verification cases. **Five cases are closed at the design-definition level** by the layout
-checks (ticket 08) — four `PASS` and one `LIMITATION` for what a model cannot demonstrate;
-the other 23 are `FUTURE` and point at the ticket that will produce their evidence. The
+**Revision D — first published slice, 2026-09-18.** The model, the architecture allocation,
+the layout and the compliance frame exist and are consistent: 38 requirements, 12 components,
+28 verification cases, 13 documents, 89 layout checks. **Nine cases are closed** at the level
+the evidence supports — five `PASS` and four `LIMITATION` for what a model cannot demonstrate;
+the other 19 are `FUTURE` and point at the ticket that will produce their evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -58,6 +58,7 @@ python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate docs/traceability.md
 python -m tools.diagram                       # regenerate docs/architecture.md
 python -m tools.layout                        # run the layout checks, write evidence/layout/
+python -m tools.compliance                    # regenerate docs/compliance-matrix.md
 python -m pytest                              # run the test suite
 ```
 
@@ -72,19 +73,23 @@ model/
   assumptions.yaml       declared assumptions and interface data (ASM A-00x)
   evidence.yaml          one record per verification case: method, status, artifact, plan
   layout.yaml            the single source of truth for every dimension of the kit
+  compliance.yaml        change classification and the document register
 evidence/
   layout/                generated: checks.json, report.md, layout.svg, layout.dxf
 tools/
-  model.py               load the four parts of the model
+  model.py               load the five parts of the model
   rules.py               the validation rules, one identifier per failure
   traceability.py        command line: check, report, report --check
   diagram.py             generate docs/architecture.md from the architecture model
   layout.py              run the layout checks and write the evidence
-tests/                   55 tests: one failing model per rule, plus the repository model
+  compliance.py          generate the compliance matrix and the document register
+tests/                   71 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables
   traceability.md        generated matrix: requirement → architecture → verification → evidence
+  compliance-matrix.md   generated: classification, compliance matrix, document register
+  ica.md                 instructions for continued airworthiness (outline)
   method.md              how the model works and why the tools were chosen
   adr/                   decision records
 ```
@@ -112,6 +117,10 @@ The rules that hold this together, each with a stable identifier in
 | `EVIDENCE-PLAN` | a `FUTURE` case with no ticket attached to it |
 | `ASM-OPEN` | evidence produced against a declared assumption that is still open |
 | `ASM-FILE` | an assumption pointing at declared interface data that is not in the repository |
+| `COMPLIANCE-COVERAGE` | a requirement with no compliance document, or covered by more than one |
+| `COMPLIANCE-REF` | a document covering an unknown requirement, an empty register entry, an unknown state or type, a duplicate id |
+| `COMPLIANCE-FILE` | a document declared in the register whose file is not in the repository |
+| `CLASSIFICATION` | a change classification without criteria, with an unknown effect, or a major change without an approval route |
 
 ## Standards used as the frame
 
