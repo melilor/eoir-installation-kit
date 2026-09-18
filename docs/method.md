@@ -9,10 +9,12 @@ How the model is built, what holds it together, and what has been left out on pu
 | Requirements | `model/requirements/SYS*.yml` (Doorstop) | what the installation must satisfy |
 | Verification cases | `model/verification/VER*.yml` (Doorstop) | how each requirement is shown to be satisfied |
 | Architecture | `model/architecture/architecture.yaml` | functions, components, interfaces and who owns what |
+| Interface control data | `model/interfaces/icd_payload.yaml`, `model/interfaces/icd_platform.yaml` | the declared payload and platform interface values |
 | Evidence | `model/evidence.yaml` | method, status, artifact and plan of every verification case |
 
 Declared assumptions live in `model/assumptions.yaml` and are referenced by the requirements
-that depend on them.
+that depend on them. An assumption that rests on interface data carries a `data_file` pointer,
+and the `ASM-FILE` rule fails the build when that file is missing.
 
 ## Why Doorstop
 
@@ -30,6 +32,11 @@ Both are visible in the CI command (`doorstop --no-ref-check --no-level-check`),
 in a configuration file. Every other Doorstop check runs.
 
 ## Why the validator exists
+
+`docs/architecture.md` and `docs/traceability.md` are both generated: the first by
+`tools/diagram.py` (Mermaid diagram and allocation tables), the second by
+`tools/traceability.py` (the requirement matrix). CI fails when either file differs from
+the model, so the published documents cannot drift.
 
 Doorstop knows nothing about the architecture and nothing about evidence. The chain that
 matters for this study is longer than a requirement tree:

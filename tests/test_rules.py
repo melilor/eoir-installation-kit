@@ -142,6 +142,24 @@ def test_unknown_assumption_status_is_an_error():
     assert "ASM-STATUS" in rules(model)
 
 
+def test_assumption_with_missing_data_file_is_an_error(tmp_path):
+    assumption = Assumption(
+        id="A-001", title="t", statement="s", status="OPEN", data_file="model/icd.yaml"
+    )
+    model = build_model(assumptions={"A-001": assumption})
+    assert "ASM-FILE" in rules(model, tmp_path)
+
+
+def test_assumption_with_existing_data_file_is_accepted(tmp_path):
+    (tmp_path / "model").mkdir()
+    (tmp_path / "model" / "icd.yaml").write_text("x: 1", encoding="utf-8")
+    assumption = Assumption(
+        id="A-001", title="t", statement="s", status="OPEN", data_file="model/icd.yaml"
+    )
+    model = build_model(assumptions={"A-001": assumption})
+    assert check_model(model, tmp_path) == []
+
+
 def test_evidence_against_an_open_assumption_is_a_warning(tmp_path):
     (tmp_path / "evidence").mkdir()
     (tmp_path / "evidence" / "report.md").write_text("result", encoding="utf-8")

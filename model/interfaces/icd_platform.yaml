@@ -1,0 +1,45 @@
+# Declared platform interface control data (ICD).
+#
+# The platform is a notional normal-category light helicopter in the CS-27 class.
+# Every value is a declared input of the study, not the data of a specific type.
+# The requirements that depend on it cite A-002, and A-002 points at this file.
+
+revision: A
+date: 2026-09-18
+status: DECLARED
+designation: Notional normal-category light helicopter, CS-27 class
+
+mass_and_balance:
+  mtow_kg: 2250
+  empty_mass_kg: 1350
+  useful_load_kg: 900
+  cg_range_mm_aft_of_datum: { forward: 2900, aft: 3150 }
+
+attachment_provisions:
+  description: four hard points on the lower fuselage frame, forward and aft pairs
+  spacing_mm:
+    longitudinal: 900
+    lateral: 300
+  load_capability_kn: { per_point_ultimate: 25 }
+  fastener_interface: M8 bolt holes, 8.2 mm nominal, two locking devices
+
+electrical:
+  bus_voltage_vdc: 28
+  bus_capacity_w: 3000
+  protection: individual circuit breakers in the distribution panel
+  payload_breaker_rating_a: 20
+
+data:
+  control_bus: ARINC 429, available on the mission system interface panel
+  video: mission system accepts a digital video input
+
+structural_environment:
+  main_rotor_rpm: { lower: 350, upper: 400 }
+  tail_rotor_rpm: { lower: 2000, upper: 2400 }
+  design_manoeuvre_load_factor_g: { lower: -1.0, upper: 3.5 }
+  emergency_landing_inertia_g: { up: 3.0, down: 3.0, forward: 4.0, aft: 4.0, lateral: 2.0 }
+
+certification:
+  basis: EASA CS-27, change to type design under Part 21 Subpart D
+  protection_plan: platform lightning and HIRF protection plan (referenced, not reproduced)
+  bonding_standard: platform bonding and grounding standard (referenced, not reproduced)

@@ -87,6 +87,7 @@ class Assumption:
     title: str
     statement: str
     status: str
+    data_file: str | None = None
 
 
 @dataclass(frozen=True)
@@ -197,6 +198,7 @@ def load_model(root: Path | None = None) -> Model:
             title=record.get("title", ""),
             statement=record.get("statement", "").strip(),
             status=record.get("status", ""),
+            data_file=record.get("data_file"),
         )
         for record in assumptions_raw
     }

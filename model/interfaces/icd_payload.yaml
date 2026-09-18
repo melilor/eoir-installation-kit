@@ -1,0 +1,60 @@
+# Declared payload interface control data (ICD).
+#
+# The payload is a notional unit: every value here is a declared input of the
+# study, not a supplier data sheet. The requirements that depend on it cite the
+# assumption id (A-001, A-003, A-006, A-007), and the assumption points at this
+# file. Changing a value here changes the study, so it is versioned like code.
+
+revision: A
+date: 2026-09-18
+status: DECLARED
+designation: Notional stabilised electro-optical / infrared unit
+
+mass_and_inertia:
+  mass_kg: 45
+  cg_offset_mm: { x: 0, y: 0, z: -75 }
+  moments_of_inertia_kg_m2: { Ixx: 0.62, Iyy: 0.58, Izz: 0.41 }
+
+envelope_mm:
+  width: 380
+  height: 420
+  depth: 460
+
+mounting:
+  pattern: 4 fasteners on a 200 mm x 200 mm square
+  fastener: M8, two independent locking devices per fastener
+  datum: centre of the mounting pattern, on the payload mounting plane
+  interface_plate_thickness_mm: 12
+
+field_of_view_deg:
+  azimuth: continuous
+  elevation: { lower: -120, upper: 30 }
+
+power:
+  voltage_vdc: 28
+  continuous_w: 150
+  peak_w: 400
+  inrush_a: 25
+  connector: MIL-DTL-38999 series III, shell size declared in the installation drawing
+  wiring: power pair plus return, screened
+
+data:
+  control_bus:
+    protocol: ARINC 429
+    channels: 2
+    speed: declared in the installation drawing
+  video:
+    link: digital video
+    format: OPEN — to be frozen before design release
+  connector: MIL-DTL-38999 series III, shell size declared in the installation drawing
+
+installation:
+  removal_direction: downwards, away from the platform skin
+  removal_corridor_mm: 520 x 420
+  connector_access_mm: 60
+  mating_cycles_declared: 500
+
+environment:
+  operating_temperature_c: { lower: -40, upper: 55 }
+  storage_temperature_c: { lower: -55, upper: 85 }
+  qualification: per installation zone (see A-009)

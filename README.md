@@ -52,6 +52,7 @@ pip install -r requirements.txt
 doorstop --no-ref-check --no-level-check      # validate the requirements documents
 python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate docs/traceability.md
+python -m tools.diagram                       # regenerate docs/architecture.md
 python -m pytest                              # run the test suite
 ```
 
@@ -62,15 +63,18 @@ model/
   requirements/          SYS001..SYS038 — system requirements (Doorstop)
   verification/          VER001..VER028 — verification cases, linked to their requirements
   architecture/          functions, components, interfaces, external boundary
+  interfaces/            declared interface control data (payload, platform)
   assumptions.yaml       declared assumptions and interface data (ASM A-00x)
   evidence.yaml          one record per verification case: method, status, artifact, plan
 tools/
   model.py               load the four parts of the model
   rules.py               the validation rules, one identifier per failure
   traceability.py        command line: check, report, report --check
-tests/                   29 tests: one failing model per rule, plus the repository model
+  diagram.py             generate docs/architecture.md from the architecture model
+tests/                   34 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
+  architecture.md        generated diagram and allocation tables
   traceability.md        generated matrix: requirement → architecture → verification → evidence
   method.md              how the model works and why the tools were chosen
   adr/                   decision records
@@ -98,6 +102,7 @@ The rules that hold this together, each with a stable identifier in
 | `EVIDENCE-ARTIFACT` | a `PASS` or `WARN` claim whose artifact is not in the repository |
 | `EVIDENCE-PLAN` | a `FUTURE` case with no ticket attached to it |
 | `ASM-OPEN` | evidence produced against a declared assumption that is still open |
+| `ASM-FILE` | an assumption pointing at declared interface data that is not in the repository |
 
 ## Standards used as the frame
 

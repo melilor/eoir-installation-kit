@@ -83,18 +83,21 @@ eoir-installation-kit/
 │   ├── requirements/    SYS001–SYS038   (Doorstop: text + source)
 │   ├── verification/    VER001–VER028   (Doorstop: method statement, linked to its SYS)
 │   ├── architecture/    architecture.yaml: FCT, CMP, IF, EXT
+│   ├── interfaces/      icd_payload.yaml · icd_platform.yaml (declared interface data)
 │   ├── assumptions.yaml A-001–A-012, all OPEN with a rationale
 │   └── evidence.yaml    28 records: method, status, artifact, plan
 │
 ├── tools/                        ← THE CHECK
 │   ├── model.py         loads the four parts of the model
-│   ├── rules.py         9 rules, one stable identifier per failure
-│   └── traceability.py  check · report · report --check
+│   ├── rules.py         10 rules, one stable identifier per failure
+│   ├── traceability.py  check · report · report --check
+│   └── diagram.py       generates docs/architecture.md (Mermaid + tables)
 │
-├── tests/               29 tests: one failing model per rule, plus the repository model
+├── tests/               34 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
+│   ├── architecture.md  GENERATED diagram and allocation tables
 │   ├── traceability.md  GENERATED matrix: requirement → architecture → verification → evidence
 │   ├── method.md        how the model works and why these tools
 │   ├── adr/0001-…       decision: the model is versioned text, not a graphical tool
@@ -117,8 +120,8 @@ eoir-installation-kit/
 | Functions / components / interfaces / external entities | 9 / **12** / 9 / 6 |
 | Verification cases (`VER`) | **28** — all `FUTURE` |
 | Methods: analysis / review / inspection / test / demonstration | 8 / 11 / 5 / 2 / 2 |
-| Validation rules | **9**, one identifier per failure |
-| Tests | **29**, green |
+| Validation rules | **10**, one identifier per failure |
+| Tests | **34**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -168,11 +171,12 @@ matrix states this case by case, and the README says it before a reader has to a
 doorstop --no-ref-check --no-level-check      # validate the requirements documents
 python -m tools.traceability check            # validate the whole model
 python -m tools.traceability report           # regenerate the matrix
+python -m tools.diagram                       # regenerate the architecture document
 python -m pytest                              # run the test suite
 ```
 
-The same four commands run in CI on every push. `report --check` fails when the committed
-matrix differs from the model, so the published artefact cannot drift.
+The same five commands run in CI on every push. `report --check` and `diagram --check` fail
+when the committed documents differ from the model, so the published artefacts cannot drift.
 
 ## What this demonstrates
 
@@ -181,7 +185,7 @@ matrix differs from the model, so the published artefact cannot drift.
 | Can this person structure a system model? | `model/`, the chain above, 38 requirements over 9 functions and 12 components |
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
-| Do they automate their own discipline? | `tools/rules.py`, 29 tests, CI, generated matrix |
+| Do they automate their own discipline? | `tools/rules.py`, 34 tests, CI, generated matrix |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 

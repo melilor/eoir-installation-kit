@@ -17,6 +17,7 @@
     UAVs. The value bounds the load cases and the mass budget; it is not taken
     from a supplier data sheet.
   status: OPEN
+  data_file: model/interfaces/icd_payload.yaml
   owner: author
 
 - id: A-002
@@ -29,6 +30,7 @@
     The weight and balance requirement (SYS007) needs a reference platform. The
     figures are a declared reference, not the data of a specific type.
   status: OPEN
+  data_file: model/interfaces/icd_platform.yaml
   owner: author
 
 - id: A-003
@@ -40,6 +42,7 @@
     Typical turret envelope used to size the nose or belly installation and the
     obstruction analysis (SYS008).
   status: OPEN
+  data_file: model/interfaces/icd_payload.yaml
   owner: author
 
 - id: A-004
@@ -73,6 +76,7 @@
     Declared interface data used to size the power harness and the circuit
     protection (SYS010, SYS011).
   status: OPEN
+  data_file: model/interfaces/icd_payload.yaml
   owner: author
 
 - id: A-007
@@ -85,6 +89,7 @@
     video link is not selected at this stage and is carried as an interface to
     be defined (SYS012).
   status: OPEN
+  data_file: model/interfaces/icd_payload.yaml
   owner: author
 
 - id: A-008
@@ -97,6 +102,7 @@
     confirmed against the platform bonding standard before the requirement is
     closed.
   status: OPEN
+  data_file: model/interfaces/icd_platform.yaml
   owner: author
 
 - id: A-009
@@ -121,6 +127,7 @@
     Declared reference used by the resonance criterion in SYS015. The criterion
     is a design rule of this study, not a published requirement.
   status: OPEN
+  data_file: model/interfaces/icd_platform.yaml
   owner: author
 
 - id: A-011

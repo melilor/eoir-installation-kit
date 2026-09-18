@@ -30,7 +30,13 @@ uses a word that is not here and is not standard domain language, that is a gap.
 - **Declared assumption (`ASM`)**: an input the study needs and cannot derive — payload
   mass and envelope, platform data, environmental categories, maintainability targets.
   Assumptions have a status (`OPEN`, `CLOSED`, `REJECTED`) and are the first thing to
-  challenge. Evidence produced against an `OPEN` assumption is reported as a warning.
+  challenge. Evidence produced against an `OPEN` assumption is reported as a warning. An
+  assumption that rests on interface data declares it in `data_file`, and the `ASM-FILE`
+  rule rejects a pointer to a file that does not exist.
+- **Interface control data (ICD)**: the declared values of the payload and the platform
+  interfaces — mass and inertia, envelope, mounting pattern, power, buses, field of view,
+  attachment provisions, structural environment. They live in `model/interfaces/` and are
+  inputs of the study, not supplier data.
 - **Architecture element**: a function (`FCT`), a component (`CMP`) or an interface
   (`IF`). Each one declares the requirements allocated to it; each requirement is owned by
   at least one component.

@@ -28,10 +28,11 @@ Before acting in this repository, read in this order:
 doorstop --no-ref-check --no-level-check
 python -m tools.traceability check
 python -m tools.traceability report
+python -m tools.diagram
 python -m pytest
 ```
 
-The same four commands run in CI (`.github/workflows/ci.yml`), so a green local run and a
+The same five commands run in CI (`.github/workflows/ci.yml`), so a green local run and a
 green pipeline are the same thing.
 
 ## Working rules

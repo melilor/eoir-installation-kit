@@ -83,7 +83,7 @@ def check_model(model: Model, root: Path | None = None) -> list[Finding]:
     findings += _check_citations(model)
     findings += _check_architecture(model)
     findings += _check_verification(model, base)
-    findings += _check_assumptions(model)
+    findings += _check_assumptions(model, base)
     findings += _check_identifiers(model)
 
     return sorted(findings, key=lambda finding: (finding.severity != "error", finding.rule))
@@ -216,7 +216,7 @@ def _check_evidence_record(record, root: Path) -> list[Finding]:
     return findings
 
 
-def _check_assumptions(model: Model) -> list[Finding]:
+def _check_assumptions(model: Model, root: Path) -> list[Finding]:
     findings: list[Finding] = []
     for assumption in model.assumptions.values():
         if assumption.status not in ASSUMPTION_STATUSES:
@@ -225,6 +225,13 @@ def _check_assumptions(model: Model) -> list[Finding]:
             )
         if not assumption.statement.strip():
             findings.append(_error("ASM-TEXT", f"{assumption.id}: empty statement"))
+        if assumption.data_file and not (root / assumption.data_file).exists():
+            findings.append(
+                _error(
+                    "ASM-FILE",
+                    f"{assumption.id}: declared data file '{assumption.data_file}' does not exist",
+                )
+            )
 
     for requirement in model.requirements.values():
         if not requirement.active:
