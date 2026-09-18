@@ -1,5 +1,7 @@
 # EO/IR Payload Installation Kit — Model-Based System Engineering Study
 
+[![CI](https://github.com/melilor/eoir-installation-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/melilor/eoir-installation-kit/actions/workflows/ci.yml)
+
 A model-based system engineering study of the **installation kit** that lets a light
 helicopter (CS-27 class) or a tactical UAV carry a stabilised electro-optical / infrared
 payload: the structural attachment, the electrical and avionic interfaces, the weight and
