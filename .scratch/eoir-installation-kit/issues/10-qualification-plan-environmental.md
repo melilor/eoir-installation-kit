@@ -70,40 +70,24 @@ The second: **`CONTEXT.md` had not been updated by ticket 07**, because a two-pa
 file failed as a whole and the failure was missed. The load path vocabulary and the
 qualification vocabulary are in it now.
 
-The third, and the one that cost a red pipeline: **the citation map depended on the order
-Doorstop reads the requirements in**, which differs between file systems. The evidence generated
-on Windows attributed section 21 to SYS014 and the check on the Linux runner saw SYS016 first,
-so the freshness check failed there and passed here. `cited_sections` now walks the requirements
-in identifier order and reports every requirement that cites a section, and a test reverses the
-order to prove the result does not move. `tools/traceability.py` had sorted its requirements all
-along: the new tool was the one that forgot.
+The third, and the one that cost five red pipelines: **the evidence leaked the platform's path
+separator**. The success message of the plan check interpolated the `Path` object, so it read
+`docs\qualification-plan.md` on the machine that generated the evidence and
+`docs/qualification-plan.md` on the runner, and the freshness check compared one line of JSON
+that differed by one character. The comparison next to it had been normalised; the message had
+not. The same latent landmine sat in a layout check message and is fixed with it.
 
-**EMC approach, stated as the ticket asks.** Twenty entries need a test on an article, two are
-carried by analysis already committed in this repository (crash safety and the magnetic
-assessment, the latter still open on the platform survey), one by inspection (fungus) and one by
-review against a platform document (explosive atmosphere). The plan also declares the campaign
-order, which follows the published practice of running the destructive tests last.
+It took that long to find because **the log of a public repository needs a login**. What worked
+was making the pipeline report a freshness failure as an annotation: the changed files, the
+difference and the interpreter versions, which are readable without one. That script is now in
+`.github/scripts/check_freshness.sh` and the step that needed it reports through it. The lesson
+is not the path separator: it is that a check whose failure cannot be read is not a check.
 
-**Protection preservation.** Four means are declared — the bonding straps and grounding hardware
-of CMP-07, the screened power pair with the connector shells bonded through the connector
-bracket, the harness routing provisions of CMP-12, and the preservation argument itself — each
-with what it serves, the section it belongs to, what it is checked against, and what cannot be
-checked because the platform protection plan is referenced and not held.
-
-**Closure**
-
-| Case | Status | What the evidence shows | What it does not |
-| --- | --- | --- | --- |
-| VER010 plan review | `LIMITATION` | the sections each zone needs, with the method and the article | the categories: thirty zone selections wait for a platform input, and the standard is not held |
-| VER025 fluids, sand, dust, fungus | `PASS` | the plan covers sections 11, 12 and 13 for both zones, with the fluid families, the sand and dust entry for the belly bay and the fungus assessment by material inspection | the platform fluid list, and the non-metallic items whose materials are not selected |
-| VER026 lightning and static means | `PASS` | the protection means are present in the installation definition and named in the plan | whether they preserve the platform plan, which needs the plan (VER012) |
-| VER009 bonding test | `LIMITATION` | the bonding path and the test planned on the first article (TP-002) | the resistance: no article exists |
-| VER012 protection and radio review | `LIMITATION` | the four protection means with what each is checked against | the preservation argument and the emission limits: the plan and the radio compatibility limits are not declared (QI-01) |
-| VER016 data link functional test | `LIMITATION` | the test is in the campaign as FT-01 | the test itself, and the video link format is still open |
-
-Two `ASM-OPEN` warnings are added by this ticket (SYS033 and SYS034), because closing those two
-reviews makes their evidence visible against the open assumption A-009 that the categories are
-not yet selected. That is the intended behaviour, not a regression.
+The second finding of the same kind was a real order dependency, even if it turned out not to be
+the cause: **the citation map was built in the order Doorstop reads the requirements in**, which
+differs between file systems. `cited_sections` now walks them in identifier order and names
+every requirement that cites a section, and a test reverses the order to prove the result does
+not move. `tools/traceability.py` had sorted its requirements all along; the new tool had not.
 
 Model state: 38 requirements, 28 verification cases (`PASS` 13, `LIMITATION` 10, `FUTURE` 5),
 15 declared assumptions, 46 qualification checks, 150 tests. Validator: 0 errors, 12 warnings.
