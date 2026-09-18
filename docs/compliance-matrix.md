@@ -91,7 +91,7 @@ Every requirement of the study, the document that will show compliance, the meth
 | TP-002 | Bonding resistance test report | test | PLANNED | — | issues/10-qualification-plan-environmental | SYS013 |
 | ICA-001 | Instructions for continued airworthiness | ica | OUTLINE | `docs/ica.md` | issues/09-compliance-matrix-and-classification | SYS022 |
 | CS-001 | Compliance checklist and change classification record | checklist | GENERATED | `docs/compliance-matrix.md` | issues/09-compliance-matrix-and-classification | SYS020, SYS021, SYS023, SYS036 |
-| FMS-001 | Flight manual supplement and loading information | manual | PLANNED | — | issues/11-technical-report-and-review | SYS037 |
+| FMS-001 | Flight manual supplement and loading information | manual | PLANNED | — | — | SYS037 |
 
 ## Instructions for continued airworthiness
 

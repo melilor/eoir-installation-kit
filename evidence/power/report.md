@@ -29,7 +29,7 @@ Revision A, bus 28 VDC. 5 checks, 5 passed, 0 failed.
 
 ## Open items
 
-- The declared 25 A payload inrush exceeds the 20 A breaker rating: the coordination of the transient needs the breaker trip curve, which this study does not have. Either a curve with a suitable delay, or a higher rating together with a larger conductor.
-- The entry in the platform electrical load analysis has to be made in the platform document itself; this study identifies the value to enter, not the revision.
+- {'id': 'OI-04', 'title': 'The payload inrush is above the breaker rating and the trip curve is not available', 'detail': 'The declared inrush of 25 A exceeds the 20 A breaker rating, and the trip curve of the device is not part of the declared data. The steady and peak demand are coordinated and recorded above; the transient cannot be closed until the curve is available, or until a higher rating with a larger conductor is chosen deliberately.'}
+- {'id': 'OI-05', 'title': 'The entry in the platform electrical load analysis belongs to the platform document', 'detail': 'The analysis computes the value to enter, 2251 W against a 3000 W bus, and identifies the circuit. Recording it in the platform load analysis is an action on the platform documentation, not on this study.'}
 
 The inrush against the breaker rating is the reason the protection coordination carries a LIMITATION in the evidence register instead of a PASS: the analysis cannot close it without the trip curve.

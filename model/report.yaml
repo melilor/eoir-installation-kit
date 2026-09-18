@@ -1,0 +1,293 @@
+# The technical report of the study.
+#
+# What is declared here: the narrative of the report, the limitations register
+# with the class of every limitation, the review criteria and its declared
+# independence, the highlights that carry a pointer into an evidence file, and
+# the numbers the repository documents quote.
+#
+# What is not declared here: any number that an analysis produces. The report is
+# generated from this file and from evidence/*/checks.json, so a figure in the
+# report cannot drift from the artifact it comes from.
+
+revision: A
+date: 2026-09-18
+title: EO/IR installation kit on a CS-27 class platform
+subtitle: System study — requirements, architecture, analyses and verification evidence
+
+abstract: >-
+  This is the technical report of a system study: the installation of a stabilised
+  electro-optical and infrared payload on a light helicopter of the CS-27 class and on a
+  tactical unmanned aircraft. The study covers the mechanical interface, the electrical
+  interface, the balance, the field of view, the strength, the resonance, the environmental
+  qualification plan and the compliance frame. Everything it claims is produced by a tool in
+  this repository, pointed at by an evidence file, and re-checked by the pipeline on every
+  change. It is not a certification, not a design release and not a flight clearance, and the
+  report says so wherever it matters.
+
+chapters:
+  - id: R-01
+    title: Purpose and scope
+    paragraphs:
+      - >-
+        The platform is a notional normal-category light helicopter in the CS-27 class, taken as
+        four attachment provisions on the lower fuselage, a 28 VDC bus and a declared
+        structural environment. The payload is a notional stabilised EO/IR unit of 45 kg with a
+        declared envelope, mounting pattern, power demand, data interfaces and field of view.
+        Both are declared inputs in model/interfaces/, not supplier data.
+      - >-
+        The product of the study is the installation kit: the interface frame, four attachment
+        fittings, the payload interface plate, the power and data harnesses, the circuit
+        protection assembly, the bonding hardware, the fastener set, the connector bracket, the
+        documentation and marking set, the environmental protection provisions and the harness
+        routing provisions. Twelve components, listed with their masses and their requirements
+        in model/architecture/architecture.yaml.
+      - >-
+        The study stops at the payload interface. The payload itself, the platform structure, the
+        mission system and the maintenance programme belong to somebody else, and the report says
+        what the study assumes about each of them instead of inventing them.
+
+  - id: R-02
+    title: What this study is and what it is not
+    paragraphs:
+      - >-
+        It is a traceability and analysis exercise: every requirement has a source or a declared
+        assumption, every requirement is allocated to a component, every requirement has a
+        verification case, and every verification case has a record that says what the evidence
+        shows and what it does not.
+      - >-
+        It is not a certification: the compliance frame reproduces the shape of a Part 21 change
+        assessment and stays open where the platform or the authority owns the decision. It is
+        not a design release: the materials, the joints and the environmental categories carry
+        declared values that a certificate or a test has to confirm. It is not a flight clearance
+        and not an airworthiness statement of any kind.
+      - >-
+        It is also not a model of everything. The analyses are deliberately small, closed-form and
+        checkable by hand, and each one declares the idealisation it rests on. A study that hides
+        its assumptions in an interface between tools is worth less than one that writes them
+        down where a reader can challenge them.
+
+  - id: R-03
+    title: Method
+    paragraphs:
+      - >-
+        The model is text under version control: requirements as Doorstop items, architecture,
+        interfaces, evidence, assumptions, compliance and the analysis inputs as YAML. No figure
+        lives in a document: it lives in the model or in an evidence file, and the documents are
+        generated. One declaration, one calculation is the rule that makes the difference: the
+        payload mass is declared once in the interface file, and the mass analysis, the load
+        analysis and the report all read it from there.
+      - >-
+        Every analysis is a tool that computes, writes an evidence file and can check that the
+        committed evidence is still what it would produce now. The pipeline runs those checks on
+        every change, together with the tests, so the repository cannot claim a state it no
+        longer has.
+      - >-
+        Each finding names a check, a subject, a value, a limit and a margin. A check that fails
+        names the violated constraint; a check that passes carries the margin it passed by. That
+        is what makes the results chapter of this report readable as a table rather than as prose.
+
+  - id: R-04
+    title: The installation
+    paragraphs:
+      - >-
+        The kit hangs the payload below the fuselage on four fittings that mate with the platform
+        provisions: 900 mm longitudinal spacing, 300 mm lateral, two M8 fasteners each. The
+        attachment geometry is checked against those provisions, because the load path divides the
+        reaction between the four points and a geometry that does not agree with the platform
+        would silently invalidate the structural analysis.
+      - >-
+        The layout is a two-view two-dimensional model: rectangles, circles and orthogonal harness
+        paths in millimetres, with the platform skin as a datum. It is not a three-dimensional
+        CAD model, and that simplification is declared rather than hidden. Everything published
+        about the geometry is generated from it: the checks, the figure in SVG and the drawing
+        exchange file.
+      - >-
+        The kit weighs less than the declared target with a margin, sits within the certified
+        centre of gravity range of the platform in every declared configuration, leaves the
+        payload field of view clear, and moves less under limit load than the clearance it has
+        left. Those four statements are the results of four analyses, and each one is a table in
+        the next chapter.
+
+  - id: R-05
+    title: Results of the analyses
+    paragraphs:
+      - >-
+        The analyses are listed below with the check count, the finding that comes closest to its
+        limit and the file that holds every number. The governing finding is the one with the
+        smallest margin relative to its limit, which is not the same as the most important one: a
+        small margin on a declared capability matters less than a large one on a design rule that
+        has not been confirmed.
+
+  - id: R-06
+    title: Verification and evidence
+    paragraphs:
+      - >-
+        Twenty-eight verification cases cover the thirty-eight requirements. Each case names its
+        method, and its record names the artifact that carries the result. A case with a passed
+        status must have an artifact that exists; a case that is still to come must name the
+        ticket that will produce it; a case the study cannot close must say what it does not
+        cover. Those rules are enforced by the model validator, not by discipline.
+      - >-
+        The evidence is deliberately mixed. Where an analysis can answer, it answers. Where the
+        answer needs a physical article or a platform document, the case says so and stays open.
+        A study of this size that reported everything as verified would be lying about at least
+        half of it.
+
+  - id: R-07
+    title: Assumptions
+    paragraphs:
+      - >-
+        Every input the study needs and cannot derive is declared with a rationale, a status and
+        the file it lives in. An open assumption that carries evidence is reported as a warning
+        by the validator, so the reader can see which results rest on a figure nobody has
+        confirmed yet. The register below lists them with the source that would close each one.
+
+  - id: R-08
+    title: Limitations
+    paragraphs:
+      - >-
+        A limitation is a statement the study cannot make, with the reason and what would close
+        it. They come from three places: the verification cases the evidence cannot close, the
+        open items the analyses recorded, and the assumptions still open. Each one is classified:
+        an input is missing, the method cannot show it, it needs a physical article, it needs the
+        platform or the authority, or it is a limitation of the review itself.
+      - >-
+        No check was relaxed to make this list shorter. Where an analysis found a problem — the
+        antenna that sat inside the field of view, the attachment geometry that did not match the
+        platform provisions, the inrush above the breaker rating, the resonance estimate inside
+        the rotor bands — the problem is in this register or it was fixed in the design, and the
+        report says which.
+
+  - id: R-09
+    title: Compliance and qualification
+    paragraphs:
+      - >-
+        The compliance frame follows the shape of a Part 21 change to a type design: the change
+        classification is argued against nine criteria of appreciable effect and stays open until
+        the design organisation confirms it, and thirteen documents cover the requirements
+        exactly once each. The compliance matrix is generated and checked, so the coverage cannot
+        rot quietly.
+      - >-
+        The environmental qualification plan assigns every component to an installation zone,
+        selects the DO-160G sections that reach each zone and states, for every section, the
+        category or the input the category waits for, the method, the article and what cannot be
+        shown without one. The standard is not part of this repository, so no category is
+        invented: a category is written down only where a declared input of the study and a
+        public statement about the standard fix it.
+
+  - id: R-10
+    title: Review
+    paragraphs:
+      - >-
+        The review was executed against the requirement and evidence model, not against this
+        prose: a program reads the model files and the evidence files and answers a list of
+        review questions with checks that fail visibly. That is what makes it reproducible, and
+        it is also its limit.
+
+  - id: R-11
+    title: What remains
+    paragraphs:
+      - >-
+        The study has one ticket left: publishing the package and aligning the application
+        material with what the repository actually contains. Beyond that, the list in the
+        limitations register is the work programme: the inputs a platform has to supply, the
+        articles a campaign needs, and the two analyses — a modal survey and a detailed finite
+        element model — that the closed-form idealisations cannot replace.
+
+review:
+  kind: mechanical and reproducible
+  independent: false
+  performed_by: tools/report.py, run by the pipeline on every change and by the author
+  limitation: >-
+    The study has one author, so this review is not independent in the sense a certification
+    programme means. It is mechanical: every question is answered by a check that reads the
+    model and the evidence files and fails in public, which is more than a rereading and less
+    than a second engineer. An external review is a condition of using this material for
+    anything other than a portfolio.
+  criteria:
+    - Every analysis the report quotes has an evidence file that exists and reports no failure.
+    - Every number the repository documents quote matches the model and the evidence.
+    - Every limitation of the model is classified, and every classification names a real limitation.
+    - Every verification case that needs a future ticket points at a ticket file that exists.
+    - Every verification case with a passed status has an artifact that exists.
+    - No case in the register carries the warning status: a warning is not promoted to a pass.
+
+# Numbers the reader-facing documents quote. Each entry is checked against the
+# model or against an evidence file, because a number in a README goes stale the
+# moment a ticket closes and nobody notices.
+documented_numbers:
+  - { file: README.md, pattern: '(\d+)\s+requirements', value: requirements }
+  - { file: README.md, pattern: '(\d+)\s+components', value: components }
+  - { file: README.md, pattern: '(\d+)\s+verification cases', value: verification_cases }
+  - { file: README.md, pattern: '(\d+)\s+declared assumptions', value: assumptions }
+  - { file: README.md, pattern: '(\d+)\s+layout checks', value: layout_checks }
+  - { file: README.md, pattern: '(\d+)\s+mass checks', value: mass_checks }
+  - { file: README.md, pattern: '(\d+)\s+clearance checks', value: clearance_checks }
+  - { file: README.md, pattern: '(\d+)\s+electrical checks', value: power_checks }
+  - { file: README.md, pattern: '(\d+)\s+load path checks', value: loads_checks }
+  - { file: README.md, pattern: '(\d+)\s+qualification plan checks', value: qualification_checks }
+  - { file: README.md, pattern: '(\d+)\s+tests:', value: tests }
+  - { file: README.md, pattern: '(\d+)\s+errors, (\d+)\s+warnings', value: [validator_errors, validator_warnings] }
+  - { file: docs/overview.md, pattern: '\| Tests \| \*\*(\d+)\*\*', value: tests }
+  - { file: docs/overview.md, pattern: '\| Layout checks \| \*\*(\d+)\*\*', value: layout_checks }
+  - { file: docs/overview.md, pattern: '\| Load path checks \| \*\*(\d+)\*\*', value: loads_checks }
+  - { file: docs/overview.md, pattern: '\| Qualification plan checks \| \*\*(\d+)\*\*', value: qualification_checks }
+  - { file: docs/overview.md, pattern: '`PASS` (\d+), `LIMITATION` (\d+), `FUTURE` (\d+)', value: [pass_cases, limitation_cases, future_cases] }
+
+# The numbers a reader should see first. Each path points inside an evidence file,
+# so the pointer is part of the declaration and the report cannot drift.
+highlights:
+  - { analysis: mass, label: Installed kit mass, path: kit_mass_kg, unit: kg, against: the 15.0 kg target }
+  - { analysis: mass, label: Worst platform centre of gravity, path: 'configurations[0].cg_mm_aft_of_datum', unit: mm, against: the forward limit of 2900 mm }
+  - { analysis: loads, label: Governing fitting reaction, path: 'governing_case_by_check.LOADS-HARD-POINT.reaction_n', unit: N, against: 25 000 N per hard point }
+  - { analysis: loads, label: Relative movement under limit load, path: deflection.value_mm, unit: mm, against: 5.0 mm available at the tightest direction }
+  - { analysis: loads, label: First mode estimate at the softest idealisation, path: resonance.estimate_low_hz, unit: Hz, against: the lowest rotor band, 5.25 Hz }
+  - { analysis: loads, label: First mode estimate at the stiffest idealisation, path: resonance.estimate_high_hz, unit: Hz, against: the tail rotor 1/rev band, 30 to 44 Hz }
+  - { analysis: power, label: Continuous voltage drop, path: 'circuits[0].continuous_drop_v', unit: V, against: the 2 % limit of 0.560 V }
+  - { analysis: power, label: Peak voltage drop, path: 'circuits[0].peak_drop_v', unit: V, against: the 4 % limit of 1.120 V }
+  - { analysis: qualification, label: Zone selections carrying a category, path: selected_categories, unit: selections, against: the zone selections where a section applies }
+  - { analysis: qualification, label: Zone selections open on a platform input, path: open_categories, unit: selections, against: the zone selections where a section applies }
+  - { analysis: qualification, label: Section entries closed by analysis or inspection, path: status_counts.ASSESSED, unit: entries, against: the section entries }
+
+# The limitations register. Every limitation of the model is classified here and
+# every entry has to name a real one: the review checks both directions.
+#   INPUT       a declared input is missing or unconfirmed
+#   METHOD      the method used cannot show it
+#   ARTICLE     it needs a physical article
+#   AUTHORITY   it needs the platform, the installer or the competent authority
+#   INDEPENDENCE the limitation of the review itself
+limitations:
+  - { id: VER007, class: INPUT, closes_with: the breaker trip curve from the equipment supplier }
+  - { id: VER009, class: ARTICLE, closes_with: the bonding resistance test on the first article (TP-002) }
+  - { id: VER010, class: AUTHORITY, closes_with: the platform compartment map and the standard itself }
+  - { id: VER011, class: METHOD, closes_with: a modal analysis or a ground vibration test, not a hand estimate }
+  - { id: VER012, class: AUTHORITY, closes_with: the platform protection plan and the radio compatibility limits }
+  - { id: VER013, class: ARTICLE, closes_with: the install and remove demonstration on the first article }
+  - { id: VER015, class: AUTHORITY, closes_with: the platform maintenance review board intervals }
+  - { id: VER016, class: ARTICLE, closes_with: the functional test on the first article (FT-01) }
+  - { id: VER027, class: AUTHORITY, closes_with: the approved configuration control procedure of the design organisation }
+  - { id: VER028, class: ARTICLE, closes_with: an aircraft that exists and a flight manual to supplement }
+  - { id: OI-01, class: AUTHORITY, closes_with: the platform confirms which crash factors apply to a belly installation }
+  - { id: OI-02, class: METHOD, closes_with: a modal analysis or a test that measures the modes and the damping }
+  - { id: OI-03, class: METHOD, closes_with: a finite element model of the plate, the welds and the bolted joints }
+  - { id: OI-04, class: INPUT, closes_with: the breaker trip curve, or a higher rating with a larger conductor }
+  - { id: OI-05, class: AUTHORITY, closes_with: the platform electrical load analysis document }
+  - { id: QI-01, class: AUTHORITY, closes_with: the platform declares its radio compatibility limits }
+  - { id: QI-02, class: AUTHORITY, closes_with: the platform compartment map and the joint decision on the categories }
+  - { id: QI-03, class: INPUT, closes_with: the kit gets an environmental specification of its own }
+  - { id: REVIEW, class: INDEPENDENCE, closes_with: an external engineer reviews the package against the model }
+  - { id: A-001, class: INPUT, closes_with: the payload supplier data sheet }
+  - { id: A-002, class: INPUT, closes_with: the platform type data }
+  - { id: A-003, class: INPUT, closes_with: the payload supplier data sheet }
+  - { id: A-004, class: INPUT, closes_with: the platform mass budget }
+  - { id: A-005, class: AUTHORITY, closes_with: the platform installation standard confirms the clearance rule }
+  - { id: A-006, class: INPUT, closes_with: the payload supplier data sheet }
+  - { id: A-007, class: INPUT, closes_with: the payload supplier data sheet }
+  - { id: A-008, class: AUTHORITY, closes_with: the platform bonding and grounding standard }
+  - { id: A-009, class: AUTHORITY, closes_with: the joint category decision with the platform }
+  - { id: A-010, class: INPUT, closes_with: the platform type data, with the rotor blade counts }
+  - { id: A-011, class: AUTHORITY, closes_with: the platform maintenance requirements }
+  - { id: A-012, class: AUTHORITY, closes_with: the platform installation standard confirms the harness rules }
+  - { id: A-013, class: AUTHORITY, closes_with: the platform structural repair and installation standard }
+  - { id: A-014, class: INPUT, closes_with: the material certificate and the fastener specification }
+  - { id: A-015, class: INPUT, closes_with: the design review confirms the acceptance criterion for the movement }

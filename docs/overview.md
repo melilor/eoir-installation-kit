@@ -17,7 +17,7 @@ Doorstop document, the architecture and the evidence live in YAML, and a validat
 repository enforces the whole chain. If a requirement has no source, no owning component or
 no verification case, the build is red.
 
-**Status — revision I, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
+**Status — revision J, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
 15 declared assumptions, 93 layout checks, 16 mass checks, 3 clearance checks, 5 electrical
 checks, 44 load path checks, 46 qualification plan checks, 13 documents in the compliance
 register, 150 tests, CI green. **Twenty-three verification cases are closed** at the level the
@@ -101,7 +101,8 @@ eoir-installation-kit/
 │   ├── clearance/       GENERATED: checks.json · report.md · sweep.svg
 │   ├── power/           GENERATED: checks.json · report.md
 │   ├── loads/           GENERATED: checks.json · report.md
-│   └── qualification/   GENERATED: checks.json · report.md
+│   ├── qualification/   GENERATED: checks.json · report.md
+│   └── review/          GENERATED: checks.json · report.md
 │
 ├── tools/                        ← THE CHECK
 │   ├── model.py         loads the model parts
@@ -115,9 +116,10 @@ eoir-installation-kit/
 │   ├── power.py         5 electrical checks, writes evidence/power/
 │   ├── loads.py         44 load path checks, writes evidence/loads/
 │   ├── qualification.py 46 plan checks, writes docs/qualification-plan.md
+│   ├── report.py        33 review checks, writes docs/report.md
 │   └── compliance.py    generates the compliance matrix and the document register
 │
-├── tests/               150 tests: one failing model per rule, plus the repository model
+├── tests/               170 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
@@ -150,9 +152,12 @@ eoir-installation-kit/
 | Electrical checks | **5**, all passing |
 | Load path checks | **44**, all passing |
 | Qualification plan checks | **46**, all passing |
+| Review checks | **33**, all passing |
+| Qualification plan checks | **46**, all passing |
+| Review checks | **33**, all passing |
 | Compliance documents | **13** — every requirement covered exactly once |
 | Validation rules | **15**, one identifier per failure |
-| Tests | **150**, green |
+| Tests | **170**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -226,6 +231,7 @@ python -m tools.clearance                     # run the field of view analysis, 
 python -m tools.power                         # run the electrical analysis, write the evidence
 python -m tools.loads                         # run the load path analysis, write the evidence
 python -m tools.qualification                 # regenerate and check the qualification plan
+python -m tools.report                        # regenerate the technical report and review the package
 python -m tools.compliance                    # regenerate the compliance matrix
 python -m pytest                              # run the test suite
 ```
@@ -241,7 +247,7 @@ when the committed documents differ from the model, so the published artefacts c
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
 | Do they understand certification? | the change classification argued criterion by criterion, the document register, the ICA outline |
-| Do they automate their own discipline? | `tools/rules.py` and the seven analysis tools, 150 tests, CI, generated evidence |
+| Do they automate their own discipline? | `tools/rules.py` and the seven analysis tools, 169 tests, CI, generated evidence |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 
@@ -271,13 +277,9 @@ when the committed documents differ from the model, so the published artefacts c
                  │ 06 POWER & BONDING ✅          │
                  │ 07 LOAD PATH & STRENGTH ✅     │
                  │ 10 QUALIFICATION PLAN ✅       │
+                 │ 11 REPORT + REVIEW ✅          │
                  └───────────────┬────────────────┘
                                  ▼
-                     ┌─────────────────────┐
-                     │ 11 TECHNICAL REPORT │
-                     │    + REVIEW         │
-                     │    (unblocked)      │
-                     └──────────┬──────────┘
                                 ▼
                      ┌─────────────────────┐
                      │ 12 PUBLICATION AND  │

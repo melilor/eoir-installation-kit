@@ -170,5 +170,10 @@ documents:
     type: manual
     status: PLANNED
     path: null
-    plan: issues/11-technical-report-and-review
+    note: >-
+      Waits for an aircraft that exists: a supplement is written against a type
+      and a flight manual, and this study has neither. The verification case
+      VER028 records the limitation, and the loading and identification data the
+      installation does provide are in the layout drawing and the marking set.
+    plan: null
     covers: [SYS037]

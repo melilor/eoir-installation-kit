@@ -72,6 +72,16 @@ stops the tool and names the violated constraint.
   range, widened by the declared separation percentage. **Admissible window**: a frequency range
   clear of every band. SYS015 requires the installation to stay out of the bands, which is a
   statement about the installation, not about the bands.
+- **Limitation class**: why the study cannot make a statement — `INPUT` (a declared
+  input is missing or unconfirmed), `METHOD` (the method cannot show it), `ARTICLE`
+  (it needs a physical article), `AUTHORITY` (it needs the platform, the installer or
+  the competent authority), `INDEPENDENCE` (the limitation of the review itself). The
+  class is written once, in `model/report.yaml`, and the review refuses a limitation
+  without one.
+- **Review**: the mechanical check of the package: the model, the evidence files, the
+  numbers the documents quote and the tickets still open, read by `tools/report.py`.
+  It is reproducible and it is not independent — the study has one author — and the
+  report states that instead of letting the word suggest otherwise.
 - **Installation zone**: a place the installation occupies, with the environmental exposure
   that comes with it — the external belly bay and the unpressurised fuselage interior in this
   study, plus a zone for what is not installed. The zone is what a DO-160G category encodes, so

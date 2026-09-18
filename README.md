@@ -17,7 +17,7 @@ in [`docs/overview.md`](docs/overview.md).
 
 ```
 $ python -m tools.traceability check
-checked 38 requirements, 28 verification cases, 12 components: 0 errors, 9 warnings
+checked 38 requirements, 28 verification cases, 12 components: 0 errors, 12 warnings
 ```
 
 The warnings are the discipline working: `ASM-OPEN` flags the evidence that rests on a
@@ -41,12 +41,13 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision I — first published slice, 2026-09-18.** 38 requirements, 12 components, 28
+**Revision J — first published slice, 2026-09-18.** 38 requirements, 12 components, 28
 verification cases, 15 declared assumptions, 13 documents, 93 layout checks, 16 mass checks, 3
 clearance checks, 5 electrical checks, 44 load path checks, 46 qualification plan checks.
 **Twenty-three cases are closed** at the level the evidence supports — thirteen `PASS` and ten
 `LIMITATION` for what a model cannot demonstrate; the other 5 are `FUTURE` and point at the
-ticket that will produce their evidence. The
+ticket that will produce their evidence. The [technical report](docs/report.md) compiles the
+study, its 34 classified limitations and the review of the package. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -66,6 +67,7 @@ python -m tools.clearance                     # run the field of view and cleara
 python -m tools.power                         # run the electrical power budget and protection check
 python -m tools.loads                         # run the load path and strength analysis
 python -m tools.qualification                 # regenerate the environmental qualification plan
+python -m tools.report                        # regenerate the technical report and run the review
 python -m pytest                              # run the test suite
 ```
 
@@ -89,6 +91,7 @@ evidence/
   power/                 generated: checks.json, report.md
   loads/                 generated: checks.json, report.md
   qualification/         generated: checks.json, report.md
+  review/                generated: checks.json, report.md
 tools/
   model.py               load the model parts
   rules.py               the validation rules, one identifier per failure
@@ -101,8 +104,9 @@ tools/
   power.py               run the electrical analysis and write the evidence
   loads.py               run the load path and strength analysis and write the evidence
   qualification.py       generate the environmental qualification plan and check it
+  report.py              generate the technical report and review the package
   compliance.py          generate the compliance matrix and the document register
-tests/                   150 tests: one failing model per rule, plus the repository model
+tests/                   170 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables

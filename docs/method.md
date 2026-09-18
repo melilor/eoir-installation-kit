@@ -124,6 +124,22 @@ down only where a declared input of the study and a public statement about the s
 the temperature family for an external bay, the waterproofness category for externally mounted
 equipment, the power input category for 28 Vdc equipment, the vibration family for rotary wing.
 
+## The report and the review
+
+`model/report.yaml` declares the narrative of the technical report, the limitations
+register with the class of every limitation, the review criteria and the numbers the
+repository documents quote. `tools/report.py` renders `docs/report.md` from that
+narrative and from the evidence files, so a figure in the report is read from the
+artifact it comes from and cannot drift from it.
+
+The same tool runs the review, against the model and the evidence rather than against
+the prose: every analysis the report quotes has an evidence file that exists and
+reports no failure, every passed case names an artifact that exists, no case carries
+the warning status, every case still to come points at a ticket that exists, every
+limitation is classified in both directions, and every number the documents quote
+matches the model. The study has one author, so the review is mechanical and not
+independent, and the report says so rather than implying otherwise.
+
 ## The compliance frame
 
 `model/compliance.yaml` holds two things: the change classification (one criterion per

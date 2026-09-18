@@ -1,0 +1,513 @@
+{
+  "revision": "A",
+  "review": {
+    "kind": "mechanical and reproducible",
+    "performed_by": "tools/report.py, run by the pipeline on every change and by the author",
+    "independent": false,
+    "criteria": [
+      "Every analysis the report quotes has an evidence file that exists and reports no failure.",
+      "Every number the repository documents quote matches the model and the evidence.",
+      "Every limitation of the model is classified, and every classification names a real limitation.",
+      "Every verification case that needs a future ticket points at a ticket file that exists.",
+      "Every verification case with a passed status has an artifact that exists.",
+      {
+        "No case in the register carries the warning status": "a warning is not promoted to a pass."
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "id": "VER007",
+      "class": "INPUT",
+      "closes_with": "the breaker trip curve from the equipment supplier"
+    },
+    {
+      "id": "VER009",
+      "class": "ARTICLE",
+      "closes_with": "the bonding resistance test on the first article (TP-002)"
+    },
+    {
+      "id": "VER010",
+      "class": "AUTHORITY",
+      "closes_with": "the platform compartment map and the standard itself"
+    },
+    {
+      "id": "VER011",
+      "class": "METHOD",
+      "closes_with": "a modal analysis or a ground vibration test"
+    },
+    {
+      "id": "VER012",
+      "class": "AUTHORITY",
+      "closes_with": "the platform protection plan and the radio compatibility limits"
+    },
+    {
+      "id": "VER013",
+      "class": "ARTICLE",
+      "closes_with": "the install and remove demonstration on the first article"
+    },
+    {
+      "id": "VER015",
+      "class": "AUTHORITY",
+      "closes_with": "the platform maintenance review board intervals"
+    },
+    {
+      "id": "VER016",
+      "class": "ARTICLE",
+      "closes_with": "the functional test on the first article (FT-01)"
+    },
+    {
+      "id": "VER027",
+      "class": "AUTHORITY",
+      "closes_with": "the approved configuration control procedure of the design organisation"
+    },
+    {
+      "id": "VER028",
+      "class": "ARTICLE",
+      "closes_with": "an aircraft that exists and a flight manual to supplement"
+    },
+    {
+      "id": "OI-01",
+      "class": "AUTHORITY",
+      "closes_with": "the platform confirms which crash factors apply to a belly installation"
+    },
+    {
+      "id": "OI-02",
+      "class": "METHOD",
+      "closes_with": "a modal analysis or a test that measures the modes and the damping"
+    },
+    {
+      "id": "OI-03",
+      "class": "METHOD",
+      "closes_with": "a finite element model of the plate"
+    },
+    {
+      "id": "OI-04",
+      "class": "INPUT",
+      "closes_with": "the breaker trip curve"
+    },
+    {
+      "id": "OI-05",
+      "class": "AUTHORITY",
+      "closes_with": "the platform electrical load analysis document"
+    },
+    {
+      "id": "QI-01",
+      "class": "AUTHORITY",
+      "closes_with": "the platform declares its radio compatibility limits"
+    },
+    {
+      "id": "QI-02",
+      "class": "AUTHORITY",
+      "closes_with": "the platform compartment map and the joint decision on the categories"
+    },
+    {
+      "id": "QI-03",
+      "class": "INPUT",
+      "closes_with": "the kit gets an environmental specification of its own"
+    },
+    {
+      "id": "REVIEW",
+      "class": "INDEPENDENCE",
+      "closes_with": "an external engineer reviews the package against the model"
+    },
+    {
+      "id": "A-001",
+      "class": "INPUT",
+      "closes_with": "the payload supplier data sheet"
+    },
+    {
+      "id": "A-002",
+      "class": "INPUT",
+      "closes_with": "the platform type data"
+    },
+    {
+      "id": "A-003",
+      "class": "INPUT",
+      "closes_with": "the payload supplier data sheet"
+    },
+    {
+      "id": "A-004",
+      "class": "INPUT",
+      "closes_with": "the platform mass budget"
+    },
+    {
+      "id": "A-005",
+      "class": "AUTHORITY",
+      "closes_with": "the platform installation standard confirms the clearance rule"
+    },
+    {
+      "id": "A-006",
+      "class": "INPUT",
+      "closes_with": "the payload supplier data sheet"
+    },
+    {
+      "id": "A-007",
+      "class": "INPUT",
+      "closes_with": "the payload supplier data sheet"
+    },
+    {
+      "id": "A-008",
+      "class": "AUTHORITY",
+      "closes_with": "the platform bonding and grounding standard"
+    },
+    {
+      "id": "A-009",
+      "class": "AUTHORITY",
+      "closes_with": "the joint category decision with the platform"
+    },
+    {
+      "id": "A-010",
+      "class": "INPUT",
+      "closes_with": "the platform type data"
+    },
+    {
+      "id": "A-011",
+      "class": "AUTHORITY",
+      "closes_with": "the platform maintenance requirements"
+    },
+    {
+      "id": "A-012",
+      "class": "AUTHORITY",
+      "closes_with": "the platform installation standard confirms the harness rules"
+    },
+    {
+      "id": "A-013",
+      "class": "AUTHORITY",
+      "closes_with": "the platform structural repair and installation standard"
+    },
+    {
+      "id": "A-014",
+      "class": "INPUT",
+      "closes_with": "the material certificate and the fastener specification"
+    },
+    {
+      "id": "A-015",
+      "class": "INPUT",
+      "closes_with": "the design review confirms the acceptance criterion for the movement"
+    }
+  ],
+  "facts": {
+    "requirements": 38,
+    "components": 12,
+    "verification_cases": 28,
+    "assumptions": 15,
+    "documents": 13,
+    "tests": 170,
+    "pass_cases": 13,
+    "limitation_cases": 10,
+    "future_cases": 5,
+    "validator_errors": 0,
+    "validator_warnings": 12,
+    "layout_checks": 93,
+    "mass_checks": 16,
+    "clearance_checks": 3,
+    "power_checks": 5,
+    "loads_checks": 44,
+    "qualification_checks": 46
+  },
+  "summary": {
+    "checks": 33,
+    "passed": 33,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "REVIEW-ARTIFACTS",
+      "subject": "passed-and-limited",
+      "status": "PASS",
+      "value": 28.0,
+      "limit": 28.0,
+      "margin": 0.0,
+      "message": "every case with a passed or limited status names an artifact that exists and is not empty"
+    },
+    {
+      "check": "REVIEW-DECLARED",
+      "subject": "review",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "the review declares itself mechanical and reproducible, run by tools/report.py, run by the pipeline on every change and by the author, independent: False, and states what that costs"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:assumptions",
+      "status": "PASS",
+      "value": 15.0,
+      "limit": 15.0,
+      "margin": 0.0,
+      "message": "README.md: (15,) agrees with assumptions"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:clearance_checks",
+      "status": "PASS",
+      "value": 3.0,
+      "limit": 3.0,
+      "margin": 0.0,
+      "message": "README.md: (3,) agrees with clearance_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:components",
+      "status": "PASS",
+      "value": 12.0,
+      "limit": 12.0,
+      "margin": 0.0,
+      "message": "README.md: (12,) agrees with components"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:layout_checks",
+      "status": "PASS",
+      "value": 93.0,
+      "limit": 93.0,
+      "margin": 0.0,
+      "message": "README.md: (93,) agrees with layout_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:loads_checks",
+      "status": "PASS",
+      "value": 44.0,
+      "limit": 44.0,
+      "margin": 0.0,
+      "message": "README.md: (44,) agrees with loads_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:mass_checks",
+      "status": "PASS",
+      "value": 16.0,
+      "limit": 16.0,
+      "margin": 0.0,
+      "message": "README.md: (16,) agrees with mass_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:power_checks",
+      "status": "PASS",
+      "value": 5.0,
+      "limit": 5.0,
+      "margin": 0.0,
+      "message": "README.md: (5,) agrees with power_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:qualification_checks",
+      "status": "PASS",
+      "value": 46.0,
+      "limit": 46.0,
+      "margin": 0.0,
+      "message": "README.md: (46,) agrees with qualification_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:requirements",
+      "status": "PASS",
+      "value": 38.0,
+      "limit": 38.0,
+      "margin": 0.0,
+      "message": "README.md: (38,) agrees with requirements"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:tests",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 170.0,
+      "margin": 0.0,
+      "message": "README.md: (170,) agrees with tests"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:validator_errors+validator_warnings",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 0.0,
+      "margin": 0.0,
+      "message": "README.md: (0, 12) agrees with validator_errors+validator_warnings"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "README.md:verification_cases",
+      "status": "PASS",
+      "value": 28.0,
+      "limit": 28.0,
+      "margin": 0.0,
+      "message": "README.md: (28,) agrees with verification_cases"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "docs/overview.md:layout_checks",
+      "status": "PASS",
+      "value": 93.0,
+      "limit": 93.0,
+      "margin": 0.0,
+      "message": "docs/overview.md: (93,) agrees with layout_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "docs/overview.md:loads_checks",
+      "status": "PASS",
+      "value": 44.0,
+      "limit": 44.0,
+      "margin": 0.0,
+      "message": "docs/overview.md: (44,) agrees with loads_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "docs/overview.md:pass_cases+limitation_cases+future_cases",
+      "status": "PASS",
+      "value": 13.0,
+      "limit": 13.0,
+      "margin": 0.0,
+      "message": "docs/overview.md: (13, 10, 5) agrees with pass_cases+limitation_cases+future_cases"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "docs/overview.md:qualification_checks",
+      "status": "PASS",
+      "value": 46.0,
+      "limit": 46.0,
+      "margin": 0.0,
+      "message": "docs/overview.md: (46,) agrees with qualification_checks"
+    },
+    {
+      "check": "REVIEW-DOCUMENTED-NUMBER",
+      "subject": "docs/overview.md:tests",
+      "status": "PASS",
+      "value": 170.0,
+      "limit": 170.0,
+      "margin": 0.0,
+      "message": "docs/overview.md: (170,) agrees with tests"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "clearance",
+      "status": "PASS",
+      "value": 3.0,
+      "limit": 3.0,
+      "margin": 0.0,
+      "message": "evidence/clearance/checks.json: 3 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "layout",
+      "status": "PASS",
+      "value": 93.0,
+      "limit": 93.0,
+      "margin": 0.0,
+      "message": "evidence/layout/checks.json: 93 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "loads",
+      "status": "PASS",
+      "value": 44.0,
+      "limit": 44.0,
+      "margin": 0.0,
+      "message": "evidence/loads/checks.json: 44 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "mass",
+      "status": "PASS",
+      "value": 16.0,
+      "limit": 16.0,
+      "margin": 0.0,
+      "message": "evidence/mass/checks.json: 16 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "power",
+      "status": "PASS",
+      "value": 5.0,
+      "limit": 5.0,
+      "margin": 0.0,
+      "message": "evidence/power/checks.json: 5 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-EVIDENCE",
+      "subject": "qualification",
+      "status": "PASS",
+      "value": 46.0,
+      "limit": 46.0,
+      "margin": 0.0,
+      "message": "evidence/qualification/checks.json: 46 checks, 0 failed"
+    },
+    {
+      "check": "REVIEW-FUTURE-TICKET",
+      "subject": "VER017",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "VER017: plan issues/07-analysis-load-path-and-strength"
+    },
+    {
+      "check": "REVIEW-FUTURE-TICKET",
+      "subject": "VER018",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "VER018: plan issues/07-analysis-load-path-and-strength"
+    },
+    {
+      "check": "REVIEW-FUTURE-TICKET",
+      "subject": "VER020",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "VER020: plan issues/07-analysis-load-path-and-strength"
+    },
+    {
+      "check": "REVIEW-FUTURE-TICKET",
+      "subject": "VER022",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "VER022: plan issues/07-analysis-load-path-and-strength"
+    },
+    {
+      "check": "REVIEW-FUTURE-TICKET",
+      "subject": "VER024",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "VER024: plan issues/06-analysis-power-and-bonding"
+    },
+    {
+      "check": "REVIEW-LIMITATION-CLASS",
+      "subject": "model",
+      "status": "PASS",
+      "value": 34.0,
+      "limit": 34.0,
+      "margin": 0.0,
+      "message": "34 limitations in the model, all classified"
+    },
+    {
+      "check": "REVIEW-LIMITATION-CLASS",
+      "subject": "register",
+      "status": "PASS",
+      "value": 34.0,
+      "limit": 34.0,
+      "margin": 0.0,
+      "message": "34 classifications, every one naming a real limitation"
+    },
+    {
+      "check": "REVIEW-NO-WARN",
+      "subject": "register",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 0.0,
+      "margin": 0.0,
+      "message": "no case carries the warning status"
+    }
+  ]
+}
