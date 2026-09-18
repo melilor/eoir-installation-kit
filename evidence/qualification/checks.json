@@ -584,7 +584,7 @@
       "value": 1.0,
       "limit": 1.0,
       "margin": 0.0,
-      "message": "TP-001 is the plan at docs\\qualification-plan.md, state DRAFT"
+      "message": "TP-001 is the plan at docs/qualification-plan.md, state DRAFT"
     },
     {
       "check": "QUAL-FUNCTIONAL-TEST",

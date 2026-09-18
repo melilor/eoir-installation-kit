@@ -661,7 +661,7 @@ def check_attachment_spacing(layout: Layout, root: Path) -> list[Finding]:
                 False,
                 0.0,
                 900.0,
-                f"{icd} declares no attachment spacing to check the hard points against",
+                f"{icd.as_posix()} declares no attachment spacing to check the hard points against",
             )
         )
         return findings

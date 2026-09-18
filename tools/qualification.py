@@ -426,7 +426,9 @@ def check_qualification(
     elif not found.exists():
         message = f"TP-001 points at {PLAN_PATH}, which does not exist"
     else:
-        message = f"TP-001 is the plan at {PLAN_PATH}, state {document.status}"
+        message = (
+            f"TP-001 is the plan at {PLAN_PATH.as_posix()}, state {document.status}"
+        )
     findings.append(
         make_finding(
             "QUAL-DOCUMENT",
@@ -743,7 +745,7 @@ def generated_files(
 ) -> dict[str, str]:
     """Return the content of every generated file, the plan included."""
     return {
-        str(PLAN_PATH): render_plan(model, detail),
+        PLAN_PATH.as_posix(): render_plan(model, detail),
         f"{EVIDENCE_DIR}/checks.json": json.dumps(
             {
                 "revision": model.revision,
