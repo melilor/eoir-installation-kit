@@ -17,12 +17,13 @@ in [`docs/overview.md`](docs/overview.md).
 
 ```
 $ python -m tools.traceability check
-checked 38 requirements, 28 verification cases, 12 components: 0 errors, 3 warnings
+checked 38 requirements, 28 verification cases, 12 components: 0 errors, 6 warnings
 ```
 
-The three warnings are the discipline working: `ASM-OPEN` flags the evidence that rests on a
-declared assumption that is still open (the harness installation rules, the payload video
-link). They stay until the assumption is closed or the limitation is accepted in writing.
+The warnings are the discipline working: `ASM-OPEN` flags the evidence that rests on a
+declared assumption that is still open (the payload data, the platform data, the harness
+installation rules, the payload video link). They stay until the assumption is closed or the
+limitation is accepted in writing.
 
 ## What this is / what this is not
 
@@ -40,11 +41,12 @@ depend on them. An assumption is an input the study needs, not a fact.
 
 ## Status
 
-**Revision D — first published slice, 2026-09-18.** The model, the architecture allocation,
-the layout and the compliance frame exist and are consistent: 38 requirements, 12 components,
-28 verification cases, 13 documents, 89 layout checks. **Nine cases are closed** at the level
-the evidence supports — five `PASS` and four `LIMITATION` for what a model cannot demonstrate;
-the other 19 are `FUTURE` and point at the ticket that will produce their evidence. The
+**Revision E — first published slice, 2026-09-18.** The model, the architecture allocation,
+the layout, the mass analysis and the compliance frame exist and are consistent: 38
+requirements, 12 components, 28 verification cases, 13 documents, 89 layout checks, 16 mass
+checks. **Eleven cases are closed** at the level the evidence supports — seven `PASS` and four
+`LIMITATION` for what a model cannot demonstrate; the other 17 are `FUTURE` and point at the
+ticket that will produce their evidence. The
 [traceability matrix](docs/traceability.md) says this case by case, and it is generated from
 the model, never written by hand.
 
@@ -59,6 +61,7 @@ python -m tools.traceability report           # regenerate docs/traceability.md
 python -m tools.diagram                       # regenerate docs/architecture.md
 python -m tools.layout                        # run the layout checks, write evidence/layout/
 python -m tools.compliance                    # regenerate docs/compliance-matrix.md
+python -m tools.mass                          # run the mass and balance analysis
 python -m pytest                              # run the test suite
 ```
 
@@ -73,17 +76,21 @@ model/
   assumptions.yaml       declared assumptions and interface data (ASM A-00x)
   evidence.yaml          one record per verification case: method, status, artifact, plan
   layout.yaml            the single source of truth for every dimension of the kit
+  mass.yaml              component masses, stations and loadable configurations
   compliance.yaml        change classification and the document register
 evidence/
   layout/                generated: checks.json, report.md, layout.svg, layout.dxf
+  mass/                  generated: checks.json, report.md
 tools/
-  model.py               load the five parts of the model
+  model.py               load the model parts
   rules.py               the validation rules, one identifier per failure
+  analysis.py            the result structure shared by the analysis tools
   traceability.py        command line: check, report, report --check
   diagram.py             generate docs/architecture.md from the architecture model
   layout.py              run the layout checks and write the evidence
+  mass.py                run the mass and balance analysis and write the evidence
   compliance.py          generate the compliance matrix and the document register
-tests/                   71 tests: one failing model per rule, plus the repository model
+tests/                   85 tests: one failing model per rule, plus the repository model
 docs/
   overview.md            the map of the study: model, numbers, limits, next steps
   architecture.md        generated diagram and allocation tables
@@ -120,6 +127,7 @@ The rules that hold this together, each with a stable identifier in
 | `COMPLIANCE-COVERAGE` | a requirement with no compliance document, or covered by more than one |
 | `COMPLIANCE-REF` | a document covering an unknown requirement, an empty register entry, an unknown state or type, a duplicate id |
 | `COMPLIANCE-FILE` | a document declared in the register whose file is not in the repository |
+| `MASS-COVERAGE` | a component without a declared mass, or a mass entry for an unknown component |
 | `CLASSIFICATION` | a change classification without criteria, with an unknown effect, or a major change without an approval route |
 
 ## Standards used as the frame

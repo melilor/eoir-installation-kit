@@ -13,6 +13,7 @@ designation: Notional stabilised electro-optical / infrared unit
 mass_and_inertia:
   mass_kg: 45
   cg_offset_mm: { x: 0, y: 0, z: -75 }
+  cg_envelope_mm: { x: 150, y: 75, z: 100 }
   moments_of_inertia_kg_m2: { Ixx: 0.62, Iyy: 0.58, Izz: 0.41 }
 
 envelope_mm:

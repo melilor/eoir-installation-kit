@@ -1,0 +1,264 @@
+{
+  "revision": "A",
+  "units": "kg",
+  "declared_rules": {
+    "kit_mass_target_kg": 15.0,
+    "component_mass_tolerance_pct": 5.0
+  },
+  "kit_mass_kg": 13.6,
+  "component_masses": [
+    {
+      "id": "CMP-01",
+      "mass_kg": 5.6,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-02",
+      "mass_kg": 2.4,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-03",
+      "mass_kg": 1.6,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-04",
+      "mass_kg": 0.9,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-05",
+      "mass_kg": 0.7,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-06",
+      "mass_kg": 0.4,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-07",
+      "mass_kg": 0.2,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-08",
+      "mass_kg": 0.5,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-09",
+      "mass_kg": 0.3,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-10",
+      "mass_kg": 0.1,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-11",
+      "mass_kg": 0.4,
+      "source": "DECLARED"
+    },
+    {
+      "id": "CMP-12",
+      "mass_kg": 0.5,
+      "source": "DECLARED"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "CFG-01",
+      "description": "Payload installed, forward CG limit, kit at the upper mass tolerance",
+      "kit_mass_kg": 14.28,
+      "payload_mass_kg": 45.0,
+      "total_mass_kg": 1409.28,
+      "cg_mm_aft_of_datum": 2987.03,
+      "margin_forward_mm": 87.03,
+      "margin_aft_mm": 162.97
+    },
+    {
+      "id": "CFG-02",
+      "description": "Payload installed, nominal",
+      "kit_mass_kg": 13.6,
+      "payload_mass_kg": 45.0,
+      "total_mass_kg": 1408.6,
+      "cg_mm_aft_of_datum": 2992.13,
+      "margin_forward_mm": 92.13,
+      "margin_aft_mm": 157.87
+    },
+    {
+      "id": "CFG-03",
+      "description": "Payload installed, aft CG limit",
+      "kit_mass_kg": 13.6,
+      "payload_mass_kg": 45.0,
+      "total_mass_kg": 1408.6,
+      "cg_mm_aft_of_datum": 2996.92,
+      "margin_forward_mm": 96.92,
+      "margin_aft_mm": 153.08
+    },
+    {
+      "id": "CFG-04",
+      "description": "Payload removed, ferry configuration",
+      "kit_mass_kg": 14.28,
+      "payload_mass_kg": 0.0,
+      "total_mass_kg": 1364.28,
+      "cg_mm_aft_of_datum": 3012.99,
+      "margin_forward_mm": 112.99,
+      "margin_aft_mm": 137.01
+    }
+  ],
+  "summary": {
+    "checks": 16,
+    "passed": 16,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "MASS-BALANCE",
+      "subject": "CFG-01",
+      "status": "PASS",
+      "value": 2987.027,
+      "limit": 2900.0,
+      "margin": 87.027,
+      "message": "CFG-01: platform CG 2987.0 mm aft of datum, closest limit +87.0 mm away"
+    },
+    {
+      "check": "MASS-BALANCE",
+      "subject": "CFG-02",
+      "status": "PASS",
+      "value": 2992.127,
+      "limit": 2900.0,
+      "margin": 92.127,
+      "message": "CFG-02: platform CG 2992.1 mm aft of datum, closest limit +92.1 mm away"
+    },
+    {
+      "check": "MASS-BALANCE",
+      "subject": "CFG-03",
+      "status": "PASS",
+      "value": 2996.919,
+      "limit": 2900.0,
+      "margin": 96.919,
+      "message": "CFG-03: platform CG 2996.9 mm aft of datum, closest limit +96.9 mm away"
+    },
+    {
+      "check": "MASS-BALANCE",
+      "subject": "CFG-04",
+      "status": "PASS",
+      "value": 3012.987,
+      "limit": 2900.0,
+      "margin": 112.987,
+      "message": "CFG-04: platform CG 3013.0 mm aft of datum, closest limit +113.0 mm away"
+    },
+    {
+      "check": "MASS-KIT",
+      "subject": "CFG-01",
+      "status": "PASS",
+      "value": 14.28,
+      "limit": 15.0,
+      "margin": 0.72,
+      "message": "CFG-01: kit mass 14.28 kg (target 15 kg, factor 1.05)"
+    },
+    {
+      "check": "MASS-KIT",
+      "subject": "CFG-02",
+      "status": "PASS",
+      "value": 13.6,
+      "limit": 15.0,
+      "margin": 1.4,
+      "message": "CFG-02: kit mass 13.60 kg (target 15 kg, factor 1)"
+    },
+    {
+      "check": "MASS-KIT",
+      "subject": "CFG-03",
+      "status": "PASS",
+      "value": 13.6,
+      "limit": 15.0,
+      "margin": 1.4,
+      "message": "CFG-03: kit mass 13.60 kg (target 15 kg, factor 1)"
+    },
+    {
+      "check": "MASS-KIT",
+      "subject": "CFG-04",
+      "status": "PASS",
+      "value": 14.28,
+      "limit": 15.0,
+      "margin": 0.72,
+      "message": "CFG-04: kit mass 14.28 kg (target 15 kg, factor 1.05)"
+    },
+    {
+      "check": "MASS-MTOW",
+      "subject": "CFG-01",
+      "status": "PASS",
+      "value": 1409.28,
+      "limit": 2250.0,
+      "margin": 840.72,
+      "message": "CFG-01: total mass 1409.3 kg (maximum take-off mass 2250 kg)"
+    },
+    {
+      "check": "MASS-MTOW",
+      "subject": "CFG-02",
+      "status": "PASS",
+      "value": 1408.6,
+      "limit": 2250.0,
+      "margin": 841.4,
+      "message": "CFG-02: total mass 1408.6 kg (maximum take-off mass 2250 kg)"
+    },
+    {
+      "check": "MASS-MTOW",
+      "subject": "CFG-03",
+      "status": "PASS",
+      "value": 1408.6,
+      "limit": 2250.0,
+      "margin": 841.4,
+      "message": "CFG-03: total mass 1408.6 kg (maximum take-off mass 2250 kg)"
+    },
+    {
+      "check": "MASS-MTOW",
+      "subject": "CFG-04",
+      "status": "PASS",
+      "value": 1364.28,
+      "limit": 2250.0,
+      "margin": 885.72,
+      "message": "CFG-04: total mass 1364.3 kg (maximum take-off mass 2250 kg)"
+    },
+    {
+      "check": "MASS-PAYLOAD",
+      "subject": "CFG-01",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 150.0,
+      "margin": 0.0,
+      "message": "CFG-01: payload CG offset -150 mm of the mounting datum (declared envelope \u00b1150 mm)"
+    },
+    {
+      "check": "MASS-PAYLOAD",
+      "subject": "CFG-02",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 150.0,
+      "margin": 150.0,
+      "message": "CFG-02: payload CG offset +0 mm of the mounting datum (declared envelope \u00b1150 mm)"
+    },
+    {
+      "check": "MASS-PAYLOAD",
+      "subject": "CFG-03",
+      "status": "PASS",
+      "value": 150.0,
+      "limit": 150.0,
+      "margin": 0.0,
+      "message": "CFG-03: payload CG offset +150 mm of the mounting datum (declared envelope \u00b1150 mm)"
+    },
+    {
+      "check": "MASS-PAYLOAD",
+      "subject": "CFG-04",
+      "status": "PASS",
+      "value": 0.0,
+      "limit": 150.0,
+      "margin": 150.0,
+      "message": "CFG-04: payload CG offset +0 mm of the mounting datum (declared envelope \u00b1150 mm)"
+    }
+  ]
+}

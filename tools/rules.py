@@ -40,6 +40,9 @@ DOCUMENT_STATUSES = frozenset({"PLANNED", "DRAFT", "OUTLINE", "GENERATED", "ISSU
 #: Allowed types of a compliance document.
 DOCUMENT_TYPES = frozenset({"drawing", "analysis", "test", "ica", "checklist", "manual"})
 
+#: Allowed sources of a declared component mass.
+MASS_SOURCES = frozenset({"DECLARED", "DERIVED"})
+
 #: Allowed states, outcomes and criterion effects of the change classification.
 CLASSIFICATION_STATUSES = frozenset({"OPEN", "CLOSED"})
 CLASSIFICATION_OUTCOMES = frozenset({"MINOR", "MAJOR"})
@@ -96,6 +99,7 @@ def check_model(model: Model, root: Path | None = None) -> list[Finding]:
     findings += _check_verification(model, base)
     findings += _check_assumptions(model, base)
     findings += _check_compliance(model, base)
+    findings += _check_masses(model)
     findings += _check_classification(model)
     findings += _check_identifiers(model)
 
@@ -313,6 +317,33 @@ def _check_compliance(model: Model, root: Path) -> list[Finding]:
                     "COMPLIANCE-COVERAGE",
                     f"{requirement.uid}: covered by {', '.join(sorted(owners))}",
                 )
+            )
+    return findings
+
+
+def _check_masses(model: Model) -> list[Finding]:
+    """Every component has exactly one declared mass, and the mass is positive."""
+    findings: list[Finding] = []
+    known = {component.id for component in model.components}
+    for component in model.components:
+        mass = model.masses.get(component.id)
+        if mass is None:
+            findings.append(
+                _error("MASS-COVERAGE", f"{component.id}: no declared mass")
+            )
+            continue
+        if mass.mass_kg <= 0:
+            findings.append(
+                _error("MASS-COVERAGE", f"{component.id}: mass {mass.mass_kg:g} kg is not positive")
+            )
+        if mass.source not in MASS_SOURCES:
+            findings.append(
+                _error("MASS-COVERAGE", f"{component.id}: unknown source '{mass.source}'")
+            )
+    for component_id in model.masses:
+        if component_id not in known:
+            findings.append(
+                _error("MASS-COVERAGE", f"{component_id}: mass for an unknown component")
             )
     return findings
 

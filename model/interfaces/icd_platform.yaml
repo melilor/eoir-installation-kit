@@ -9,9 +9,10 @@ date: 2026-09-18
 status: DECLARED
 designation: Notional normal-category light helicopter, CS-27 class
 
-mass_and_balance:
+mass_and_inertia:
   mtow_kg: 2250
   empty_mass_kg: 1350
+  empty_cg_mm_aft_of_datum: 3020
   useful_load_kg: 900
   cg_range_mm_aft_of_datum: { forward: 2900, aft: 3150 }
 
@@ -26,6 +27,7 @@ attachment_provisions:
 electrical:
   bus_voltage_vdc: 28
   bus_capacity_w: 3000
+  existing_continuous_load_w: 2100
   protection: individual circuit breakers in the distribution panel
   payload_breaker_rating_a: 20
 

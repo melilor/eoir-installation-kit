@@ -16,11 +16,10 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: D (2026-09-18) — the compliance frame (ticket 09) closed the certification
-# and documentation cases that the frame itself satisfies, and moved the three
-# structural deliverables to the analysis ticket.
+# Revision: E (2026-09-18) — the mass and balance analysis (ticket 04) closed the two
+# mass cases; the remaining future cases point at their tickets.
 
-revision: D
+revision: E
 date: 2026-09-18
 
 cases:
@@ -40,17 +39,24 @@ cases:
 
   - verification: VER003
     method: analysis
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/mass/checks.json
     plan: issues/04-analysis-mass-and-balance
-    note: Kit mass budget and platform weight and balance.
+    note: >-
+      Kit mass 13.60 kg against the 15 kg target, and the platform CG computed for four
+      configurations: worst case 2987.0 mm aft of datum against a forward limit of 2900 mm
+      (87 mm of margin). Every mass is a declared estimate and the platform data are declared
+      inputs: the result is a bound, not a weighing.
 
   - verification: VER004
     method: analysis
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: evidence/mass/checks.json
     plan: issues/04-analysis-mass-and-balance
-    note: Payload mass and CG envelope against the declared interface data.
+    note: >-
+      The load cases use the payload at its declared 45 kg and at both CG envelope limits
+      (±150 mm), which is the worst case by construction. A payload heavier than declared, or
+      with a CG outside the envelope, is a design change and not covered.
 
   - verification: VER005
     method: analysis

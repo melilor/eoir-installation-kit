@@ -26,7 +26,7 @@ Everything else Doorstop reports (missing text, broken links, ...) is kept.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -104,6 +104,15 @@ class Document:
 
 
 @dataclass(frozen=True)
+class ComponentMass:
+    """The declared mass of one architecture component."""
+
+    id: str
+    mass_kg: float
+    source: str = ""
+
+
+@dataclass(frozen=True)
 class ClassificationCriterion:
     """One appreciable-effect criterion of the change classification."""
 
@@ -140,6 +149,7 @@ class Model:
     doorstop_issues: tuple[str, ...] = ()
     documents: tuple[Document, ...] = ()
     classification: ChangeClassification | None = None
+    masses: dict[str, ComponentMass] = field(default_factory=dict)
 
     def verifications_of(self, requirement_uid: str) -> tuple[Requirement, ...]:
         """Return the verification cases linked to a requirement."""
@@ -250,11 +260,27 @@ def _load_compliance(
     return documents, classification
 
 
+def _load_masses(base: Path) -> dict[str, ComponentMass]:
+    path = base / "model/mass.yaml"
+    if not path.exists():
+        return {}
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return {
+        entry["id"]: ComponentMass(
+            id=entry["id"],
+            mass_kg=float(entry["mass_kg"]),
+            source=entry.get("source", ""),
+        )
+        for entry in raw.get("components", ())
+    }
+
+
 def load_model(root: Path | None = None) -> Model:
     """Load the model from ``root`` (the repository by default)."""
     base = Path(root) if root else REPO_ROOT
     requirements, verifications, doorstop_issues = _load_doorstop(base)
     documents, classification = _load_compliance(base)
+    masses = _load_masses(base)
 
     architecture = yaml.safe_load((base / "model/architecture/architecture.yaml").read_text(encoding="utf-8"))
     evidence_raw = yaml.safe_load((base / "model/evidence.yaml").read_text(encoding="utf-8"))
@@ -294,4 +320,5 @@ def load_model(root: Path | None = None) -> Model:
         doorstop_issues=tuple(doorstop_issues),
         documents=documents,
         classification=classification,
+        masses=masses,
     )

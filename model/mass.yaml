@@ -1,0 +1,61 @@
+# Mass model of the installation kit.
+#
+# Component masses are declared here, one entry per architecture component, and
+# the total is computed by tools/mass.py — never typed into a document. The
+# platform data (empty mass, empty CG, certified CG range, MTOW) and the payload
+# data (mass, CG envelope) are read from the interface control files, so those
+# numbers live in one place only.
+#
+# `source` is DECLARED for an engineering estimate and DERIVED for a value that
+# comes from a calculation committed in this repository.
+
+revision: A
+date: 2026-09-18
+units: kg
+
+declared_rules:
+  kit_mass_target_kg: 15.0          # SYS005, assumption A-004
+  component_mass_tolerance_pct: 5.0 # declared growth allowance on every component mass
+
+installation:
+  kit_station_mm_aft_of_datum: 2350
+  payload_station_mm_aft_of_datum: 2350
+
+components:
+  - { id: CMP-01, mass_kg: 5.6, source: DECLARED, note: "welded interface frame, estimated from the layout geometry" }
+  - { id: CMP-02, mass_kg: 2.4, source: DECLARED, note: "four attachment fittings with their fasteners" }
+  - { id: CMP-03, mass_kg: 1.6, source: DECLARED, note: "payload interface plate, 12 mm" }
+  - { id: CMP-04, mass_kg: 0.9, source: DECLARED, note: "power harness at its installed length" }
+  - { id: CMP-05, mass_kg: 0.7, source: DECLARED, note: "data harness at its installed length" }
+  - { id: CMP-06, mass_kg: 0.4, source: DECLARED, note: "circuit protection assembly" }
+  - { id: CMP-07, mass_kg: 0.2, source: DECLARED, note: "bonding straps and grounding hardware" }
+  - { id: CMP-08, mass_kg: 0.5, source: DECLARED, note: "fasteners and quick-release devices" }
+  - { id: CMP-09, mass_kg: 0.3, source: DECLARED, note: "connector bracket and strain relief" }
+  - { id: CMP-10, mass_kg: 0.1, source: DECLARED, note: "marking and documentation set" }
+  - { id: CMP-11, mass_kg: 0.4, source: DECLARED, note: "sealing, drainage and corrosion provisions" }
+  - { id: CMP-12, mass_kg: 0.5, source: DECLARED, note: "clamps, grommets and heat protection" }
+
+# The configurations bound the analysis: the payload CG envelope extremes and the
+# component mass tolerance are used on purpose, so the result is a worst case and
+# not a nominal case.
+configurations:
+  - id: CFG-01
+    description: Payload installed, forward CG limit, kit at the upper mass tolerance
+    payload: installed
+    payload_cg_offset_mm: -150
+    kit_mass_factor: 1.05
+  - id: CFG-02
+    description: Payload installed, nominal
+    payload: installed
+    payload_cg_offset_mm: 0
+    kit_mass_factor: 1.00
+  - id: CFG-03
+    description: Payload installed, aft CG limit
+    payload: installed
+    payload_cg_offset_mm: 150
+    kit_mass_factor: 1.00
+  - id: CFG-04
+    description: Payload removed, ferry configuration
+    payload: removed
+    payload_cg_offset_mm: 0
+    kit_mass_factor: 1.05

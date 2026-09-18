@@ -7,6 +7,7 @@ from tools.model import (
     Assumption,
     ChangeClassification,
     ClassificationCriterion,
+    ComponentMass,
     Document,
     Evidence,
     Requirement,
@@ -299,3 +300,25 @@ def test_missing_classification_is_an_error():
     from dataclasses import replace
 
     assert "CLASSIFICATION" in rules(replace(build_model(), classification=None))
+
+
+def test_component_without_a_declared_mass_is_an_error():
+    assert "MASS-COVERAGE" in rules(build_model(masses={}))
+
+
+def test_mass_for_an_unknown_component_is_an_error():
+    masses = {
+        "CMP-01": ComponentMass(id="CMP-01", mass_kg=1.0, source="DECLARED"),
+        "CMP-99": ComponentMass(id="CMP-99", mass_kg=1.0, source="DECLARED"),
+    }
+    assert "MASS-COVERAGE" in rules(build_model(masses=masses))
+
+
+def test_non_positive_mass_is_an_error():
+    masses = {"CMP-01": ComponentMass(id="CMP-01", mass_kg=0.0, source="DECLARED")}
+    assert "MASS-COVERAGE" in rules(build_model(masses=masses))
+
+
+def test_unknown_mass_source_is_an_error():
+    masses = {"CMP-01": ComponentMass(id="CMP-01", mass_kg=1.0, source="GUESS")}
+    assert "MASS-COVERAGE" in rules(build_model(masses=masses))

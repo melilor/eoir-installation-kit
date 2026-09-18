@@ -28,6 +28,7 @@ from typing import Any
 
 import yaml
 
+from .analysis import Finding, findings_table, make_finding, sort_findings, summarise
 from .model import REPO_ROOT
 
 LAYOUT_PATH = Path("model/layout.yaml")
@@ -157,30 +158,6 @@ class Layout:
     moving_parts: tuple[NamedRect, ...]
     harnesses: tuple[Harness, ...]
     interface_refs: tuple[InterfaceRef, ...]
-
-
-@dataclass(frozen=True)
-class Finding:
-    """The result of one check on one subject."""
-
-    check: str
-    subject: str
-    status: str
-    value: float
-    limit: float
-    margin: float
-    message: str
-
-    def as_dict(self) -> dict[str, Any]:
-        return {
-            "check": self.check,
-            "subject": self.subject,
-            "status": self.status,
-            "value": round(self.value, 3),
-            "limit": self.limit,
-            "margin": round(self.margin, 3),
-            "message": self.message,
-        }
 
 
 # --------------------------------------------------------------------------- #
@@ -330,41 +307,13 @@ def _resolve_path(document: Any, dotted: str) -> Any:
 # --------------------------------------------------------------------------- #
 
 
-def _finding(
-    check: str,
-    subject: str,
-    ok: bool,
-    value: float,
-    limit: float,
-    message: str,
-    mode: str = "min",
-) -> Finding:
-    """Build a finding. ``mode`` is the direction of the constraint:
-
-    * ``min``: the value must be greater than or equal to the limit;
-    * ``max``: the value must be less than or equal to the limit.
-
-    ``margin`` is always positive when the check passes.
-    """
-    margin = value - limit if mode == "min" else limit - value
-    return Finding(
-        check=check,
-        subject=subject,
-        status="PASS" if ok else "FAIL",
-        value=value,
-        limit=limit,
-        margin=margin,
-        message=message,
-    )
-
-
 def check_removal_corridor(layout: Layout) -> list[Finding]:
     """No side-view frame member may obstruct the payload removal corridor."""
     findings = []
     for member in layout.side_frame:
         intersects = member.rect.intersects(layout.removal_corridor.rect)
         findings.append(
-            _finding(
+            make_finding(
                 "REMOVAL-CORRIDOR",
                 member.id,
                 not intersects,
@@ -386,7 +335,7 @@ def check_connector_access(layout: Layout) -> list[Finding]:
         for member in layout.bottom_frame:
             distance = member.rect.distance_to_point(connector.x, connector.y)
             findings.append(
-                _finding(
+                make_finding(
                     "CONNECTOR-ACCESS",
                     f"{connector.id}/{member.id}",
                     distance >= limit,
@@ -408,7 +357,7 @@ def check_fitting_edge_distance(layout: Layout) -> list[Finding]:
         fitting = fittings.get(fastener.fitting)
         if fitting is None:
             findings.append(
-                _finding(
+                make_finding(
                     "FITTING-EDGE-DISTANCE",
                     fastener.id,
                     False,
@@ -427,7 +376,7 @@ def check_fitting_edge_distance(layout: Layout) -> list[Finding]:
         )
         smallest = min(edges)
         findings.append(
-            _finding(
+            make_finding(
                 "FITTING-EDGE-DISTANCE",
                 f"{fastener.id}/{fitting.id}",
                 smallest >= limit,
@@ -453,7 +402,7 @@ def check_hole_pitch(layout: Layout) -> list[Finding]:
                 distance = hypot(first.x - second.x, first.y - second.y)
                 limit = factor * max(first.diameter, second.diameter)
                 findings.append(
-                    _finding(
+                    make_finding(
                         "HOLE-PITCH",
                         f"{fitting_id}:{first.id}-{second.id}",
                         distance >= limit,
@@ -469,7 +418,7 @@ def check_hole_pitch(layout: Layout) -> list[Finding]:
 def check_fastener_locking(layout: Layout) -> list[Finding]:
     """Each removable fastener carries two independent locking devices."""
     return [
-        _finding(
+        make_finding(
             "FASTENER-LOCKING",
             fastener.id,
             fastener.locking_devices >= 2,
@@ -484,7 +433,7 @@ def check_fastener_locking(layout: Layout) -> list[Finding]:
 def check_inspection_access(layout: Layout) -> list[Finding]:
     """Inspection zones stay clear of the payload footprint."""
     return [
-        _finding(
+        make_finding(
             "INSPECTION-ACCESS",
             zone.id,
             not zone.rect.intersects(layout.footprint.rect),
@@ -505,7 +454,7 @@ def check_harness_orthogonal(layout: Layout) -> list[Finding]:
         for index, (a, b) in enumerate(harness.segments, start=1):
             orthogonal = a[0] == b[0] or a[1] == b[1]
             findings.append(
-                _finding(
+                make_finding(
                     "HARNESS-ORTHOGONAL",
                     f"{harness.id}:seg{index}",
                     orthogonal,
@@ -525,7 +474,7 @@ def check_bend_radius(layout: Layout) -> list[Finding]:
     for harness in layout.harnesses:
         limit = factor * harness.cable_od
         findings.append(
-            _finding(
+            make_finding(
                 "BEND-RADIUS",
                 harness.id,
                 harness.bend_radius >= limit,
@@ -548,7 +497,7 @@ def check_clamp_on_path(layout: Layout) -> list[Finding]:
                 _distance_point_to_segment(clamp, a, b) for a, b in harness.segments
             )
             findings.append(
-                _finding(
+                make_finding(
                     "CLAMP-ON-PATH",
                     f"{harness.id}:clamp{index}",
                     distance <= limit,
@@ -574,7 +523,7 @@ def check_clamp_spacing(layout: Layout) -> list[Finding]:
         for index, (first, second) in enumerate(zip(positions, positions[1:]), start=1):
             gap = second - first
             findings.append(
-                _finding(
+                make_finding(
                     "CLAMP-SPACING",
                     f"{harness.id}:gap{index}",
                     gap <= limit,
@@ -597,7 +546,7 @@ def check_harness_clearance(layout: Layout) -> list[Finding]:
             for obstacle in obstacles:
                 distance = segment_rect_distance(a, b, obstacle.rect)
                 findings.append(
-                    _finding(
+                    make_finding(
                         "HARNESS-CLEARANCE",
                         f"{harness.id}:seg{index}/{obstacle.id}",
                         distance >= limit,
@@ -617,7 +566,7 @@ def check_icd_consistency(layout: Layout, root: Path) -> list[Finding]:
         icd_path = root / reference.icd
         if not icd_path.exists():
             findings.append(
-                _finding(
+                make_finding(
                     "ICD-CONSISTENCY",
                     reference.label,
                     False,
@@ -632,7 +581,7 @@ def check_icd_consistency(layout: Layout, root: Path) -> list[Finding]:
             actual = _resolve_path(document, reference.path)
         except KeyError:
             findings.append(
-                _finding(
+                make_finding(
                     "ICD-CONSISTENCY",
                     reference.label,
                     False,
@@ -643,7 +592,7 @@ def check_icd_consistency(layout: Layout, root: Path) -> list[Finding]:
             )
             continue
         findings.append(
-            _finding(
+            make_finding(
                 "ICD-CONSISTENCY",
                 reference.label,
                 actual == reference.expect,
@@ -672,7 +621,7 @@ def check_layout(layout: Layout, root: Path | None = None) -> list[Finding]:
     findings += check_clamp_spacing(layout)
     findings += check_harness_clearance(layout)
     findings += check_icd_consistency(layout, base)
-    return sorted(findings, key=lambda finding: (finding.status != "FAIL", finding.check, finding.subject))
+    return sort_findings(findings)
 
 
 # --------------------------------------------------------------------------- #
@@ -686,11 +635,7 @@ def render_checks(layout: Layout, findings: list[Finding]) -> str:
         "revision": layout.revision,
         "units": layout.units,
         "declared_rules": layout.rules,
-        "summary": {
-            "checks": len(findings),
-            "passed": sum(1 for finding in findings if finding.status == "PASS"),
-            "failed": sum(1 for finding in findings if finding.status == "FAIL"),
-        },
+        "summary": summarise(findings),
         "findings": [finding.as_dict() for finding in findings],
     }
     return json.dumps(payload, indent=2) + "\n"
@@ -709,15 +654,9 @@ def render_report(layout: Layout, findings: list[Finding]) -> str:
         f"Revision {layout.revision}, units {layout.units}. "
         f"{len(findings)} checks, {passed} passed, {failed} failed.",
         "",
-        "| Check | Subject | Status | Value | Limit | Margin |",
-        "| --- | --- | --- | --- | --- | --- |",
+        *findings_table(findings),
+        "",
     ]
-    for finding in findings:
-        lines.append(
-            f"| {finding.check} | {finding.subject} | {finding.status} | "
-            f"{finding.value:.1f} | {finding.limit:g} | {finding.margin:+.1f} |"
-        )
-    lines.append("")
     lines.append("## Declared rules")
     lines.append("")
     lines.append("| Rule | Value |")

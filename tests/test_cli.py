@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from tools.compliance import main as compliance_main
 from tools.diagram import main as diagram_main
+from tools.mass import main as mass_main
 from tools.traceability import main
 
 
@@ -32,4 +33,9 @@ def test_architecture_diagram_check_passes_when_current(capsys):
 
 def test_compliance_matrix_check_passes_when_current(capsys):
     assert compliance_main(["--check"]) == 0
+    assert "up to date" in capsys.readouterr().out
+
+
+def test_mass_evidence_check_passes_when_current(capsys):
+    assert mass_main(["--check"]) == 0
     assert "up to date" in capsys.readouterr().out

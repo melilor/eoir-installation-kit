@@ -14,6 +14,7 @@ from tools.model import (  # noqa: E402  (path setup must run first)
     Assumption,
     ChangeClassification,
     ClassificationCriterion,
+    ComponentMass,
     Document,
     Evidence,
     Model,
@@ -35,6 +36,7 @@ def build_model(
     doorstop_issues=(),
     documents=None,
     classification=None,
+    masses=None,
 ) -> Model:
     """Build a small valid model, letting each test override one part."""
     requirements = requirements if requirements is not None else {
@@ -94,6 +96,9 @@ def build_model(
         privileges="21.A.263(c)(1)",
         criteria=(ClassificationCriterion("Weight and balance", "YES", "adds mass"),),
     )
+    masses = masses if masses is not None else {
+        "CMP-01": ComponentMass(id="CMP-01", mass_kg=1.0, source="DECLARED"),
+    }
     return Model(
         requirements=requirements,
         verifications=verifications,
@@ -106,6 +111,7 @@ def build_model(
         doorstop_issues=doorstop_issues,
         documents=documents,
         classification=classification,
+        masses=masses,
     )
 
 

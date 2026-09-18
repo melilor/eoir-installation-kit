@@ -19,12 +19,12 @@ Every requirement of the installation kit, the architecture element that owns it
 
 | Evidence status | Count |
 | --- | --- |
-| PASS | 5 |
+| PASS | 7 |
 | WARN | 0 |
 | FAIL | 0 |
 | LIMITATION | 4 |
 | BLOCKED | 0 |
-| FUTURE | 19 |
+| FUTURE | 17 |
 
 ## Requirements
 
@@ -34,9 +34,9 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS002 | Factor of safety | STD 14 CFR 27.303 | CMP-01, CMP-02 | VER002 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
 | SYS003 | Strength and deformation | STD 14 CFR 27.305 | CMP-01, CMP-02 | VER002 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
 | SYS004 | Load cases | STD 14 CFR 27.301; STD 14 CFR 27.561; ASM A-001 | CMP-02 | VER001 | analysis | FUTURE | issues/07-analysis-load-path-and-strength |
-| SYS005 | Kit mass | ASM A-004 | CMP-01 | VER003 | analysis | FUTURE | issues/04-analysis-mass-and-balance |
-| SYS006 | Payload envelope | ASM A-001 | CMP-03 | VER004 | analysis | FUTURE | issues/04-analysis-mass-and-balance |
-| SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | CMP-01, CMP-10 | VER003 | analysis | FUTURE | issues/04-analysis-mass-and-balance |
+| SYS005 | Kit mass | ASM A-004 | CMP-01 | VER003 | analysis | PASS | evidence/mass/checks.json |
+| SYS006 | Payload envelope | ASM A-001 | CMP-03 | VER004 | analysis | PASS | evidence/mass/checks.json |
+| SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | CMP-01, CMP-10 | VER003 | analysis | PASS | evidence/mass/checks.json |
 | SYS008 | Payload field of view | ASM A-003 | CMP-01, CMP-03 | VER005 | analysis | FUTURE | issues/05-analysis-fov-and-clearance |
 | SYS009 | Minimum clearance | ASM A-005 | CMP-01, CMP-03 | VER005 | analysis | FUTURE | issues/05-analysis-fov-and-clearance |
 | SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | CMP-04, CMP-06 | VER006 | analysis | FUTURE | issues/06-analysis-power-and-bonding |
