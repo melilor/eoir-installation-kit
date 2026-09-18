@@ -50,6 +50,42 @@ stops the tool and names the violated constraint.
   interfaces — mass and inertia, envelope, mounting pattern, power, buses, field of view,
   attachment provisions, structural environment. They live in `model/interfaces/` and are
   inputs of the study, not supplier data.
+- **Load case**: one inertia condition of the installation, derived by `tools/loads.py` from a
+  declared acceleration and a declared load factor — the payload and kit mass accelerated in a
+  direction. The cases are not listed in the model: they are computed, so changing the platform
+  data changes the analysis.
+- **Limit load**: the maximum load expected in service. A condition the platform prescribes as
+  a limit load takes the factor of safety of 14 CFR 27.303 to reach the ultimate load.
+- **Ultimate load**: the limit load multiplied by the factor of safety. A condition the
+  platform prescribes as an ultimate load — the emergency landing inertia factors — takes no
+  further factor, which is what 27.303 says.
+- **Factor of safety**: 1.5 unless the condition is already prescribed as ultimate. The applied
+  factor is checked per case against the factor that case requires, so the bookkeeping is
+  visible instead of implied.
+- **Load path**: the chain that carries the load from the payload centre of gravity to the
+  platform structure — interface plate, frame rails, fittings, fasteners, hard points. Each
+  element names the section it is checked at in `model/loads.yaml`.
+- **Attachment plane**: the plane of the platform provisions the fittings bolt to, taken at the
+  platform skin in the layout. The payload centre of gravity sits below it, so a horizontal
+  inertia force produces a couple that the fittings resist in pairs.
+- **Excitation band**: the frequency range of a rotor harmonic over the declared rotor speed
+  range, widened by the declared separation percentage. **Admissible window**: a frequency range
+  clear of every band. SYS015 requires the installation to stay out of the bands, which is a
+  statement about the installation, not about the bands.
+- **Installation zone**: a place the installation occupies, with the environmental exposure
+  that comes with it — the external belly bay and the unpressurised fuselage interior in this
+  study, plus a zone for what is not installed. The zone is what a DO-160G category encodes, so
+  the zone definition belongs to the platform and the category selection is a joint decision.
+- **Category**: the severity an equipment is qualified to within a DO-160G section. It is
+  written in `model/qualification.yaml` only where a declared input of this study and a public
+  statement about the standard fix it; otherwise the entry names the input the category waits
+  for. The standard itself is not in this repository.
+- **Qualification state of an entry**: `ASSESSED` when the design already answers it by analysis
+  or inspection, `PLANNED` when it needs a test on an article, `OPEN` when the selection cannot
+  be completed with the declared inputs.
+- **Protection preservation**: the argument that the installation keeps the lightning, HIRF and
+  bonding characteristics the platform protection plan gives it, recorded with the means the
+  installation provides and what cannot be checked because the plan is referenced, not held.
 - **Architecture element**: a function (`FCT`), a component (`CMP`) or an interface
   (`IF`). Each one declares the requirements allocated to it; each requirement is owned by
   at least one component.

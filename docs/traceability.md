@@ -19,12 +19,12 @@ Every requirement of the installation kit, the architecture element that owns it
 
 | Evidence status | Count |
 | --- | --- |
-| PASS | 11 |
+| PASS | 13 |
 | WARN | 0 |
 | FAIL | 0 |
-| LIMITATION | 6 |
+| LIMITATION | 10 |
 | BLOCKED | 0 |
-| FUTURE | 11 |
+| FUTURE | 5 |
 
 ## Requirements
 
@@ -41,12 +41,12 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS009 | Minimum clearance | ASM A-005 | CMP-01, CMP-03 | VER005 | analysis | PASS | evidence/clearance/checks.json |
 | SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | CMP-04, CMP-06 | VER006 | analysis | PASS | evidence/power/checks.json |
 | SYS011 | Electrical load analysis | STD 14 CFR 27.1351-27.1367 | CMP-04, CMP-06 | VER007 | inspection | LIMITATION | evidence/power/checks.json |
-| SYS012 | Data interfaces | ASM A-007 | CMP-05 | VER008, VER016 | inspection, test | PASS, FUTURE | evidence/layout/checks.json, issues/10-qualification-plan-environmental |
-| SYS013 | Bonding | ASM A-008 | CMP-07 | VER009 | test | FUTURE | issues/10-qualification-plan-environmental |
-| SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | CMP-11 | VER010 | review | FUTURE | issues/10-qualification-plan-environmental |
+| SYS012 | Data interfaces | ASM A-007 | CMP-05 | VER008, VER016 | inspection, test | PASS, LIMITATION | evidence/layout/checks.json, docs/qualification-plan.md |
+| SYS013 | Bonding | ASM A-008 | CMP-07 | VER009 | test | LIMITATION | docs/qualification-plan.md |
+| SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | CMP-11 | VER010 | review | LIMITATION | docs/qualification-plan.md |
 | SYS015 | Resonance separation | ASM A-010 | CMP-11 | VER011 | analysis | LIMITATION | evidence/loads/checks.json |
-| SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | CMP-05, CMP-11 | VER012 | review | FUTURE | issues/10-qualification-plan-environmental |
-| SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | CMP-11 | VER012 | review | FUTURE | issues/10-qualification-plan-environmental |
+| SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | CMP-05, CMP-11 | VER012 | review | LIMITATION | docs/qualification-plan.md |
+| SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | CMP-11 | VER012 | review | LIMITATION | docs/qualification-plan.md |
 | SYS018 | Installation and removal | ASM A-011 | CMP-08, CMP-09 | VER013 | demonstration | LIMITATION | evidence/layout/checks.json |
 | SYS019 | Inspection access | ASM A-011 | CMP-09 | VER013 | demonstration | LIMITATION | evidence/layout/checks.json |
 | SYS020 | Change classification | STD EASA Part 21 Subpart D (21.A.91, 21.A.95, 21.A.97) | CMP-10 | VER014 | review | PASS | docs/compliance-matrix.md |
@@ -62,9 +62,9 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS030 | Harness routing and protection | STD 14 CFR 27.601; ASM A-012 | CMP-04, CMP-05, CMP-12 | VER023 | inspection | PASS | evidence/layout/checks.json |
 | SYS031 | Connector retention and access | STD 14 CFR 27.601; ASM A-012 | CMP-09, CMP-12 | VER023 | inspection | PASS | evidence/layout/checks.json |
 | SYS032 | Payload circuit protection | STD 14 CFR 27.1351-27.1367 | CMP-06 | VER024 | inspection | FUTURE | issues/06-analysis-power-and-bonding |
-| SYS033 | Fluids susceptibility | STD RTCA DO-160G Section 11; ASM A-009 | CMP-04, CMP-11, CMP-12 | VER025 | review | FUTURE | issues/10-qualification-plan-environmental |
-| SYS034 | Sand, dust and fungus | STD RTCA DO-160G Section 12; STD RTCA DO-160G Section 13; ASM A-009 | CMP-11, CMP-12 | VER025 | review | FUTURE | issues/10-qualification-plan-environmental |
-| SYS035 | Lightning and static electricity protection | STD 14 CFR 27.610 | CMP-05, CMP-07, CMP-12 | VER026 | review | FUTURE | issues/10-qualification-plan-environmental |
+| SYS033 | Fluids susceptibility | STD RTCA DO-160G Section 11; ASM A-009 | CMP-04, CMP-11, CMP-12 | VER025 | review | PASS | docs/qualification-plan.md |
+| SYS034 | Sand, dust and fungus | STD RTCA DO-160G Section 12; STD RTCA DO-160G Section 13; ASM A-009 | CMP-11, CMP-12 | VER025 | review | PASS | docs/qualification-plan.md |
+| SYS035 | Lightning and static electricity protection | STD 14 CFR 27.610 | CMP-05, CMP-07, CMP-12 | VER026 | review | PASS | docs/qualification-plan.md |
 | SYS036 | Configuration control | STD EASA Part 21 21.A.239 | CMP-10 | VER027 | review | LIMITATION | docs/compliance-matrix.md |
 | SYS037 | Loading information and operating limitations | STD 14 CFR 27.1589; STD 14 CFR 27.1583 | CMP-10 | VER028 | review | LIMITATION | docs/compliance-matrix.md |
 | SYS038 | Part identification | STD EASA Part 21 21.A.239; STD 14 CFR 27.1529 | CMP-10, CMP-12 | VER027 | review | LIMITATION | docs/compliance-matrix.md |

@@ -134,8 +134,14 @@ documents:
   - id: TP-001
     title: Environmental qualification plan and reports
     type: test
-    status: PLANNED
-    path: null
+    status: DRAFT
+    path: docs/qualification-plan.md
+    note: >-
+      The plan is generated from model/qualification.yaml and reviewed by
+      tools/qualification.py: sections and zones, the category of each or the
+      input it is open on, the method and the article, and the protection
+      preservation against the platform plan. The test reports of the campaign
+      will be added to this document when the first article exists.
     plan: issues/10-qualification-plan-environmental
     covers: [SYS014, SYS016, SYS017, SYS033, SYS034, SYS035]
   - id: TP-002

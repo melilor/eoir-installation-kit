@@ -16,11 +16,11 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: H (2026-09-18) — the load path analysis (ticket 07) closed the strength cases,
-# recorded the resonance separation as a limitation and changed the attachment geometry that
-# did not match the platform provisions.
+# Revision: I (2026-09-18) — the qualification plan (ticket 10) closed the coverage and
+# protection reviews, recorded the four cases that need an article as limitations, and left
+# the category selection open where the platform owns the input.
 
-revision: H
+revision: I
 date: 2026-09-18
 
 cases:
@@ -119,19 +119,28 @@ cases:
 
   - verification: VER009
     method: test
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
     note: >-
-      Bonding resistance test on the first article; no test article exists in this study. The
-      2.5 mOhm limit is a declared design rule (A-008) still open, and the bonding path is
-      declared in the layout, not measured.
+      The bonding path is declared (CMP-07 and the bonding provisions of PP-01) and the test is
+      planned on the first article with the rest of the campaign, but no article exists in this
+      study, so the resistance is not measured. The 2.5 mOhm limit remains a declared design
+      rule (A-008) and the test report is the document TP-002.
 
   - verification: VER010
     method: review
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
+    note: >-
+      The plan selects the applicable sections for the two installation zones and states the
+      method and the article for each, and the review of those selections is complete. It does
+      not fix every category: six zone selections carry a category that follows from a declared
+      input and a public statement about the standard, and thirty are open on a named platform
+      input (the compartment map, the altitude, the HIRF and lightning environment, the radio
+      compatibility limits, the fluid list). The standard is not in this repository, so a
+      category is not invented to fill the gaps.
     note: DO-160G section and category selection per installation zone.
 
   - verification: VER011
@@ -152,9 +161,15 @@ cases:
 
   - verification: VER012
     method: review
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
+    note: >-
+      The plan carries the four protection means the installation provides and states what each
+      one is checked against, and the emission and susceptibility entries exist for both zones.
+      The review itself cannot be completed: the platform protection plan and the radio
+      compatibility limits are referenced by the interface data and not declared, so the
+      preservation argument and the emission limits stay open (PP-04, QI-01).
     note: Preservation of the platform lightning and HIRF protection.
 
   - verification: VER013
@@ -192,9 +207,14 @@ cases:
 
   - verification: VER016
     method: test
-    status: FUTURE
-    artifact: null
+    status: LIMITATION
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
+    note: >-
+      The functional test of the ARINC 429 control link and the video link is in the campaign as
+      FT-01, run during and after the environmental exposure on the first article. There is no
+      article and the video link format is still open in the payload interface data, so the test
+      is planned and not performed.
     note: ARINC 429 and video interface functional test on the first article.
 
   - verification: VER017
@@ -263,16 +283,31 @@ cases:
 
   - verification: VER025
     method: review
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
+    note: >-
+      The plan covers fluids (section 11), sand and dust (section 12) and fungus (section 13)
+      for both installation zones, with the fluid families the published section lists, the
+      sand and dust entry for the external bay only, and the fungus assessment by inspection of
+      the declared materials, which are metals. What it does not cover: the platform fluid list
+      is not declared, so the test fluids stay open, and the non-metallic items of the kit are
+      not selected, so the fungus assessment reaches the structural materials only.
     note: Fluids, sand, dust and fungus covered by the qualification plan categories.
 
   - verification: VER026
     method: review
-    status: FUTURE
-    artifact: null
+    status: PASS
+    artifact: docs/qualification-plan.md
     plan: issues/10-qualification-plan-environmental
+    note: >-
+      The lightning and static electricity protection means are present in the installation
+      definition and named in the plan: the bonding straps and grounding hardware of CMP-07 with
+      the bonding path declared in the layout, the screened power pair, the connector shells
+      bonded through the connector bracket, and the harness routing provisions of CMP-12 with
+      the related DO-160G entries (sections 22, 23, 25). What it does not cover: whether those
+      means preserve the platform protection plan cannot be checked here, because the plan is
+      referenced and not declared (VER012).
     note: Lightning and static electricity protection means against the platform plan.
 
   - verification: VER027

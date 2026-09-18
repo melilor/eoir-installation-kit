@@ -1,0 +1,866 @@
+{
+  "revision": "A",
+  "standard": "RTCA DO-160G / EUROCAE ED-14G",
+  "sections_in_standard": 26,
+  "closing_authority": "The design organisation with the platform installer and the competent authority. The category of a section is a joint decision with the platform, because the category encodes the installation zone the platform owns.",
+  "zones": [
+    {
+      "id": "Z-01",
+      "name": "External belly bay",
+      "components": [
+        "CMP-01",
+        "CMP-02",
+        "CMP-03",
+        "CMP-04",
+        "CMP-05",
+        "CMP-07",
+        "CMP-08",
+        "CMP-09",
+        "CMP-11",
+        "CMP-12"
+      ]
+    },
+    {
+      "id": "Z-02",
+      "name": "Unpressurised fuselage interior, protection assembly and mission system panel",
+      "components": [
+        "CMP-04",
+        "CMP-05",
+        "CMP-06",
+        "CMP-12"
+      ]
+    },
+    {
+      "id": "Z-03",
+      "name": "Not installed",
+      "components": [
+        "CMP-10"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "section": "4",
+      "title": "Temperature and Altitude",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": "D",
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "payload and kit first article, installed on the platform",
+      "status": "PLANNED",
+      "limitation": "The ground survival and operating temperatures of the kit itself are not declared: only the payload envelope is, and the kit carries no powered item except the protection assembly.",
+      "open_on": null
+    },
+    {
+      "section": "5",
+      "title": "Temperature Variation",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "payload and kit first article",
+      "status": "OPEN",
+      "limitation": "No thermal model of the installation exists in this study.",
+      "open_on": "the temperature ramp rate of the two zones"
+    },
+    {
+      "section": "6",
+      "title": "Humidity",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "kit first article, with the interface plate and the harnesses installed",
+      "status": "OPEN",
+      "limitation": "The sealing and drainage provisions are designed but not validated against a severity level.",
+      "open_on": "the severity, which needs the platform compartment definition and the drainge and sealing assumptions confirmed"
+    },
+    {
+      "section": "7.2",
+      "title": "Operational Shock",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "kit first article with a mass-representative payload",
+      "status": "PLANNED",
+      "limitation": "A representative payload mass is used in place of the real payload.",
+      "open_on": null
+    },
+    {
+      "section": "7.3",
+      "title": "Crash Safety",
+      "requirement": "SYS004",
+      "categories": {
+        "Z-01": "not-applicable"
+      },
+      "method": "ANALYSIS",
+      "article": null,
+      "status": "ASSESSED",
+      "limitation": "The structural analysis is quasi-static and the crash case rests on declared platform factors rather than on a clause of 27.561 for a belly installation.",
+      "open_on": null
+    },
+    {
+      "section": "8",
+      "title": "Vibration",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": "R or U",
+        "Z-02": "R or U"
+      },
+      "method": "TEST",
+      "article": "kit first article with the payload, before and after the endurance exposure",
+      "status": "PLANNED",
+      "limitation": "The resonance separation is not demonstrated (VER011): the single degree of freedom estimate lands inside the rotor bands, and neither the test above nor the analysis can close that until the modes are measured.",
+      "open_on": null
+    },
+    {
+      "section": "9",
+      "title": "Explosive Atmosphere",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": "not-applicable",
+        "Z-02": "not-applicable"
+      },
+      "method": "REVIEW",
+      "article": null,
+      "status": "ASSESSED",
+      "limitation": "The non-applicability rests on the platform confirming that no fuel vent or tank zone reaches the installation.",
+      "open_on": null
+    },
+    {
+      "section": "10",
+      "title": "Waterproofness",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": "T",
+        "Z-02": "not-applicable"
+      },
+      "method": "TEST",
+      "article": "kit first article, installed, including the connectors and the harness entries",
+      "status": "PLANNED",
+      "limitation": "The washing procedure and frequency come from the operator and are not declared.",
+      "open_on": null
+    },
+    {
+      "section": "11",
+      "title": "Fluids Susceptibility",
+      "requirement": "SYS033",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "kit first article with a representative payload interface",
+      "status": "PLANNED",
+      "limitation": "The fluid list of the platform is not declared, so the test fluids cannot be fixed: the plan names the families and the platform has to select them.",
+      "open_on": null
+    },
+    {
+      "section": "12",
+      "title": "Sand and Dust",
+      "requirement": "SYS034",
+      "categories": {
+        "Z-01": null,
+        "Z-02": "not-applicable"
+      },
+      "method": "TEST",
+      "article": "kit first article, with the payload envelope closed and with it removed",
+      "status": "PLANNED",
+      "limitation": "The declared operating environment of the platform does not fix whether unimproved surfaces are used.",
+      "open_on": null
+    },
+    {
+      "section": "13",
+      "title": "Fungus",
+      "requirement": "SYS034",
+      "categories": {
+        "Z-01": "not-applicable",
+        "Z-02": "not-applicable"
+      },
+      "method": "INSPECTION",
+      "article": null,
+      "status": "ASSESSED",
+      "limitation": "Seals, grommets, marking materials, cable jackets and sealants are not selected yet, so the assessment covers the declared structural materials only and has to be repeated when the non-metallic items are chosen.",
+      "open_on": null
+    },
+    {
+      "section": "14",
+      "title": "Salt Fog",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": "not-applicable"
+      },
+      "method": "TEST",
+      "article": "kit first article after the corrosion protection is applied",
+      "status": "PLANNED",
+      "limitation": "The exposure duration is a platform environmental requirement, not declared here.",
+      "open_on": null
+    },
+    {
+      "section": "15",
+      "title": "Magnetic Effect",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "ANALYSIS",
+      "article": null,
+      "status": "OPEN",
+      "limitation": "The harness route is declared in the layout, but the platform magnetic survey is not available.",
+      "open_on": "the platform positions of the compass and magnetometer relative to the harness route"
+    },
+    {
+      "section": "16",
+      "title": "Power Input",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": "Z",
+        "Z-02": "Z"
+      },
+      "method": "TEST",
+      "article": "protective assembly and payload first article",
+      "status": "PLANNED",
+      "limitation": "The platform generating system is not declared, so the choice of Z covers the cases instead of being argued from the platform data.",
+      "open_on": null
+    },
+    {
+      "section": "17",
+      "title": "Voltage Spike",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "protective assembly and payload first article",
+      "status": "PLANNED",
+      "limitation": "The platform bus transient data is not declared.",
+      "open_on": null
+    },
+    {
+      "section": "18",
+      "title": "Audio Frequency Conducted Susceptibility",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "protective assembly and payload first article",
+      "status": "PLANNED",
+      "limitation": "The category is not independent, so it stays open until section 16 is confirmed by the platform.",
+      "open_on": null
+    },
+    {
+      "section": "19",
+      "title": "Induced Signal Susceptibility",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "data harness and payload first article",
+      "status": "PLANNED",
+      "limitation": "The platform wiring standard and the receiver sensitivity are not declared.",
+      "open_on": null
+    },
+    {
+      "section": "20",
+      "title": "Radio Frequency Susceptibility",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "payload and kit first article, with the harnesses installed",
+      "status": "PLANNED",
+      "limitation": "The HIRF environment is in the platform protection plan, which the study references without holding.",
+      "open_on": null
+    },
+    {
+      "section": "21",
+      "title": "Emission of Radio Frequency Energy",
+      "requirement": "SYS016",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "payload and kit first article, powered from a representative bus",
+      "status": "OPEN",
+      "limitation": "The payload emissions are not characterised in this study.",
+      "open_on": "the platform radio compatibility limits: SYS016 requires them and the platform interface data does not declare them"
+    },
+    {
+      "section": "22",
+      "title": "Lightning Induced Transient Susceptibility",
+      "requirement": "SYS035",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "harnesses and payload first article",
+      "status": "PLANNED",
+      "limitation": "The platform lightning environment and the induced transient levels are not declared.",
+      "open_on": null
+    },
+    {
+      "section": "23",
+      "title": "Lightning Direct Effects",
+      "requirement": "SYS035",
+      "categories": {
+        "Z-01": null,
+        "Z-02": "not-applicable"
+      },
+      "method": "TEST",
+      "article": "kit first article with the payload optical aperture",
+      "status": "OPEN",
+      "limitation": "The test is destructive on the article and is planned with the platform zoning.",
+      "open_on": "the lightning attachment zone of the belly position, which the platform has to declare"
+    },
+    {
+      "section": "24",
+      "title": "Icing",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": "not-applicable"
+      },
+      "method": "TEST",
+      "article": "kit first article with a representative payload envelope",
+      "status": "OPEN",
+      "limitation": "No ice accretion analysis of the installation exists.",
+      "open_on": "the icing environment the platform is approved for"
+    },
+    {
+      "section": "25",
+      "title": "Electrostatic Discharge",
+      "requirement": "SYS035",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "payload connector and kit first article",
+      "status": "PLANNED",
+      "limitation": "The bonding means are declared but the static path is not measured.",
+      "open_on": null
+    },
+    {
+      "section": "26",
+      "title": "Fire and Flammability",
+      "requirement": "SYS014",
+      "categories": {
+        "Z-01": null,
+        "Z-02": null
+      },
+      "method": "TEST",
+      "article": "harness sections and protection assembly",
+      "status": "PLANNED",
+      "limitation": "The flammability ratings of the cable jackets and the protection assembly materials are not declared.",
+      "open_on": null
+    }
+  ],
+  "cited_by_requirements": {
+    "4": "SYS014",
+    "6": "SYS014",
+    "8": "SYS014",
+    "11": "SYS033",
+    "12": "SYS034",
+    "13": "SYS034",
+    "14": "SYS014",
+    "16": "SYS014",
+    "20": "SYS014",
+    "21": "SYS014"
+  },
+  "status_counts": {
+    "PLANNED": 15,
+    "OPEN": 6,
+    "ASSESSED": 3
+  },
+  "methods": {
+    "TEST": 20,
+    "ANALYSIS": 2,
+    "INSPECTION": 1,
+    "REVIEW": 1
+  },
+  "open_categories": 31,
+  "selected_categories": 6,
+  "protection": [
+    {
+      "id": "PP-01",
+      "serves": [
+        "SYS013",
+        "SYS035"
+      ],
+      "section": "22",
+      "status": "PLANNED"
+    },
+    {
+      "id": "PP-02",
+      "serves": [
+        "SYS035",
+        "SYS016"
+      ],
+      "section": "22",
+      "status": "PLANNED"
+    },
+    {
+      "id": "PP-03",
+      "serves": [
+        "SYS017",
+        "SYS035"
+      ],
+      "section": "23",
+      "status": "ASSESSED"
+    },
+    {
+      "id": "PP-04",
+      "serves": [
+        "SYS017"
+      ],
+      "section": "23",
+      "status": "OPEN"
+    }
+  ],
+  "open_items": [
+    "QI-01",
+    "QI-02",
+    "QI-03"
+  ],
+  "summary": {
+    "checks": 46,
+    "passed": 46,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-01",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-01 Interface frame: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-02",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-02 Platform attachment fittings: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-03",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-03 Payload interface plate: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-04",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "CMP-04 Power harness: in Z-01, Z-02"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-05",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "CMP-05 Data harness: in Z-01, Z-02"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-06",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-06 Circuit protection assembly: in Z-02"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-07",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-07 Bonding straps and grounding hardware: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-08",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-08 Fastener and quick-release set: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-09",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-09 Payload connector bracket and strain relief: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-10",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-10 Documentation and marking set: in Z-03"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-11",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "CMP-11 Environmental protection provisions: in Z-01"
+    },
+    {
+      "check": "QUAL-COMPONENT-ZONE",
+      "subject": "CMP-12",
+      "status": "PASS",
+      "value": 2.0,
+      "limit": 1.0,
+      "margin": 1.0,
+      "message": "CMP-12 Harness routing and protection provisions: in Z-01, Z-02"
+    },
+    {
+      "check": "QUAL-DOCUMENT",
+      "subject": "TP-001",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "TP-001 is the plan at docs\\qualification-plan.md, state DRAFT"
+    },
+    {
+      "check": "QUAL-FUNCTIONAL-TEST",
+      "subject": "FT-01",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "FT-01 Functional performance of the ARINC 429 control link and the video link: declared with a method, an article and its zones"
+    },
+    {
+      "check": "QUAL-PROTECTION",
+      "subject": "PP-01",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "PP-01 section 22: serves SYS013, SYS035, state PLANNED, checked against the platform bonding and grounding standard, referenced in the platform interface data"
+    },
+    {
+      "check": "QUAL-PROTECTION",
+      "subject": "PP-02",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "PP-02 section 22: serves SYS035, SYS016, state PLANNED, checked against the platform protection plan"
+    },
+    {
+      "check": "QUAL-PROTECTION",
+      "subject": "PP-03",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "PP-03 section 23: serves SYS017, SYS035, state ASSESSED, checked against the platform protection plan"
+    },
+    {
+      "check": "QUAL-PROTECTION",
+      "subject": "PP-04",
+      "status": "PASS",
+      "value": 1.0,
+      "limit": 1.0,
+      "margin": 0.0,
+      "message": "PP-04 section 23: serves SYS017, state OPEN, checked against the platform protection plan"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "10",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 10 Waterproofness: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "11",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 11 Fluids Susceptibility: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "12",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 12 Sand and Dust: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "13",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 13 Fungus: complete, state ASSESSED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "14",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 14 Salt Fog: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "15",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 15 Magnetic Effect: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "16",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 16 Power Input: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "17",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 17 Voltage Spike: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "18",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 18 Audio Frequency Conducted Susceptibility: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "19",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 19 Induced Signal Susceptibility: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "20",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 20 Radio Frequency Susceptibility: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "21",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 21 Emission of Radio Frequency Energy: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "22",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 22 Lightning Induced Transient Susceptibility: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "23",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 23 Lightning Direct Effects: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "24",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 24 Icing: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "25",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 25 Electrostatic Discharge: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "26",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 26 Fire and Flammability: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "4",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 4 Temperature and Altitude: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "5",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 5 Temperature Variation: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "6",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 6 Humidity: complete, state OPEN"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "7.2",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 7.2 Operational Shock: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "7.3",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 7.3 Crash Safety: complete, state ASSESSED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "8",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 8 Vibration: complete, state PLANNED"
+    },
+    {
+      "check": "QUAL-SECTION",
+      "subject": "9",
+      "status": "PASS",
+      "value": 8.0,
+      "limit": 8.0,
+      "margin": 0.0,
+      "message": "section 9 Explosive Atmosphere: complete, state ASSESSED"
+    },
+    {
+      "check": "QUAL-SECTION-COVERAGE",
+      "subject": "requirements",
+      "status": "PASS",
+      "value": 10.0,
+      "limit": 10.0,
+      "margin": 0.0,
+      "message": "10 of the 10 DO-160G sections the requirements cite appear in the plan"
+    },
+    {
+      "check": "QUAL-ZONE-COVERAGE",
+      "subject": "Z-01",
+      "status": "PASS",
+      "value": 21.0,
+      "limit": 1.0,
+      "margin": 20.0,
+      "message": "Z-01 External belly bay: 21 applicable sections assessed against it"
+    },
+    {
+      "check": "QUAL-ZONE-COVERAGE",
+      "subject": "Z-02",
+      "status": "PASS",
+      "value": 16.0,
+      "limit": 1.0,
+      "margin": 15.0,
+      "message": "Z-02 Unpressurised fuselage interior, protection assembly and mission system panel: 16 applicable sections assessed against it"
+    },
+    {
+      "check": "QUAL-ZONE-COVERAGE",
+      "subject": "Z-03",
+      "status": "PASS",
+      "value": 241.0,
+      "limit": 1.0,
+      "margin": 240.0,
+      "message": "Z-03 Not installed: no qualification required \u2014 The zone holds the documentation and marking set, which is not installed on the platform and carries no environment: no section applies to it, and the components in it are qualified as part of the drawing and manual set, not against DO-160G."
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+# Environmental qualification model of the installation.
+#
+# What this file declares: the installation zones, the RTCA DO-160G sections that
+# apply to each of them, the category or the reason the category is still open,
+# the method that will demonstrate compliance and the test article it needs, and
+# the protection means the installation provides against the platform lightning,
+# HIRF and bonding provisions.
+#
+# What it does not do: invent a category. A category is written here only when a
+# declared input of this study and a public statement about the standard fix it.
+# Where that is not the case, the entry says what the category depends on and
+# what closes it. The standard itself is not in this repository, which is exactly
+# why every entry names the closing authority.
+#
+# Status vocabulary of an entry:
+#   ASSESSED — closed now, by analysis or inspection of the declared design;
+#   PLANNED  — compliance needs a test, and the test needs an article;
+#   OPEN     — the selection itself cannot be completed with the declared inputs.
+#
+# Category vocabulary of a zone: a designation when a declared input of this study
+# and a public statement about the standard fix it, `not-applicable` when the
+# section does not reach the zone, and null with `open_on` when it cannot be fixed
+# yet. A section is written as the number the standard gives it; the two parts of
+# section 7 are written 7.2 and 7.3 because they do not share a method.
+
+revision: A
+date: 2026-09-18
+standard: RTCA DO-160G / EUROCAE ED-14G
+sections_in_standard: 26
+closing_authority: >-
+  The design organisation with the platform installer and the competent authority.
+  The category of a section is a joint decision with the platform, because the
+  category encodes the installation zone the platform owns.
+
+declared_rules:
+  # Published statements this model relies on, so a reader can see on what the
+  # selections rest instead of taking them on trust.
+  public_references:
+    - statement: >-
+        Equipment is qualified to a specific severity category within each
+        applicable section, and the selection is determined by the installation
+        location, the aircraft category and the certification basis.
+      source: published summaries of DO-160 by qualification laboratories
+    - statement: >-
+        Section 4 categories run from A1 for pressurised cockpit locations to D3
+        for unpressurised external mounting, with temperature ranges from -55 to
+        +85 degrees Celsius and altitudes up to 21 300 metres.
+      source: published summaries of DO-160 Section 4
+    - statement: >-
+        Section 7 operational shock applies to equipment on aircraft and
+        rotorcraft; the crash safety test applies only where equipment coming
+        loose could present a hazard in an emergency landing, such as fuel system
+        and evacuation equipment, and it is not required to function afterwards.
+      source: published summaries of DO-160 Section 7
+    - statement: >-
+        Section 8 categories are S (standard, fixed wing), R, U and U2 (robust,
+        including rotary wing) and H and Z (high level short duration); R and U
+        are the rotary wing robust categories, tested sine-on-random, and the
+        curve comes from the table of categorisation by aircraft type and
+        equipment location.
+      source: published summaries of DO-160 Section 8
+    - statement: >-
+        Section 10 has four categories: W for dripping condensation, R for
+        dripping water, S for spray and T for externally mounted equipment
+        subject to direct rainfall and washing.
+      source: published summaries of DO-160 Section 10
+    - statement: >-
+        Section 16 category Z is 28 Vdc equipment that may be used on all other
+        types of electrical system, and it is acceptable for use in lieu of
+        category A or category B. Category B is 14 V or 28 Vdc equipment where a
+        battery of significant capacity floats on the bus at all times; category
+        A is 28 Vdc equipment whose dc comes from transformer-rectifier units fed
+        from an ac system.
+      source: published reference material for DO-160 Section 16
+    - statement: >-
+        Section 20 categories run from B for routine commercial aviation to R and
+        W for high intensity radiated field environments.
+      source: published summaries of DO-160 Section 20
+    - statement: >-
+        Section 21 limits depend on the sensitivity of the aircraft receivers to
+        interference and on the proximity of the wiring to those receivers.
+      source: published summaries of DO-160 Section 21
+    - statement: >-
+        Section 23 applies to externally mounted equipment with external
+        apertures, such as antennas and sensors.
+      source: published summaries of DO-160 Section 23
+    - statement: >-
+        Section 26 applies to all equipment, and cabin equipment carries the most
+        stringent flammability requirements.
+      source: published summaries of DO-160 Section 26
+
+# The zones the installation occupies. They come from the layout (what sits
+# outside the skin) and from the platform interface data (where the protection
+# assembly and the mission system panel are).
+zones:
+  - id: Z-01
+    name: External belly bay
+    qualification_required: true
+    exposure: >-
+      Unpressurised, outside the platform skin: rain, spray, ground washing, sand
+      and dust, salt, de-icing and cleaning fluids, ground handling, static
+      charge and direct lightning attachment risk.
+    source: >-
+      model/layout.yaml, side view: the payload envelope, the frame and the fittings below the skin line
+  - id: Z-02
+    name: Unpressurised fuselage interior, protection assembly and mission system panel
+    qualification_required: true
+    exposure: >-
+      Unpressurised interior: condensation, compartment temperature, airframe
+      vibration, and the fluids and dust that reach an equipment bay.
+    source: >-
+      model/interfaces/icd_platform.yaml declares the circuit breakers in the
+      distribution panel and the ARINC 429 interface on the mission system panel
+  - id: Z-03
+    name: Not installed
+    qualification_required: false
+    reason: >-
+      The zone holds the documentation and marking set, which is not installed on
+      the platform and carries no environment: no section applies to it, and the
+      components in it are qualified as part of the drawing and manual set, not
+      against DO-160G.
+    exposure: none — documentation, marking and ground equipment carried with the kit
+    source: >-
+      model/architecture/architecture.yaml, CMP-10 (documentation and marking set)
+
+components:
+  - { component: CMP-01, zones: [Z-01] }
+  - { component: CMP-02, zones: [Z-01] }
+  - { component: CMP-03, zones: [Z-01] }
+  - { component: CMP-04, zones: [Z-01, Z-02] }
+  - { component: CMP-05, zones: [Z-01, Z-02] }
+  - { component: CMP-06, zones: [Z-02] }
+  - { component: CMP-07, zones: [Z-01] }
+  - { component: CMP-08, zones: [Z-01] }
+  - { component: CMP-09, zones: [Z-01] }
+  - { component: CMP-10, zones: [Z-03] }
+  - { component: CMP-11, zones: [Z-01] }
+  - { component: CMP-12, zones: [Z-01, Z-02] }
+
+# One entry per section, or per part of a section where the two parts differ.
+# `zones` carries the category per zone: a string when the selection follows from
+# a declared input, null with `open_on` when it does not.
+sections:
+  - section: 4
+    title: Temperature and Altitude
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: D
+        open_on: the severity number (D1, D2 or D3) and the altitude profile, which follow from the platform design altitude
+      - id: Z-02
+        category: null
+        open_on: >-
+          the family and the severity number for an unpressurised compartment: the
+          published summary places A1 at a pressurised cockpit and D3 at
+          unpressurised external mounting, and the intermediate families are not
+          documented outside the standard
+    basis: >-
+      The external bay is unpressurised external mounting, which is the D family.
+      The declared payload environment is -40 to +55 degrees operating and -55 to
+      +85 storage, against the -55 to +85 the section spans, so the declared
+      envelope sits inside the section with no margin at the storage limits.
+    method: TEST
+    article: payload and kit first article, installed on the platform
+    status: PLANNED
+    limitation: >-
+      The ground survival and operating temperatures of the kit itself are not
+      declared: only the payload envelope is, and the kit carries no powered item
+      except the protection assembly.
+    closing_action: The platform declares its design altitude and compartment map; the categories follow.
+
+  - section: 5
+    title: Temperature Variation
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the ramp rate of the zone }
+      - { id: Z-02, category: null, open_on: the ramp rate of the compartment }
+    basis: >-
+      The section ramps the equipment between its temperature extremes; the ramp
+      rate belongs to the platform thermal environment and is not declared.
+    method: TEST
+    article: payload and kit first article
+    status: OPEN
+    open_on: the temperature ramp rate of the two zones
+    limitation: No thermal model of the installation exists in this study.
+
+  - section: 6
+    title: Humidity
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: whether the standard or the severe severity applies }
+      - { id: Z-02, category: null, open_on: whether the standard or the severe severity applies }
+    basis: >-
+      Both zones are unpressurised and exposed to condensation; the published
+      severities are standard and severe, and the choice follows from how wet the
+      zone is in service.
+    method: TEST
+    article: kit first article, with the interface plate and the harnesses installed
+    status: OPEN
+    open_on: the severity, which needs the platform compartment definition and the drainge and sealing assumptions confirmed
+    limitation: The sealing and drainage provisions are designed but not validated against a severity level.
+
+  - section: 7.2
+    title: Operational Shock
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the level, which follows from the aircraft type profiles in the standard }
+      - { id: Z-02, category: null, open_on: the level, which follows from the aircraft type profiles in the standard }
+    basis: >-
+      Operational shock applies to equipment installed on rotorcraft, and the
+      published statement is that rotorcraft installations face the most
+      demanding profiles.
+    method: TEST
+    article: kit first article with a mass-representative payload
+    status: PLANNED
+    limitation: A representative payload mass is used in place of the real payload.
+
+  - section: 7.3
+    title: Crash Safety
+    requirement: SYS004
+    zones:
+      - { id: Z-01, category: not-applicable, open_on: null }
+    basis: >-
+      The crash safety test applies where equipment coming loose could present a
+      hazard in an emergency landing, such as fuel system and evacuation
+      equipment. A belly installation outside the cabin, the fuel bays and the
+      evacuation routes is not such a place, so the section is not applied and the
+      crash inertia loads are instead carried by the structural analysis.
+    method: ANALYSIS
+    article: null
+    status: ASSESSED
+    limitation: >-
+      The structural analysis is quasi-static and the crash case rests on declared
+      platform factors rather than on a clause of 27.561 for a belly installation.
+
+  - section: 8
+    title: Vibration
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: R or U
+        open_on: the curve, which comes from the categorisation by aircraft type and equipment location, and the choice between R and U
+      - id: Z-02
+        category: R or U
+        open_on: the curve, as above
+    basis: >-
+      For a rotary wing installation the robust categories R and U apply, tested
+      sine-on-random; U repeats the exposure three times where R runs once. The
+      existing structural resonance estimate is a separate limitation and does not
+      qualify the equipment.
+    method: TEST
+    article: kit first article with the payload, before and after the endurance exposure
+    status: PLANNED
+    limitation: >-
+      The resonance separation is not demonstrated (VER011): the single degree of
+      freedom estimate lands inside the rotor bands, and neither the test above nor
+      the analysis can close that until the modes are measured.
+
+  - section: 9
+    title: Explosive Atmosphere
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: not-applicable, open_on: the platform fuel system layout }
+      - { id: Z-02, category: not-applicable, open_on: the platform fuel system layout }
+    basis: >-
+      The section applies to zones where fuel vapour may accumulate. The belly bay
+      and the distribution panel are not fuel vapour zones, and the platform
+      confirms it because the fuel system layout is outside this study.
+    method: REVIEW
+    article: null
+    status: ASSESSED
+    limitation: The non-applicability rests on the platform confirming that no fuel vent or tank zone reaches the installation.
+
+  - section: 10
+    title: Waterproofness
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: T
+        open_on: null
+      - { id: Z-02, category: not-applicable, open_on: null }
+    basis: >-
+      Category T covers externally mounted equipment subject to direct rainfall
+      and washing, which is the belly bay. The interior bay is not exposed to
+      water.
+    method: TEST
+    article: kit first article, installed, including the connectors and the harness entries
+    status: PLANNED
+    limitation: The washing procedure and frequency come from the operator and are not declared.
+
+  - section: 11
+    title: Fluids Susceptibility
+    requirement: SYS033
+    zones:
+      - { id: Z-01, category: null, open_on: which fluid families reach the installation }
+      - { id: Z-02, category: null, open_on: which fluid families reach the compartment }
+    basis: >-
+      The published fluid families are hydraulic fluid, fuels, lubricating oils,
+      de-icing and anti-icing compounds, cleaning agents and extinguishing
+      agents. The belly bay sees what drips from above and what is sprayed or
+      washed; the interior bay sees what leaks into the compartment.
+    method: TEST
+    article: kit first article with a representative payload interface
+    status: PLANNED
+    limitation: >-
+      The fluid list of the platform is not declared, so the test fluids cannot be
+      fixed: the plan names the families and the platform has to select them.
+
+  - section: 12
+    title: Sand and Dust
+    requirement: SYS034
+    zones:
+      - id: Z-01
+        category: null
+        open_on: the severity, which follows from whether the platform operates from unimproved surfaces
+      - { id: Z-02, category: not-applicable, open_on: null }
+    basis: >-
+      The section applies to equipment in unpressurised zones or aircraft operated
+      in desert or high particulate environments, which is the belly bay.
+    method: TEST
+    article: kit first article, with the payload envelope closed and with it removed
+    status: PLANNED
+    limitation: The declared operating environment of the platform does not fix whether unimproved surfaces are used.
+
+  - section: 13
+    title: Fungus
+    requirement: SYS034
+    zones:
+      - id: Z-01
+        category: not-applicable
+        open_on: the non-metallic items whose materials are not selected yet
+      - id: Z-02
+        category: not-applicable
+        open_on: as above
+    basis: >-
+      The declared materials of the structural parts are metals — 6082-T6
+      aluminium and corrosion resistant steel fasteners — and metals do not
+      support fungal growth. The section is assessed by inspection of the material
+      selection instead of by exposure test.
+    method: INSPECTION
+    article: null
+    status: ASSESSED
+    limitation: >-
+      Seals, grommets, marking materials, cable jackets and sealants are not
+      selected yet, so the assessment covers the declared structural materials
+      only and has to be repeated when the non-metallic items are chosen.
+
+  - section: 14
+    title: Salt Fog
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: null
+        open_on: the exposure duration, which follows from the platform environmental specification
+      - { id: Z-02, category: not-applicable, open_on: null }
+    basis: >-
+      The published applicability is rotorcraft and maritime operation, and the
+      belly bay is exposed to salt in coastal operation and storage. The
+      corrosion protection scheme is declared as a provision of the kit.
+    method: TEST
+    article: kit first article after the corrosion protection is applied
+    status: PLANNED
+    limitation: The exposure duration is a platform environmental requirement, not declared here.
+
+  - section: 15
+    title: Magnetic Effect
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the distance to the platform magnetic sensitive equipment }
+      - { id: Z-02, category: null, open_on: the distance from the interior run of the power harness to those systems }
+    basis: >-
+      The installation carries dc current in the power harness and ferromagnetic
+      hardware, and the section limits the deflection of compass systems and
+      magnetometers. The positions of those systems on the platform are not
+      declared.
+    method: ANALYSIS
+    article: null
+    status: OPEN
+    open_on: the platform positions of the compass and magnetometer relative to the harness route
+    limitation: The harness route is declared in the layout, but the platform magnetic survey is not available.
+
+  - section: 16
+    title: Power Input
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: Z
+        open_on: null
+      - id: Z-02
+        category: Z
+        open_on: null
+    basis: >-
+      The installation is 28 Vdc equipment, declared in the payload interface
+      data and the platform bus. Category Z is the 28 Vdc category for all other
+      electrical systems and it is acceptable in lieu of category A or B, so it
+      covers the platform whether the dc comes from a transformer-rectifier unit
+      or from engine driven generators with a significant battery on the bus.
+    method: TEST
+    article: protective assembly and payload first article
+    status: PLANNED
+    limitation: >-
+      The platform generating system is not declared, so the choice of Z covers
+      the cases instead of being argued from the platform data.
+
+  - section: 17
+    title: Voltage Spike
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the level, which follows from the platform bus characteristics }
+      - { id: Z-02, category: null, open_on: the level, as above }
+    basis: >-
+      The section applies to dc power inputs and the spike level belongs to the
+      bus the equipment is connected to.
+    method: TEST
+    article: protective assembly and payload first article
+    status: PLANNED
+    limitation: The platform bus transient data is not declared.
+
+  - section: 18
+    title: Audio Frequency Conducted Susceptibility
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the category linked to the power input selection }
+      - { id: Z-02, category: null, open_on: the category linked to the power input selection }
+    basis: >-
+      The section covers audio frequency interference on the power leads, and the
+      category follows the power input category of section 16.
+    method: TEST
+    article: protective assembly and payload first article
+    status: PLANNED
+    limitation: The category is not independent, so it stays open until section 16 is confirmed by the platform.
+
+  - section: 19
+    title: Induced Signal Susceptibility
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the category, which follows from the routing and the shielding of the harnesses }
+      - { id: Z-02, category: null, open_on: the category, as above }
+    basis: >-
+      The data harness carries the ARINC 429 control link and the video link along
+      a route that shares the frame with the power harness, which the layout
+      declares.
+    method: TEST
+    article: data harness and payload first article
+    status: PLANNED
+    limitation: The platform wiring standard and the receiver sensitivity are not declared.
+
+  - section: 20
+    title: Radio Frequency Susceptibility
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the field level, which follows from the platform HIRF environment }
+      - { id: Z-02, category: null, open_on: the field level, as above }
+    basis: >-
+      The published categories run from B for routine commercial aviation to R and
+      W for high intensity radiated field environments, and the level comes from
+      the platform protection plan, which the interface data references and does
+      not reproduce.
+    method: TEST
+    article: payload and kit first article, with the harnesses installed
+    status: PLANNED
+    limitation: The HIRF environment is in the platform protection plan, which the study references without holding.
+
+  - section: 21
+    title: Emission of Radio Frequency Energy
+    requirement: SYS016
+    zones:
+      - { id: Z-01, category: null, open_on: the limits, which follow from the receivers sensitive to the installation }
+      - { id: Z-02, category: null, open_on: the limits, as above }
+    basis: >-
+      The published limits depend on the sensitivity of the aircraft receivers and
+      on the proximity of the wiring to them. SYS016 requires the assessment
+      against the platform radio compatibility limits.
+    method: TEST
+    article: payload and kit first article, powered from a representative bus
+    status: OPEN
+    open_on: >-
+      the platform radio compatibility limits: SYS016 requires them and the
+      platform interface data does not declare them
+    limitation: The payload emissions are not characterised in this study.
+
+  - section: 22
+    title: Lightning Induced Transient Susceptibility
+    requirement: SYS035
+    zones:
+      - { id: Z-01, category: null, open_on: the levels, which follow from the platform lightning environment }
+      - { id: Z-02, category: null, open_on: the levels, as above }
+    basis: >-
+      Lightning current in the airframe induces transients in the attached wiring,
+      which the section reproduces by pin injection and cable bundle methods. The
+      installation adds two harnesses that run from an external bay into the
+      fuselage.
+    method: TEST
+    article: harnesses and payload first article
+    status: PLANNED
+    limitation: The platform lightning environment and the induced transient levels are not declared.
+
+  - section: 23
+    title: Lightning Direct Effects
+    requirement: SYS035
+    zones:
+      - { id: Z-01, category: null, open_on: the attachment zone, which comes from the platform lightning zoning }
+      - { id: Z-02, category: not-applicable, open_on: null }
+    basis: >-
+      The section applies to externally mounted equipment with external apertures,
+      which is the payload on the belly, with the fittings on the outer skin. The
+      interior bay has no external aperture.
+    method: TEST
+    article: kit first article with the payload optical aperture
+    status: OPEN
+    open_on: the lightning attachment zone of the belly position, which the platform has to declare
+    limitation: The test is destructive on the article and is planned with the platform zoning.
+
+  - section: 24
+    title: Icing
+    requirement: SYS014
+    zones:
+      - id: Z-01
+        category: null
+        open_on: whether operational or storage icing applies, and the level
+      - { id: Z-02, category: not-applicable, open_on: null }
+    basis: >-
+      The section covers equipment subject to operational or storage icing. The
+      payload and the frame sit in a position where ice can accrete, and whether
+      the airframe is approved for flight in icing conditions is a platform datum.
+    method: TEST
+    article: kit first article with a representative payload envelope
+    status: OPEN
+    open_on: the icing environment the platform is approved for
+    limitation: No ice accretion analysis of the installation exists.
+
+  - section: 25
+    title: Electrostatic Discharge
+    requirement: SYS035
+    zones:
+      - { id: Z-01, category: null, open_on: the level, which follows from handling during maintenance and from aircraft static build up }
+      - { id: Z-02, category: null, open_on: the level, as above }
+    basis: >-
+      The section covers discharge from personnel handling equipment and from
+      aircraft static build up, both of which reach an installation whose
+      connectors are mated and inspected on the platform.
+    method: TEST
+    article: payload connector and kit first article
+    status: PLANNED
+    limitation: The bonding means are declared but the static path is not measured.
+
+  - section: 26
+    title: Fire and Flammability
+    requirement: SYS014
+    zones:
+      - { id: Z-01, category: null, open_on: the level, which follows from the zone }
+      - { id: Z-02, category: null, open_on: the level, which follows from the compartment and is the more stringent of the two }
+    basis: >-
+      The section applies to all equipment and cabin equipment carries the most
+      stringent requirements. The harness sections inside the fuselage and the
+      protection assembly are the items it reaches.
+    method: TEST
+    article: harness sections and protection assembly
+    status: PLANNED
+    limitation: The flammability ratings of the cable jackets and the protection assembly materials are not declared.
+
+# Performance of the installation, not a section of the standard: what has to keep
+# working while and after the environmental exposure, verified on the same article
+# in the same campaign.
+functional_tests:
+  - id: FT-01
+    title: Functional performance of the ARINC 429 control link and the video link
+    requirement: SYS012
+    zones: [Z-01, Z-02]
+    basis: >-
+      SYS012 requires the control interface and the video output to work; the
+      environmental campaign is where that is demonstrated, because a link that
+      works on a bench proves nothing about an installation on a helicopter.
+    method: TEST
+    article: payload and kit first article, with a representative mission system interface
+    status: PLANNED
+    limitation: The video link format is still open in the payload interface data.
+
+# What the installation provides against the platform lightning, HIRF and bonding
+# provisions, and what cannot be checked because the protection plan is
+# referenced rather than reproduced.
+protection_preservation:
+  - id: PP-01
+    mean: Bonding straps and grounding hardware (CMP-07) between the payload and the platform structure
+    serves: [SYS013, SYS035]
+    section: 22
+    against_plan: the platform bonding and grounding standard, referenced in the platform interface data
+    status: PLANNED
+    limitation: >-
+      The 2.5 milliohm limit is a declared design rule (A-008) and the resistance
+      is not measured: the test needs the first article (VER009).
+  - id: PP-02
+    mean: >-
+      Screened power pair, screened data harness and connector shells bonded
+      through the connector bracket and the frame
+    serves: [SYS035, SYS016]
+    section: 22
+    against_plan: the platform protection plan
+    status: PLANNED
+    limitation: The screening effectiveness is not measured and the connector bonding path is not tested.
+  - id: PP-03
+    mean: >-
+      Harness routing away from the swept volume of the payload and from the
+      lightning attachment zone, with the protection provisions of CMP-12
+    serves: [SYS017, SYS035]
+    section: 23
+    against_plan: the platform protection plan
+    status: ASSESSED
+    limitation: >-
+      The routing is declared in the layout and checked there, but the attachment
+      zone it has to avoid is a platform datum that is not declared.
+  - id: PP-04
+    mean: >-
+      The installation adds no unprotected aperture to the platform and removes no
+      protection means: the preservation argument itself
+    serves: [SYS017]
+    section: 23
+    against_plan: the platform protection plan
+    status: OPEN
+    open_on: the content of the platform protection plan, which the study references without holding
+    limitation: >-
+      The preservation check is a review against a document this study does not
+      have, so it cannot be closed here (VER012).
+
+open_items:
+  - id: QI-01
+    title: The platform radio compatibility limits are required and not declared
+    detail: >-
+      SYS016 asks for the payload emissions to be assessed against the platform
+      radio compatibility limits. Those limits are not in the platform interface
+      data, so the emission limits of section 21 cannot be fixed, and the
+      assessment cannot start. This is an input the platform has to provide.
+  - id: QI-02
+    title: The category of a section belongs to the platform, not to this study
+    detail: >-
+      Every category encodes the installation zone, and the zone definition is the
+      platform's. The plan therefore names what each category depends on and who
+      closes it, and it declares a category only where a declared input of this
+      study and a public statement about the standard fix it: the temperature
+      family for an external bay, the waterproofness category for externally
+      mounted equipment, the power input category for 28 Vdc equipment, the
+      vibration family for rotary wing, and the sections that do not apply at all.
+  - id: QI-03
+    title: The kit has no declared environment of its own
+    detail: >-
+      The payload interface data declares an operating and storage temperature
+      range and nothing else. The kit materials, the sealing provisions and the
+      protection assembly carry no environmental requirement of their own, so the
+      specifications of the non-metallic items have to be derived from the zones
+      once the compartment map exists.

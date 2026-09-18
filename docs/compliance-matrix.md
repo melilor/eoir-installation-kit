@@ -47,12 +47,12 @@ Every requirement of the study, the document that will show compliance, the meth
 | SYS009 | Minimum clearance | ASM A-005 | VER005 | analysis | AN-003 | PLANNED | PASS |
 | SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | VER006 | analysis | AN-004 | PLANNED | PASS |
 | SYS011 | Electrical load analysis | STD 14 CFR 27.1351-27.1367 | VER007 | inspection | AN-004 | PLANNED | LIMITATION |
-| SYS012 | Data interfaces | ASM A-007 | VER008, VER016 | inspection, test | DWG-002 | DRAFT | PASS, FUTURE |
-| SYS013 | Bonding | ASM A-008 | VER009 | test | TP-002 | PLANNED | FUTURE |
-| SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | VER010 | review | TP-001 | PLANNED | FUTURE |
+| SYS012 | Data interfaces | ASM A-007 | VER008, VER016 | inspection, test | DWG-002 | DRAFT | PASS, LIMITATION |
+| SYS013 | Bonding | ASM A-008 | VER009 | test | TP-002 | PLANNED | LIMITATION |
+| SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | VER010 | review | TP-001 | DRAFT | LIMITATION |
 | SYS015 | Resonance separation | ASM A-010 | VER011 | analysis | AN-005 | PLANNED | LIMITATION |
-| SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | VER012 | review | TP-001 | PLANNED | FUTURE |
-| SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | VER012 | review | TP-001 | PLANNED | FUTURE |
+| SYS016 | Electromagnetic compatibility | STD RTCA DO-160G Section 21; STD 14 CFR 27.1309 | VER012 | review | TP-001 | DRAFT | LIMITATION |
+| SYS017 | Lightning and HIRF protection | STD 14 CFR 27.1316; STD 14 CFR 27.1317 | VER012 | review | TP-001 | DRAFT | LIMITATION |
 | SYS018 | Installation and removal | ASM A-011 | VER013 | demonstration | DWG-001 | DRAFT | LIMITATION |
 | SYS019 | Inspection access | ASM A-011 | VER013 | demonstration | DWG-001 | DRAFT | LIMITATION |
 | SYS020 | Change classification | STD EASA Part 21 Subpart D (21.A.91, 21.A.95, 21.A.97) | VER014 | review | CS-001 | GENERATED | PASS |
@@ -68,9 +68,9 @@ Every requirement of the study, the document that will show compliance, the meth
 | SYS030 | Harness routing and protection | STD 14 CFR 27.601; ASM A-012 | VER023 | inspection | DWG-002 | DRAFT | PASS |
 | SYS031 | Connector retention and access | STD 14 CFR 27.601; ASM A-012 | VER023 | inspection | DWG-002 | DRAFT | PASS |
 | SYS032 | Payload circuit protection | STD 14 CFR 27.1351-27.1367 | VER024 | inspection | AN-004 | PLANNED | FUTURE |
-| SYS033 | Fluids susceptibility | STD RTCA DO-160G Section 11; ASM A-009 | VER025 | review | TP-001 | PLANNED | FUTURE |
-| SYS034 | Sand, dust and fungus | STD RTCA DO-160G Section 12; STD RTCA DO-160G Section 13; ASM A-009 | VER025 | review | TP-001 | PLANNED | FUTURE |
-| SYS035 | Lightning and static electricity protection | STD 14 CFR 27.610 | VER026 | review | TP-001 | PLANNED | FUTURE |
+| SYS033 | Fluids susceptibility | STD RTCA DO-160G Section 11; ASM A-009 | VER025 | review | TP-001 | DRAFT | PASS |
+| SYS034 | Sand, dust and fungus | STD RTCA DO-160G Section 12; STD RTCA DO-160G Section 13; ASM A-009 | VER025 | review | TP-001 | DRAFT | PASS |
+| SYS035 | Lightning and static electricity protection | STD 14 CFR 27.610 | VER026 | review | TP-001 | DRAFT | PASS |
 | SYS036 | Configuration control | STD EASA Part 21 21.A.239 | VER027 | review | CS-001 | GENERATED | LIMITATION |
 | SYS037 | Loading information and operating limitations | STD 14 CFR 27.1589; STD 14 CFR 27.1583 | VER028 | review | FMS-001 | PLANNED | LIMITATION |
 | SYS038 | Part identification | STD EASA Part 21 21.A.239; STD 14 CFR 27.1529 | VER027 | review | DWG-001 | DRAFT | LIMITATION |
@@ -87,7 +87,7 @@ Every requirement of the study, the document that will show compliance, the meth
 | AN-004 | Electrical load and power budget | analysis | PLANNED | — | issues/06-analysis-power-and-bonding | SYS010, SYS011, SYS032 |
 | AN-005 | Resonance and vibration assessment | analysis | PLANNED | — | issues/07-analysis-load-path-and-strength | SYS015 |
 | AN-006 | Materials and corrosion protection scheme | analysis | PLANNED | — | issues/07-analysis-load-path-and-strength | SYS027 |
-| TP-001 | Environmental qualification plan and reports | test | PLANNED | — | issues/10-qualification-plan-environmental | SYS014, SYS016, SYS017, SYS033, SYS034, SYS035 |
+| TP-001 | Environmental qualification plan and reports | test | DRAFT | `docs/qualification-plan.md` | issues/10-qualification-plan-environmental | SYS014, SYS016, SYS017, SYS033, SYS034, SYS035 |
 | TP-002 | Bonding resistance test report | test | PLANNED | — | issues/10-qualification-plan-environmental | SYS013 |
 | ICA-001 | Instructions for continued airworthiness | ica | OUTLINE | `docs/ica.md` | issues/09-compliance-matrix-and-classification | SYS022 |
 | CS-001 | Compliance checklist and change classification record | checklist | GENERATED | `docs/compliance-matrix.md` | issues/09-compliance-matrix-and-classification | SYS020, SYS021, SYS023, SYS036 |

@@ -35,5 +35,7 @@ jobs:
         run: python -m tools.power --check
       - name: Run the load path analysis and verify the published evidence
         run: python -m tools.loads --check
+      - name: Verify the environmental qualification plan and its evidence
+        run: python -m tools.qualification --check
       - name: Run the tests
         run: python -m pytest

@@ -17,13 +17,13 @@ Doorstop document, the architecture and the evidence live in YAML, and a validat
 repository enforces the whole chain. If a requirement has no source, no owning component or
 no verification case, the build is red.
 
-**Status — revision H, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
+**Status — revision I, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
 15 declared assumptions, 93 layout checks, 16 mass checks, 3 clearance checks, 5 electrical
-checks, 44 load path checks, 13 documents in the compliance register, 127 tests, CI green.
-**Seventeen verification cases are closed** at the level the evidence supports — eleven `PASS`
-and six `LIMITATION` for what a model cannot demonstrate; the other 11 are `FUTURE` and each
-one names the ticket that will produce its evidence. Ten `ASM-OPEN` warnings flag the evidence
-that rests on a declared assumption that is still open. That is the honest state of the study and it is visible in
+checks, 44 load path checks, 46 qualification plan checks, 13 documents in the compliance
+register, 150 tests, CI green. **Twenty-three verification cases are closed** at the level the
+evidence supports — thirteen `PASS` and ten `LIMITATION` for what a model cannot demonstrate;
+the other 5 are `FUTURE` and each one names the ticket that will produce its evidence. Twelve
+`ASM-OPEN` warnings flag the evidence that rests on a declared assumption that is still open. That is the honest state of the study and it is visible in
 [the traceability matrix](traceability.md) and in the
 [compliance matrix](compliance-matrix.md).
 
@@ -70,7 +70,7 @@ Every arrow below is a rule in `tools/rules.py`, checked in CI:
                             ▼
     ┌────────────────────────────────────────────────────────┐
     │ ARTIFACT IN THE REPOSITORY                             │
-    │ 17 cases closed, 11 FUTURE — see the matrix            │
+    │ 23 cases closed, 5 FUTURE — see the matrix             │
     └────────────────────────────────────────────────────────┘
 
     ASM-OPEN warns when evidence is produced against an assumption that is still open.
@@ -100,7 +100,8 @@ eoir-installation-kit/
 │   ├── mass/            GENERATED: checks.json · report.md
 │   ├── clearance/       GENERATED: checks.json · report.md · sweep.svg
 │   ├── power/           GENERATED: checks.json · report.md
-│   └── loads/           GENERATED: checks.json · report.md
+│   ├── loads/           GENERATED: checks.json · report.md
+│   └── qualification/   GENERATED: checks.json · report.md
 │
 ├── tools/                        ← THE CHECK
 │   ├── model.py         loads the model parts
@@ -113,9 +114,10 @@ eoir-installation-kit/
 │   ├── clearance.py     3 field of view checks, writes evidence/clearance/
 │   ├── power.py         5 electrical checks, writes evidence/power/
 │   ├── loads.py         44 load path checks, writes evidence/loads/
+│   ├── qualification.py 46 plan checks, writes docs/qualification-plan.md
 │   └── compliance.py    generates the compliance matrix and the document register
 │
-├── tests/               127 tests: one failing model per rule, plus the repository model
+├── tests/               150 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
@@ -140,16 +142,17 @@ eoir-installation-kit/
 | Standard citations / assumption citations in requirements | 43 / 17 |
 | Declared assumptions | **13**, all `OPEN` |
 | Functions / components / interfaces / external entities | 9 / **12** / 9 / 6 |
-| Verification cases (`VER`) | **28** — `PASS` 11, `LIMITATION` 6, `FUTURE` 11 |
+| Verification cases (`VER`) | **28** — `PASS` 13, `LIMITATION` 10, `FUTURE` 5 |
 | Methods: analysis / review / inspection / test / demonstration | 8 / 11 / 5 / 2 / 2 |
 | Layout checks | **93**, all passing |
 | Mass checks | **16**, all passing |
 | Clearance checks | **3**, all passing |
 | Electrical checks | **5**, all passing |
 | Load path checks | **44**, all passing |
+| Qualification plan checks | **46**, all passing |
 | Compliance documents | **13** — every requirement covered exactly once |
 | Validation rules | **15**, one identifier per failure |
-| Tests | **127**, green |
+| Tests | **150**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -189,21 +192,26 @@ the mission system, the maintainer and the environment.
 
 ## What is verified, honestly
 
-Seventeen cases are closed at the level the evidence supports. Eleven are `PASS`: the layout
-checks (`VER008`, `VER019`, `VER021`, `VER023`), the compliance frame (`VER014`), the mass and
-balance analysis (`VER003`, `VER004`), the field of view analysis (`VER005`), the electrical
-power budget (`VER006`) and the load path and strength analysis (`VER001`, `VER002`). Six are
-`LIMITATION` because a model cannot demonstrate them: the 30-minute maintainability target
-without an article (`VER013`), the ICA without intervals (`VER015`), configuration control
-without an approved procedure (`VER027`), the flight manual supplement without an aircraft
-(`VER028`), the protection coordination without the breaker trip curve (`VER007`) and the
-resonance separation, which a single degree of freedom estimate cannot establish because its
-uncertainty is wider than the gap between the rotor harmonics (`VER011`). Every note states
-what the evidence does **not** cover.
+Twenty-three cases are closed at the level the evidence supports. Thirteen are `PASS`: the
+layout checks (`VER008`, `VER019`, `VER021`, `VER023`), the compliance frame (`VER014`), the
+mass and balance analysis (`VER003`, `VER004`), the field of view analysis (`VER005`), the
+electrical power budget (`VER006`), the load path and strength analysis (`VER001`, `VER002`),
+and the coverage and protection reviews of the qualification plan (`VER025`, `VER026`). Ten are
+`LIMITATION` because a model, a plan or a review cannot demonstrate them: the 30-minute
+maintainability target without an article (`VER013`), the ICA without intervals (`VER015`),
+configuration control without an approved procedure (`VER027`), the flight manual supplement
+without an aircraft (`VER028`), the protection coordination without the breaker trip curve
+(`VER007`), the resonance separation — a single degree of freedom estimate cannot establish it
+because its uncertainty is wider than the gap between the rotor harmonics (`VER011`) — and the
+four items of the qualification plan that need a first article or a platform document: the
+bonding resistance test (`VER009`), the review of the categories (`VER010`), the preservation
+against the platform protection plan and its radio compatibility limits (`VER012`), and the
+functional test of the data links (`VER016`). Every note states what the evidence does **not**
+cover.
 
-The other 11 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
-The study demonstrates a method and a discipline, not a result. Ten `ASM-OPEN` warnings mark
-the places where evidence rests on a declared assumption that is still open.
+The other 5 cases are `FUTURE`, each pointing at the ticket that will produce the evidence. The
+study demonstrates a method and a discipline, not a result. Twelve `ASM-OPEN` warnings mark the
+places where evidence rests on a declared assumption that is still open.
 
 ## The gate
 
@@ -217,6 +225,7 @@ python -m tools.mass                          # run the mass analysis, write the
 python -m tools.clearance                     # run the field of view analysis, write the evidence
 python -m tools.power                         # run the electrical analysis, write the evidence
 python -m tools.loads                         # run the load path analysis, write the evidence
+python -m tools.qualification                 # regenerate and check the qualification plan
 python -m tools.compliance                    # regenerate the compliance matrix
 python -m pytest                              # run the test suite
 ```
@@ -232,7 +241,7 @@ when the committed documents differ from the model, so the published artefacts c
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
 | Do they understand certification? | the change classification argued criterion by criterion, the document register, the ICA outline |
-| Do they automate their own discipline? | `tools/rules.py` and the six analysis tools, 127 tests, CI, generated evidence |
+| Do they automate their own discipline? | `tools/rules.py` and the seven analysis tools, 150 tests, CI, generated evidence |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 
@@ -261,16 +270,15 @@ when the committed documents differ from the model, so the published artefacts c
                  │ 05 FOV & CLEARANCE ✅          │
                  │ 06 POWER & BONDING ✅          │
                  │ 07 LOAD PATH & STRENGTH ✅     │
+                 │ 10 QUALIFICATION PLAN ✅       │
                  └───────────────┬────────────────┘
                                  ▼
-        ┌────────────────────────┬────────────────────────┐
-        ▼                                                    ▼
- ┌──────────────────────┐                 ┌──────────────────────┐
- │ 10 QUALIFICATION     │                 │ 11 TECHNICAL REPORT  │
- │    PLAN (unblocked)  │                 │    + REVIEW          │
- └──────────┬───────────┘                 └──────────┬───────────┘
-            └──────────────────┬──────────────────────┘
-                               ▼
+                     ┌─────────────────────┐
+                     │ 11 TECHNICAL REPORT │
+                     │    + REVIEW         │
+                     │    (unblocked)      │
+                     └──────────┬──────────┘
+                                ▼
                      ┌─────────────────────┐
                      │ 12 PUBLICATION AND  │
                      │    APPLICATION      │

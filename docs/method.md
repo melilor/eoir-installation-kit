@@ -106,6 +106,24 @@ strength is not what sizes this installation, while the resonance separation can
 demonstrated by a single degree of freedom estimate whose uncertainty is wider than the gaps
 between the harmonics.
 
+## The qualification plan
+
+`model/qualification.yaml` declares the installation zones, the DO-160G sections that reach
+each of them, the category of a section or the input it is still open on, the method and the
+test article, the protection means the installation provides and the open items.
+
+`tools/qualification.py` checks that the plan covers every section the requirements cite, that
+every entry is complete — a zone, a basis, a category or an explicit open item, a method, an
+article where a test is needed, a limitation where the work is pending — that every component
+is placed in a zone, that every zone is reached or declared exempt, and that the plan is the
+document TP-001 of the compliance register. It also writes the plan itself into
+`docs/qualification-plan.md`, so the document and the checks that review it cannot drift apart.
+
+Categories are not invented. The standard is not in this repository, so a category is written
+down only where a declared input of the study and a public statement about the standard fix it:
+the temperature family for an external bay, the waterproofness category for externally mounted
+equipment, the power input category for 28 Vdc equipment, the vibration family for rotary wing.
+
 ## The compliance frame
 
 `model/compliance.yaml` holds two things: the change classification (one criterion per

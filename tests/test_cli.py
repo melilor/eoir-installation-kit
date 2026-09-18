@@ -8,6 +8,7 @@ from tools.diagram import main as diagram_main
 from tools.mass import main as mass_main
 from tools.loads import main as loads_main
 from tools.power import main as power_main
+from tools.qualification import main as qualification_main
 from tools.traceability import main
 
 
@@ -56,4 +57,9 @@ def test_power_evidence_check_passes_when_current(capsys):
 
 def test_loads_evidence_check_passes_when_current(capsys):
     assert loads_main(["--check"]) == 0
+    assert "up to date" in capsys.readouterr().out
+
+
+def test_qualification_plan_check_passes_when_current(capsys):
+    assert qualification_main(["--check"]) == 0
     assert "up to date" in capsys.readouterr().out
