@@ -29,7 +29,6 @@ electrical:
   bus_capacity_w: 3000
   existing_continuous_load_w: 2100
   protection: individual circuit breakers in the distribution panel
-  payload_breaker_rating_a: 20
 
 data:
   control_bus: ARINC 429, available on the mission system interface panel

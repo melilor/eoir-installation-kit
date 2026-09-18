@@ -16,10 +16,10 @@
 #   - FUTURE requires a plan (the ticket that will produce the evidence);
 #   - FAIL, LIMITATION and BLOCKED require a note.
 #
-# Revision: F (2026-09-18) — the field of view analysis (ticket 05) closed the last
-# open installation case.
+# Revision: G (2026-09-18) — the electrical analysis (ticket 06) closed the power case and
+# recorded the protection coordination as a limitation with its open items.
 
-revision: F
+revision: G
 date: 2026-09-18
 
 cases:
@@ -84,6 +84,29 @@ cases:
     plan: issues/06-analysis-power-and-bonding
     note: Circuit protection coordination and electrical load analysis entry.
 
+  - verification: VER006
+    method: analysis
+    status: PASS
+    artifact: evidence/power/checks.json
+    plan: issues/06-analysis-power-and-bonding
+    note: >-
+      Continuous current 5.36 A over 2.4 m of 2.5 mm2 copper: 0.180 V of drop against a 2 %
+      limit of 0.560 V. Peak current 14.29 A: 0.480 V against 4 % (1.120 V). Conductor ampacity
+      20 A, breaker 20 A against a required 17.86 A, bus load 2251 W of 3000 W. The payload
+      demand and the bus data are declared inputs.
+
+  - verification: VER007
+    method: inspection
+    status: LIMITATION
+    artifact: evidence/power/checks.json
+    plan: issues/06-analysis-power-and-bonding
+    note: >-
+      The protection is coordinated on the steady and peak demand, and the value to enter in
+      the platform electrical load analysis is computed and identified. Two items are open and
+      recorded in model/power.yaml: the declared 25 A inrush exceeds the 20 A breaker rating
+      and the trip curve is not available, and the load analysis entry itself has to be made
+      in the platform document.
+
   - verification: VER008
     method: inspection
     status: PASS
@@ -101,7 +124,10 @@ cases:
     status: FUTURE
     artifact: null
     plan: issues/10-qualification-plan-environmental
-    note: Bonding resistance test on the first article; no test article exists in this study.
+    note: >-
+      Bonding resistance test on the first article; no test article exists in this study. The
+      2.5 mOhm limit is a declared design rule (A-008) still open, and the bonding path is
+      declared in the layout, not measured.
 
   - verification: VER010
     method: review

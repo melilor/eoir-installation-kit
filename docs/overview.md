@@ -17,14 +17,15 @@ Doorstop document, the architecture and the evidence live in YAML, and a validat
 repository enforces the whole chain. If a requirement has no source, no owning component or
 no verification case, the build is red.
 
-**Status — revision F, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
-90 layout checks, 16 mass checks, 3 clearance checks, 13 documents in the compliance register,
-96 tests, CI green. **Twelve verification cases are closed** at the level the evidence
-supports — eight `PASS` and four `LIMITATION` for what a model cannot demonstrate; the other 16
-are `FUTURE` and each one names the ticket that will produce its evidence. Eight `ASM-OPEN`
-warnings flag the evidence that rests on a declared assumption that is still open. That is the
-honest state of the study and it is visible in [the traceability matrix](traceability.md) and
-in the [compliance matrix](compliance-matrix.md).
+**Status — revision G, 2026-09-18.** 38 requirements, 12 components, 28 verification cases,
+90 layout checks, 16 mass checks, 3 clearance checks, 5 electrical checks, 13 documents in the
+compliance register, 107 tests, CI green. **Fourteen verification cases are closed** at the
+level the evidence supports — nine `PASS` and five `LIMITATION` for what a model cannot
+demonstrate; the other 14 are `FUTURE` and each one names the ticket that will produce its
+evidence. Nine `ASM-OPEN` warnings flag the evidence that rests on a declared assumption that
+is still open. That is the honest state of the study and it is visible in
+[the traceability matrix](traceability.md) and in the
+[compliance matrix](compliance-matrix.md).
 
 ## The model, end to end
 
@@ -69,7 +70,7 @@ Every arrow below is a rule in `tools/rules.py`, checked in CI:
                             ▼
     ┌────────────────────────────────────────────────────────┐
     │ ARTIFACT IN THE REPOSITORY                             │
-    │ 12 cases closed, 16 FUTURE — see the matrix            │
+    │ 14 cases closed, 14 FUTURE — see the matrix            │
     └────────────────────────────────────────────────────────┘
 
     ASM-OPEN warns when evidence is produced against an assumption that is still open.
@@ -97,7 +98,8 @@ eoir-installation-kit/
 ├── evidence/
 │   ├── layout/          GENERATED: checks.json · report.md · layout.svg · layout.dxf
 │   ├── mass/            GENERATED: checks.json · report.md
-│   └── clearance/       GENERATED: checks.json · report.md · sweep.svg
+│   ├── clearance/       GENERATED: checks.json · report.md · sweep.svg
+│   └── power/           GENERATED: checks.json · report.md
 │
 ├── tools/                        ← THE CHECK
 │   ├── model.py         loads the model parts
@@ -108,9 +110,10 @@ eoir-installation-kit/
 │   ├── layout.py        13 layout checks, writes evidence/layout/
 │   ├── mass.py          4 mass and balance checks, writes evidence/mass/
 │   ├── clearance.py     3 field of view checks, writes evidence/clearance/
+│   ├── power.py         5 electrical checks, writes evidence/power/
 │   └── compliance.py    generates the compliance matrix and the document register
 │
-├── tests/               96 tests: one failing model per rule, plus the repository model
+├── tests/               107 tests: one failing model per rule, plus the repository model
 │
 ├── docs/
 │   ├── overview.md      this file
@@ -135,14 +138,15 @@ eoir-installation-kit/
 | Standard citations / assumption citations in requirements | 43 / 17 |
 | Declared assumptions | **13**, all `OPEN` |
 | Functions / components / interfaces / external entities | 9 / **12** / 9 / 6 |
-| Verification cases (`VER`) | **28** — `PASS` 8, `LIMITATION` 4, `FUTURE` 16 |
+| Verification cases (`VER`) | **28** — `PASS` 9, `LIMITATION` 5, `FUTURE` 14 |
 | Methods: analysis / review / inspection / test / demonstration | 8 / 11 / 5 / 2 / 2 |
 | Layout checks | **90**, all passing |
 | Mass checks | **16**, all passing |
 | Clearance checks | **3**, all passing |
+| Electrical checks | **5**, all passing |
 | Compliance documents | **13** — every requirement covered exactly once |
 | Validation rules | **15**, one identifier per failure |
-| Tests | **96**, green |
+| Tests | **107**, green |
 | CI | green on every push |
 
 ## Requirements by class
@@ -182,16 +186,17 @@ the mission system, the maintainer and the environment.
 
 ## What is verified, honestly
 
-Twelve cases are closed at the level the evidence supports. Eight are `PASS`: the layout checks
+Fourteen cases are closed at the level the evidence supports. Nine are `PASS`: the layout checks
 (`VER008`, `VER019`, `VER021`, `VER023`), the compliance frame (`VER014`), the mass and balance
-analysis (`VER003`, `VER004`) and the field of view analysis (`VER005`). Four are `LIMITATION`
-because a model cannot demonstrate them: the 30-minute maintainability target without an
-article (`VER013`), the ICA without intervals (`VER015`), configuration control without an
-approved procedure (`VER027`), the flight manual supplement without an aircraft (`VER028`).
-Every note states what the evidence does **not** cover.
+analysis (`VER003`, `VER004`), the field of view analysis (`VER005`) and the electrical power
+budget (`VER006`). Five are `LIMITATION` because a model cannot demonstrate them: the 30-minute
+maintainability target without an article (`VER013`), the ICA without intervals (`VER015`),
+configuration control without an approved procedure (`VER027`), the flight manual supplement
+without an aircraft (`VER028`) and the protection coordination without the breaker trip curve
+(`VER007`). Every note states what the evidence does **not** cover.
 
-The other 16 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
-The study demonstrates a method and a discipline, not a result. Eight `ASM-OPEN` warnings mark
+The other 14 cases are `FUTURE`, each pointing at the ticket that will produce the evidence.
+The study demonstrates a method and a discipline, not a result. Nine `ASM-OPEN` warnings mark
 the places where evidence rests on a declared assumption that is still open.
 
 ## The gate
@@ -204,6 +209,7 @@ python -m tools.diagram                       # regenerate the architecture docu
 python -m tools.layout                        # run the layout checks, write the evidence
 python -m tools.mass                          # run the mass analysis, write the evidence
 python -m tools.clearance                     # run the field of view analysis, write the evidence
+python -m tools.power                         # run the electrical analysis, write the evidence
 python -m tools.compliance                    # regenerate the compliance matrix
 python -m pytest                              # run the test suite
 ```
@@ -219,13 +225,13 @@ when the committed documents differ from the model, so the published artefacts c
 | Can they manage requirements? | Doorstop, cited sources, declared assumptions, no requirement without a criterion |
 | Do they understand verification? | 28 cases with a declared method and an honest state, plus rules that reject unsupported claims |
 | Do they understand certification? | the change classification argued criterion by criterion, the document register, the ICA outline |
-| Do they automate their own discipline? | `tools/rules.py` and the four analysis tools, 96 tests, CI, generated evidence |
+| Do they automate their own discipline? | `tools/rules.py` and the five analysis tools, 107 tests, CI, generated evidence |
 | Do they write documentation? | this file, `docs/method.md`, the ADR, the spec, the tickets |
 | Do they know the standards frame? | CS-27/14 CFR Part 27, DO-160G, EASA Part 21, ARINC 429, ISO/IEC/IEEE 29148 |
 
 ## Limits, stated before anyone asks
 
-- No physical verification: the twelve closed cases are analyses and document reviews, and the
+- No physical verification: the fourteen closed cases are analyses and document reviews, and the
   installation target cannot be demonstrated without a first article.
 - All 13 assumptions are `OPEN`: payload, platform and environment are declared inputs, not
   measurements.
@@ -246,23 +252,22 @@ when the committed documents differ from the model, so the published artefacts c
                  │ 09 COMPLIANCE ✅               │
                  │ 04 MASS & CG ✅                │
                  │ 05 FOV & CLEARANCE ✅          │
+                 │ 06 POWER & BONDING ✅          │
                  └───────────────┬────────────────┘
                                  ▼
         ┌────────────────────────┴────────────────────────┐
         ▼                                                 ▼
  ┌──────────────┐        ┌──────────────┐         ┌──────────────────┐
- │06 POWER &    │        │07 LOAD PATH  │         │10 QUALIFICATION  │
- │  BONDING     │        │  unblocked   │         │  PLAN            │
- │  unblocked   │        │              │         │  unblocked       │
+ │07 LOAD PATH  │        │10 QUALIFICATION  │    │11 TECHNICAL      │
+ │  unblocked   │        │  PLAN unblocked  │    │  REPORT + REVIEW │
  └──────┬───────┘        └──────┬───────┘         └────────┬─────────┘
-        └───────────┬───────────┴──────────┬───────────────┘
-                    ▼                      ▼
-          ┌─────────────────────┐  ┌──────────────────┐
-          │ 11 TECHNICAL        │  │ 12 PUBLICATION   │
-          │    REPORT + REVIEW  │─▶│    AND           │
-          │                     │  │    APPLICATION   │
-          └─────────────────────┘  │    ALIGNMENT     │
-                                   └──────────────────┘
+        └───────────┬───────────┘                          │
+                    ▼                                      ▼
+          ┌─────────────────────┐              ┌─────────────────────┐
+          │ 12 PUBLICATION AND  │◀─────────────│  (after 11)         │
+          │    APPLICATION      │              └─────────────────────┘
+          │    ALIGNMENT        │
+          └─────────────────────┘
 ```
 
 Tickets live in `.scratch/eoir-installation-kit/issues/`, one file per ticket, each declaring

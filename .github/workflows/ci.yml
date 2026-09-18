@@ -31,5 +31,7 @@ jobs:
         run: python -m tools.mass --check
       - name: Run the field of view analysis and verify the published evidence
         run: python -m tools.clearance --check
+      - name: Run the electrical analysis and verify the published evidence
+        run: python -m tools.power --check
       - name: Run the tests
         run: python -m pytest

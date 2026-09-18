@@ -79,6 +79,16 @@ the clearance direction by direction and flags the directions whose margin is in
 the limit, so a tight direction is reported instead of averaged away. A figure of the sector
 with the rays is generated into `evidence/clearance/sweep.svg`.
 
+## The electrical budget
+
+`model/power.yaml` declares the kit harness conductors, the protection device and the design
+rules; the payload demand and the bus data come from the interface control files.
+`tools/power.py` computes the continuous and peak currents, the voltage drop along each
+harness, the conductor ampacity, the breaker rating against the peak demand and the resulting
+bus load, and writes `evidence/power/`. The items the declared data cannot close — above all
+the payload inrush against the breaker rating, which needs the trip curve — are listed in the
+evidence as open items instead of being smoothed away.
+
 ## The compliance frame
 
 `model/compliance.yaml` holds two things: the change classification (one criterion per

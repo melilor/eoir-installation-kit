@@ -1,0 +1,42 @@
+# Electrical model of the installation kit.
+#
+# The payload demand comes from the payload interface data and the bus data from
+# the platform interface data; this file declares only what belongs to the kit:
+# the harness conductors, the protection device and the design rules the analysis
+# checks against. Nothing here is typed into a document: tools/power.py computes
+# the currents, the voltage drop and the bus load from these numbers.
+
+revision: A
+date: 2026-09-18
+
+declared_rules:
+  copper_resistivity_ohm_mm2_per_m: 0.0175   # resistivity of copper at 20 C
+  conductor_ampacity_a_per_mm2: 8.0          # declared installation rule for a bundled cable
+  continuous_voltage_drop_pct: 2.0           # of the bus voltage, at the continuous demand
+  peak_voltage_drop_pct: 4.0                 # of the bus voltage, at the peak demand
+  breaker_margin_factor: 1.25                # over the peak demand
+
+harnesses:
+  - id: HR-01
+    component: CMP-04
+    description: Power harness from the protection assembly to the payload connector
+    conductor_cross_section_mm2: 2.5
+    installed_length_m: 2.4
+
+protection:
+  component: CMP-06
+  device: Circuit breaker in the platform distribution panel
+  rating_a: 20
+  trip_curve: not available in this study
+
+# Items the model cannot close with the declared data. They are reported, not
+# hidden, and they are the reason the coordination case carries a LIMITATION
+# instead of a PASS.
+open_items:
+  - >-
+    The declared 25 A payload inrush exceeds the 20 A breaker rating: the coordination of the
+    transient needs the breaker trip curve, which this study does not have. Either a curve
+    with a suitable delay, or a higher rating together with a larger conductor.
+  - >-
+    The entry in the platform electrical load analysis has to be made in the platform document
+    itself; this study identifies the value to enter, not the revision.

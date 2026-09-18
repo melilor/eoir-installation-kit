@@ -19,12 +19,12 @@ Every requirement of the installation kit, the architecture element that owns it
 
 | Evidence status | Count |
 | --- | --- |
-| PASS | 8 |
+| PASS | 9 |
 | WARN | 0 |
 | FAIL | 0 |
-| LIMITATION | 4 |
+| LIMITATION | 5 |
 | BLOCKED | 0 |
-| FUTURE | 16 |
+| FUTURE | 14 |
 
 ## Requirements
 
@@ -39,8 +39,8 @@ Every requirement of the installation kit, the architecture element that owns it
 | SYS007 | Weight and balance | STD 14 CFR 27.23; ASM A-002 | CMP-01, CMP-10 | VER003 | analysis | PASS | evidence/mass/checks.json |
 | SYS008 | Payload field of view | ASM A-003 | CMP-01, CMP-03 | VER005 | analysis | PASS | evidence/clearance/checks.json |
 | SYS009 | Minimum clearance | ASM A-005 | CMP-01, CMP-03 | VER005 | analysis | PASS | evidence/clearance/checks.json |
-| SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | CMP-04, CMP-06 | VER006 | analysis | FUTURE | issues/06-analysis-power-and-bonding |
-| SYS011 | Electrical load analysis | STD 14 CFR 27.1351-27.1367 | CMP-04, CMP-06 | VER007 | inspection | FUTURE | issues/06-analysis-power-and-bonding |
+| SYS010 | Electrical power supply | STD 14 CFR 27.1351-27.1367; ASM A-006 | CMP-04, CMP-06 | VER006 | analysis | PASS | evidence/power/checks.json |
+| SYS011 | Electrical load analysis | STD 14 CFR 27.1351-27.1367 | CMP-04, CMP-06 | VER007 | inspection | LIMITATION | evidence/power/checks.json |
 | SYS012 | Data interfaces | ASM A-007 | CMP-05 | VER008, VER016 | inspection, test | PASS, FUTURE | evidence/layout/checks.json, issues/10-qualification-plan-environmental |
 | SYS013 | Bonding | ASM A-008 | CMP-07 | VER009 | test | FUTURE | issues/10-qualification-plan-environmental |
 | SYS014 | Environmental qualification | STD RTCA DO-160G Section 4; STD RTCA DO-160G Section 6; STD RTCA DO-160G Section 8; STD RTCA DO-160G Section 14; STD RTCA DO-160G Section 16; STD RTCA DO-160G Section 20; STD RTCA DO-160G Section 21; ASM A-009 | CMP-11 | VER010 | review | FUTURE | issues/10-qualification-plan-environmental |

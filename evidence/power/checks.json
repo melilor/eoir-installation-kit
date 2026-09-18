@@ -1,0 +1,92 @@
+{
+  "revision": "A",
+  "bus_voltage_v": 28.0,
+  "declared_rules": {
+    "copper_resistivity_ohm_mm2_per_m": 0.0175,
+    "conductor_ampacity_a_per_mm2": 8.0,
+    "continuous_voltage_drop_pct": 2.0,
+    "peak_voltage_drop_pct": 4.0,
+    "breaker_margin_factor": 1.25
+  },
+  "protection": {
+    "component": "CMP-06",
+    "device": "Circuit breaker in the platform distribution panel",
+    "rating_a": 20.0,
+    "trip_curve": "not available in this study"
+  },
+  "payload": {
+    "continuous_w": 150.0,
+    "peak_w": 400.0,
+    "inrush_a": 25.0
+  },
+  "circuits": [
+    {
+      "harness": "HR-01",
+      "component": "CMP-04",
+      "cross_section_mm2": 2.5,
+      "installed_length_m": 2.4,
+      "continuous_current_a": 5.357,
+      "peak_current_a": 14.286,
+      "continuous_drop_v": 0.18,
+      "peak_drop_v": 0.48,
+      "ampacity_a": 20.0,
+      "loss_w": 0.964
+    }
+  ],
+  "open_items": [
+    "The declared 25 A payload inrush exceeds the 20 A breaker rating: the coordination of the transient needs the breaker trip curve, which this study does not have. Either a curve with a suitable delay, or a higher rating together with a larger conductor.",
+    "The entry in the platform electrical load analysis has to be made in the platform document itself; this study identifies the value to enter, not the revision."
+  ],
+  "summary": {
+    "checks": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "check": "POWER-AMPACITY",
+      "subject": "HR-01",
+      "status": "PASS",
+      "value": 5.357,
+      "limit": 20.0,
+      "margin": 14.643,
+      "message": "HR-01: continuous current 5.36 A against an ampacity of 20 A"
+    },
+    {
+      "check": "POWER-BREAKER",
+      "subject": "CMP-06",
+      "status": "PASS",
+      "value": 20.0,
+      "limit": 17.857142857142858,
+      "margin": 2.143,
+      "message": "Circuit breaker in the platform distribution panel rated 20 A against a required 17.86 A (1.25 x peak demand)"
+    },
+    {
+      "check": "POWER-BUS",
+      "subject": "platform",
+      "status": "PASS",
+      "value": 2250.964,
+      "limit": 3000.0,
+      "margin": 749.036,
+      "message": "bus load 2251 W after the installation (151 W added) against a declared capacity of 3000 W"
+    },
+    {
+      "check": "POWER-CONTINUOUS",
+      "subject": "HR-01",
+      "status": "PASS",
+      "value": 0.18,
+      "limit": 0.56,
+      "margin": 0.38,
+      "message": "HR-01: 5.36 A over 2.4 m of 2.5 mm2, drop 0.180 V (2 % limit)"
+    },
+    {
+      "check": "POWER-PEAK",
+      "subject": "HR-01",
+      "status": "PASS",
+      "value": 0.48,
+      "limit": 1.12,
+      "margin": 0.64,
+      "message": "HR-01: 14.29 A peak, drop 0.480 V (4 % limit)"
+    }
+  ]
+}
